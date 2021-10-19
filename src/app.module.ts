@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
+import { Order } from './order/order.model';
 import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
 
@@ -16,7 +17,7 @@ import { UsersModule } from './users/users.module';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DB,
-      models: [User],
+      models: [User, Order],
       autoLoadModels: true,
     }),
     UsersModule,
