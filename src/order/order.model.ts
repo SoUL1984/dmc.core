@@ -1,7 +1,16 @@
 import { NOW } from 'sequelize';
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import {
+  BelongsTo,
+  Column,
+  DataType,
+  ForeignKey,
+  Model,
+  Table,
+} from 'sequelize-typescript';
+import { User } from 'src/users/users.model';
+import { $enum } from 'ts-enum-util';
 
-const enum ColorEnum {
+enum ColorEnum {
   none = 'none',
   A1 = 'A1',
   A2 = 'A2',
@@ -38,6 +47,16 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   id: number;
 
+  @ForeignKey(() => User)
+  @Column({
+    type: DataType.INTEGER,
+    comment: 'Индентификатор пользователя который завел заказ-наряд',
+  })
+  userId: number;
+
+  @BelongsTo(() => User, 'userId')
+  user: User;
+
   @Column({
     type: DataType.DATE,
     defaultValue: NOW,
@@ -65,7 +84,26 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   technician: string;
 
   @Column({
-    type: DataType.ENUM,
+    type: DataType.ENUM(
+      'none',
+      'A1',
+      'A2',
+      'A3',
+      'A3,5',
+      'A4',
+      'B1',
+      'B2',
+      'B3',
+      'B4',
+      'C1',
+      'C2',
+      'C3',
+      'C4',
+      'D2',
+      'D3',
+      'D4',
+      'Blich',
+    ),
     defaultValue: ColorEnum.none,
     comment: 'Цвет конструкции',
   })
