@@ -8,7 +8,6 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { User } from 'src/users/users.model';
-import { $enum } from 'ts-enum-util';
 
 enum ColorEnum {
   none = 'none',
@@ -30,6 +29,12 @@ enum ColorEnum {
   D4 = 'D4',
   Blich = 'Blich',
 }
+
+export const listEnumValuesColor: {
+  value: string;
+}[] = Object.values(ColorEnum)
+  .filter((value) => typeof value === 'string')
+  .map((value) => ({ value: value as string }));
 
 interface OrderCreationAttrs {
   technician: string;
