@@ -2,11 +2,19 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Order } from 'src/order/order.model';
 
+enum UserEnum {
+  customer,
+  dentaltechn,
+  director,
+  courier,
+  admin = 'admin',
+}
+
 interface UserCreationAttrs {
   email: string;
   password: string;
   phone: string;
-  role: number;
+  role: UserEnum;
 }
 
 @Table({ tableName: 'users' })
@@ -32,9 +40,18 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
   phone: string;
 
-  @ApiProperty({ example: 'guest', description: 'Роль' })
-  @Column({ type: DataType.INTEGER, allowNull: false })
-  role: number;
+  @ApiProperty({ example: 'customer', description: 'Роль' })
+  @Column({
+    type: DataType.ENUM(
+      'director',
+      'courier',
+      'admin',
+      'customer',
+      'dentaltechn',
+    ),
+    allowNull: false,
+  })
+  role: string;
 
   @ApiProperty({
     example: '01.01.2021',
@@ -45,4 +62,5 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @HasMany(() => Order, 'userId')
   orders: Order[];
+  static UserEnum: UserEnum;
 }
