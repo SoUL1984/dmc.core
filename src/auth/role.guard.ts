@@ -9,17 +9,16 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
-import { ROLES_KEY } from './roles-auth.decorator';
+import { ROLES_KEY } from './role-auth.decorator';
 
 @Injectable()
-export class RolesGuard implements CanActivate {
+export class RoleGuard implements CanActivate {
   constructor(private jwtService: JwtService, private reflector: Reflector) {}
   canActivate(
     context: ExecutionContext,
   ): boolean | Promise<boolean> | Observable<boolean> {
     const req = context.switchToHttp().getRequest();
     try {
-      //TODO: Разобраться этот кусок не работает
       const requiredRole = this.reflector.getAllAndOverride(ROLES_KEY, [
         context.getHandler(),
         context.getClass(),
@@ -39,9 +38,12 @@ export class RolesGuard implements CanActivate {
 
       const user = this.jwtService.verify(token);
       req.user = user;
-      console.log('3 => ', user);
-      console.log('4 => ', user.some(requiredRole.include(user.role)));
-      return user.some(requiredRole.include(user.role));
+      if (user.role === requiredRole) {
+        return true;
+      }
+      //else {
+      //  return false;
+      //}
     } catch (e) {
       throw new HttpException('Нет доступа', HttpStatus.FORBIDDEN);
     }
