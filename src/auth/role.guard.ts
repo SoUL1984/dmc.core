@@ -40,10 +40,9 @@ export class RoleGuard implements CanActivate {
       req.user = user;
       if (user.role === requiredRole) {
         return true;
+      } else {
+        return false;
       }
-      //else {
-      //  return false;
-      //}
     } catch (e) {
       throw new HttpException('Нет доступа', HttpStatus.FORBIDDEN);
     }
