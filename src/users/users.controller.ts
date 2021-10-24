@@ -46,4 +46,13 @@ export class UsersController {
   remove(@Param('email') email: string) {
     return this.userService.deleteUserByEmail(email);
   }
+
+  @ApiOperation({ summary: 'Получить всех пользователей' })
+  @ApiResponse({ status: 200, type: [User] })
+  @Role('admin')
+  @UseGuards(RoleGuard)
+  @Patch(':email')
+  update(@Param('email') email: string, @Body() userDto: UpdateUserDto) {
+    return this.userService.updateUserByEmail(userDto, email);
+  }
 }
