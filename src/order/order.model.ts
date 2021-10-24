@@ -9,7 +9,7 @@ import {
 } from 'sequelize-typescript';
 import { User } from 'src/users/users.model';
 
-enum ColorEnum {
+export enum EnumColor {
   none = 'none',
   A1 = 'A1',
   A2 = 'A2',
@@ -29,12 +29,6 @@ enum ColorEnum {
   D4 = 'D4',
   Blich = 'Blich',
 }
-
-export const listEnumValuesColor: {
-  value: string;
-}[] = Object.values(ColorEnum)
-  .filter((value) => typeof value === 'string')
-  .map((value) => ({ value: value as string }));
 
 interface OrderCreationAttrs {
   technician: string;
@@ -89,7 +83,8 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   technician: string;
 
   @Column({
-    type: DataType.ENUM(
+    type: DataType.ENUM,
+    values: [
       'none',
       'A1',
       'A2',
@@ -108,11 +103,11 @@ export class Order extends Model<Order, OrderCreationAttrs> {
       'D3',
       'D4',
       'Blich',
-    ),
-    defaultValue: ColorEnum.none,
+    ],
+    defaultValue: EnumColor.none,
     comment: 'Цвет конструкции',
   })
-  color: ColorEnum;
+  color: string;
 
   @Column({
     type: DataType.DATE,

@@ -21,4 +21,10 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { email } });
     return user;
   }
+  async deleteUserByEmail(email: string) {
+    return await this.userRepository.update(
+      { isDelete: true },
+      { where: { email } },
+    );
+  }
 }

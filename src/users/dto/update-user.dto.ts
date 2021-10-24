@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 
-export class CreateUserDto {
+export class UpdateUserDto {
   @ApiProperty({ example: 'user@mail.ru', description: 'Почта' })
   readonly email: string;
 
@@ -12,4 +12,7 @@ export class CreateUserDto {
 
   @ApiProperty({ example: 'guest', description: 'Роль' })
   readonly role: string;
+
+  @ApiProperty({ example: 'guest', description: 'Роль' })
+  readonly isDelete: boolean;
 }
