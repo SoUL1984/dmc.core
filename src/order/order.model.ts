@@ -53,15 +53,15 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   userId: number;
 
-  @BelongsTo(() => User, 'userId')
+  @BelongsTo(() => User)
   user: User;
 
-  @Column({
-    type: DataType.DATE,
-    defaultValue: NOW,
-    comment: 'Дата и время создания заказ-наряда',
-  })
-  dateOrder: Date;
+  // @Column({
+  //   type: DataType.DATE,
+  //   defaultValue: NOW,
+  //   comment: 'Дата и время создания заказ-наряда',
+  // })
+  // dateOrder: Date;
 
   @Column({
     type: DataType.STRING,
@@ -154,7 +154,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     defaultValue: false,
     comment: 'Флаг, доставка произведена',
   })
-  flagDeliveryMade: boolean;
+  isDeliveryMade: boolean;
 
   @Column({
     type: DataType.STRING(600),
@@ -166,7 +166,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     type: DataType.STRING(250),
     comment: 'Дополнительные комментарии',
   })
-  comments: string;
+  desc: string;
 
   @Column({
     type: DataType.INTEGER,
@@ -188,13 +188,6 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   executor_n3: number;
 
   @Column({
-    type: DataType.BOOLEAN,
-    defaultValue: false,
-    comment: 'Флаг удаления Заказ-наряда',
-  })
-  isDelete: boolean;
-
-  @Column({
     type: DataType.DATE,
     allowNull: false,
     comment: 'Примерка №1',
@@ -214,4 +207,11 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     comment: 'Примерка №3',
   })
   fittingDateN3: Date;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+    comment: 'Флаг удаления Заказ-наряда',
+  })
+  isDelete: boolean;
 }
