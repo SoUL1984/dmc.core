@@ -10,7 +10,6 @@ import {
   UsePipes,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-//import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { Role } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
@@ -26,7 +25,7 @@ export class UsersController {
 
   @ApiOperation({ summary: 'Создать пользователя' })
   @ApiResponse({ status: 200, type: User })
-  //@UsePipes(ValidationPipe)
+  @UsePipes(ValidationPipe)
   @Post()
   create(@Body() userDto: CreateUserDto) {
     return this.userService.createUser(userDto);
