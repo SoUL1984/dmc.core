@@ -1,12 +1,13 @@
-import { NOW } from 'sequelize';
 import {
   BelongsTo,
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
+import { OrderPrice } from 'src/order_price/order_price.model';
 import { User } from 'src/users/users.model';
 
 export enum EnumColor {
@@ -214,4 +215,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     comment: 'Флаг удаления Заказ-наряда',
   })
   isDelete: boolean;
+
+  @HasMany(() => OrderPrice)
+  orderPrices: OrderPrice[];
 }
