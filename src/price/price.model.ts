@@ -4,9 +4,11 @@ import {
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
+import { OrderPrice } from 'src/order_price/order_price.model';
 import { PriceGroup } from 'src/pricegroup/pricegroup.model';
 
 interface PriceCreationAttrs {
@@ -59,4 +61,7 @@ export class Price extends Model<Price, PriceCreationAttrs> {
   @ApiProperty({ example: 'true', description: 'Признак удаленной записи' })
   @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
   isDelete: boolean;
+
+  @HasMany(() => OrderPrice)
+  orderPrices: OrderPrice[];
 }
