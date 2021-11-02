@@ -2,7 +2,10 @@
 1. [Сценарий авторизация пользователя](####1-script-auth-user)
 2. [Сценарий работы в роли Admin](####2-script-admin)
 3. [Сценарий работы в роли Customer](####3-script-customer)
-4. Сценарий работы в роли Dental Technician (dentaltechn)[^4]
+4. Сценарий работы в роли Dental Technician (dentaltechn)
+    * [Оформление заказ-нарядов](documentation/technican/doc__order_and_order_price__admin.md)
+    * [Работа с прайслистом](documentation/technican/doc__price_and_productcategory__admin.md)
+    * [Редактирование своего профиля](documentation/technican/doc__user__technican.md)
 5. Сценарий работы в роли Director[^]
 6. [Сценарий работы в роли Courier](####6-script-Courier)
 7. [Сценарий работы в роли None](####7-script-none)
