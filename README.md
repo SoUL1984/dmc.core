@@ -14,7 +14,7 @@
     * [Редактирование своего профиля](documentation/technican/doc__user__technican.md)
 5. Сценарий работы в роли Director[^]
 6. [Сценарий работы в роли Courier](####6-script-Courier)
-7. [Сценарий работы в роли None][####7-script-none]
+7. [Сценарий работы в роли None](####7-script-none)
 
 #### 1. Сценарий авторизация пользователя
 
