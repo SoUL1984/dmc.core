@@ -13,10 +13,10 @@
     * [Работа с прайслистом](documentation/technican/doc__price_and_productcategory___technican.md)
     * [Редактирование своего профиля](documentation/technican/doc__user__technican.md)
 5. Сценарий работы в роли Director
-    * [Просмотр заказ-нарядов](documentation/technican/doc__order_and_order_price___technican.md)
-    * [Работа с прайслистом](documentation/technican/doc__price_and_productcategory___technican.md)
-    * [Редактирование своего профиля](documentation/technican/doc__user__technican.md)
-6. [Сценарий работы в роли Courier](documentation/technican/doc__order__courier.md)
+    * [Просмотр заказ-нарядов](documentation/director/doc__order_and_order_price___director.md)
+    * [Работа с прайслистом](documentation/director/doc__price_and_productcategory___director.md)
+    * [Редактирование своего профиля](documentation/director/doc__user__director.md)
+6. [Сценарий работы в роли Courier](####6-script-Courier)
 7. [Сценарий работы в роли None](documentation/none/singlepage_app.md)
 8. [Схема БД](documentation/dmcdb.png)
 
