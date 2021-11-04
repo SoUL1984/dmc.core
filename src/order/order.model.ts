@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   BelongsTo,
   Column,
@@ -38,6 +39,7 @@ interface OrderCreationAttrs {
 
 @Table({ tableName: 'order', paranoid: true })
 export class Order extends Model<Order, OrderCreationAttrs> {
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.INTEGER,
     unique: true,
@@ -63,19 +65,21 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   //   comment: 'Дата и время создания заказ-наряда',
   // })
   // dateOrder: Date;
-
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.STRING,
     comment: 'ФИО доктора',
   })
   doctorName: string;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.STRING,
     comment: 'ФИО пациента',
   })
   pacientName: string;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.STRING,
     allowNull: false,
@@ -83,51 +87,57 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   technician: string;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.ENUM,
-    values: [
-      'none',
-      'A1',
-      'A2',
-      'A3',
-      'A3,5',
-      'A4',
-      'B1',
-      'B2',
-      'B3',
-      'B4',
-      'C1',
-      'C2',
-      'C3',
-      'C4',
-      'D2',
-      'D3',
-      'D4',
-      'Blich',
-    ],
+    // values: [
+    //   'none',
+    //   'A1',
+    //   'A2',
+    //   'A3',
+    //   'A3,5',
+    //   'A4',
+    //   'B1',
+    //   'B2',
+    //   'B3',
+    //   'B4',
+    //   'C1',
+    //   'C2',
+    //   'C3',
+    //   'C4',
+    //   'D2',
+    //   'D3',
+    //   'D4',
+    //   'Blich',
+    // ],
+    values: Object.values(EnumColor),
     defaultValue: EnumColor.none,
     comment: 'Цвет конструкции',
   })
   color: string;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.DATE,
     comment: 'Дата сдачи работы (окончательная, которая произошла)',
   })
   deliveryWork: Date;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.STRING,
     comment: 'Акт выполненных работ',
   })
   certComplete: string;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.STRING,
     comment: 'Факт оплаты (подтверждение оплаты)',
   })
   factPayment: string;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.BOOLEAN,
     defaultValue: false,
@@ -135,6 +145,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   isComplete: boolean;
 
+  @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.BOOLEAN,
     defaultValue: false,
