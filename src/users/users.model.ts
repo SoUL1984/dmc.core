@@ -80,7 +80,6 @@ export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({ example: 'customer', description: 'Роль' })
   @Column({
     type: DataType.ENUM,
-    //values: ['dentaltechn', 'director', 'courier', 'admin', 'customer', 'none'],
     values: Object.values(EnumRole),
     defaultValue: EnumRole.none,
     allowNull: false,
