@@ -1,14 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { values } from 'sequelize/types/lib/operators';
 import { Order } from 'src/order/order.model';
 
 export enum EnumRole {
-  customer,
-  dentaltechn,
-  director,
-  courier,
-  admin,
-  none,
+  customer = 'customer',
+  dentaltechn = 'dentaltechn',
+  director = 'director',
+  courier = 'courier',
+  admin = 'admin',
+  none = 'none',
 }
 
 interface UserCreationAttrs {
@@ -79,8 +80,9 @@ export class User extends Model<User, UserCreationAttrs> {
   @ApiProperty({ example: 'customer', description: 'Роль' })
   @Column({
     type: DataType.ENUM,
-    values: ['dentaltechn', 'director', 'courier', 'admin', 'customer', 'none'],
-    //defaultValue: EnumRole.none,
+    //values: ['dentaltechn', 'director', 'courier', 'admin', 'customer', 'none'],
+    values: Object.values(EnumRole),
+    defaultValue: EnumRole.none,
     allowNull: false,
   })
   role: string;
