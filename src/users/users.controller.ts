@@ -24,7 +24,7 @@ export class UsersController {
   constructor(private userService: UsersService) {}
 
   @ApiOperation({ summary: 'Создать пользователя' })
-  @ApiResponse({ status: 200, type: User })
+  @ApiResponse({ status: 200, type: [User] })
   @UsePipes(ValidationPipe)
   @Post()
   create(@Body() userDto: CreateUserDto) {
@@ -40,7 +40,7 @@ export class UsersController {
     return this.userService.getAllUsers();
   }
 
-  @ApiOperation({ summary: 'Получить всех пользователей' })
+  @ApiOperation({ summary: 'Удалить пользователя' })
   @ApiResponse({ status: 200, type: [User] })
   @Role('admin')
   @UseGuards(RoleGuard)
@@ -49,7 +49,7 @@ export class UsersController {
     return this.userService.deleteUserByEmail(email);
   }
 
-  @ApiOperation({ summary: 'Получить всех пользователей' })
+  @ApiOperation({ summary: 'Обновить данные пользователя' })
   @ApiResponse({ status: 200, type: [User] })
   @Role('admin')
   @UseGuards(RoleGuard)
