@@ -16,8 +16,9 @@
     * [Просмотр заказ-нарядов](documentation/technican/doc__order_and_order_price___technican.md)
     * [Работа с прайслистом](documentation/technican/doc__price_and_productcategory___technican.md)
     * [Редактирование своего профиля](documentation/technican/doc__user__technican.md)
-6. [Сценарий работы в роли Courier](####6-script-Courier)
+6. [Сценарий работы в роли Courier](documentation/technican/doc__order__courier.md)
 7. [Сценарий работы в роли None](documentation/none/singlepage_app.md)
+8. [Схема БД](documentation/dmcdb.png)
 
 #### 1. Сценарий авторизация пользователя
 
@@ -40,6 +41,9 @@
 
 * Пользователь может производить сортировку по всем столбцам.
 
-#### 6. Сценарий работы в роли None
+#### 7. Сценарий работы в роли None
 Обычное singl page приложение c рекламной информацией. 
 TODO: продумать логику синг паже приложения, с логикой.
+
+#### 8. Схема БД
+![Схема БД](documentation/dmcdb.png)
