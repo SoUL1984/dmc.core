@@ -2,9 +2,10 @@ import {
   HttpException,
   HttpStatus,
   Injectable,
+  NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
+import { AuthUserDto, CreateUserDto } from 'src/users/dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
 import { User } from 'src/users/users.model';
 import { UsersService } from 'src/users/users.service';
@@ -17,7 +18,7 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async login(userDto: CreateUserDto) {
+  async login(userDto: AuthUserDto) {
     const user = await this.validateUser(userDto);
     return this.generateToken(user);
   }
@@ -43,8 +44,13 @@ export class AuthService {
       token: this.jwtService.sign(payload),
     };
   }
-  private async validateUser(userDto: CreateUserDto) {
+  private async validateUser(userDto: AuthUserDto) {
     const user = await this.userService.getUserByEmail(userDto.email);
+    if (user == null) {
+      throw new UnauthorizedException({
+        message: 'AuthService.validateUser - Пользователь не найден',
+      });
+    }
     if (user.isDelete) {
       throw new UnauthorizedException({
         message: 'Пользователь не найден',

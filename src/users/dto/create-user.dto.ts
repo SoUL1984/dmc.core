@@ -20,3 +20,14 @@ export class CreateUserDto {
   @IsString({ message: 'Должно быть строкой' })
   readonly role: string;
 }
+
+export class AuthUserDto {
+  @ApiProperty({ example: 'user@mail.ru', description: 'Почта' })
+  @IsString({ message: 'Должно быть строкой' })
+  @IsEmail({}, { message: 'Некорректный email' })
+  readonly email: string;
+
+  @ApiProperty({ example: '12345678', description: 'Пароль' })
+  @IsString({ message: 'Должно быть строкой' })
+  readonly password: string;
+}
