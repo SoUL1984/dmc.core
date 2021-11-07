@@ -69,6 +69,14 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   //   comment: 'Дата и время создания заказ-наряда',
   // })
   // dateOrder: Date;
+
+  @ApiProperty({ example: 'I07112021', description: 'Номер ордера' })
+  @Column({
+    type: DataType.STRING (16),
+    comment: 'Номер ордера',
+  })
+  orderNum: string;
+
   @ApiProperty({ example: 'Белов А.А.', description: 'ФИО доктора' })
   @Column({
     type: DataType.STRING,
@@ -189,6 +197,13 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     comment: 'Дополнительные комментарии',
   })
   desc: string;
+
+  @ApiProperty({ example: 'Код домофона 07112021', description: 'Коментарий для курьера' })
+  @Column({
+    type: DataType.STRING (256),
+    comment: 'Коментарий для курьера',
+  })
+  descCourier: string;
 
   @ApiProperty({
     example: '12',
