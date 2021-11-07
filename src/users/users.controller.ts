@@ -24,13 +24,15 @@ import { UsersService } from './users.service';
 export class UsersController {
   constructor(private userService: UsersService) {}
 
-  @ApiOperation({ summary: 'Создать пользователя' })
-  @ApiResponse({ status: 200, type: [User] })
-  @UsePipes(ValidationPipe)
-  @Post()
-  create(@Body() userDto: CreateUserDto) {
-    return this.userService.createUser(userDto);
-  }
+  //TODO:Данный блок вероятно не нужен его покрывает регистрация пользователя.
+  // @ApiOperation({ summary: 'Создать пользователя' })
+  // @ApiResponse({ status: 200, type: [User] })
+  // @UsePipes(ValidationPipe)
+  // @Roles(EnumRole.admin)
+  // @Post('/create')
+  // create(@Body() userDto: CreateUserDto) {
+  //   return this.userService.createUser(userDto);
+  // }
 
   @ApiOperation({ summary: 'Получить всех пользователей' })
   @ApiResponse({ status: 200, type: [User] })
@@ -50,7 +52,9 @@ export class UsersController {
     return this.userService.deleteUserByEmail(email);
   }
 
-  @ApiOperation({ summary: 'Обновить данные пользователя' })
+  @ApiOperation({
+    summary: 'Обновить данные пользователя по электронной почте',
+  })
   @ApiResponse({ status: 200, type: [User] })
   @Roles(EnumRole.admin)
   @UseGuards(RoleGuard)
@@ -59,7 +63,7 @@ export class UsersController {
     return this.userService.updateUserByEmail(userDto, email);
   }
 
-  @ApiOperation({ summary: 'Обновить данные пользователя' })
+  @ApiOperation({ summary: 'Обновить данные, текущего, пользователя' })
   @ApiResponse({ status: 200, type: [User] })
   @Roles(
     EnumRole.admin,

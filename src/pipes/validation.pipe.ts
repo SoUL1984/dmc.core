@@ -6,8 +6,19 @@ import { ValidationException } from '../exceptions/validation.exception';
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
   async transform(value: any, metadata: ArgumentMetadata): Promise<any> {
-    const obj = plainToClass(metadata.metatype, value);
-    const errors = await validate(obj);
+    if (metadata.type !== 'body') {
+      return value;
+    }
+    const { metatype } = metadata;
+    if (!metatype || !this.toValidate(metatype)) {
+      return value;
+    }
+    const obj = plainToClass(metatype, value);
+    const errors = await validate(obj, {
+      //transform: true,
+      whitelist: true,
+      forbidNonWhitelisted: true,
+    });
     if (errors.length) {
       const messages = errors.map((err) => {
         return `${err.property} - ${Object.values(err.constraints).join(', ')}`;
@@ -15,5 +26,9 @@ export class ValidationPipe implements PipeTransform<any> {
       throw new ValidationException(messages);
     }
     return value;
+  }
+  private toValidate(metatype): boolean {
+    const types = [String, Boolean, Number, Array, Object];
+    return !types.find((type) => metatype === type);
   }
 }

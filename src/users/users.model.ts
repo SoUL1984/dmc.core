@@ -8,14 +8,14 @@ export enum EnumRole {
   director = 'director',
   courier = 'courier',
   admin = 'admin',
-  none = 'none',
 }
 
 interface UserCreationAttrs {
   email: string;
   password: string;
+  name: string;
   phone: string;
-  role: string;
+  //role?: string;
 }
 
 @Table({ tableName: 'users', paranoid: true })
@@ -60,10 +60,10 @@ export class User extends Model<User, UserCreationAttrs> {
 
   @ApiProperty({
     example: 'Необходимо звонить вечером',
-    description: 'Адрес пользователя',
+    description: 'Дполнительная информация',
   })
   @Column({ type: DataType.STRING })
-  description: string;
+  desc: string;
 
   @ApiProperty({ example: '+7 (123) 456-78-90', description: 'Телефон' })
   @Column({ type: DataType.STRING, unique: true, allowNull: false })
@@ -80,7 +80,7 @@ export class User extends Model<User, UserCreationAttrs> {
   @Column({
     type: DataType.ENUM,
     values: Object.values(EnumRole),
-    defaultValue: EnumRole.none,
+    defaultValue: EnumRole.customer,
     allowNull: false,
   })
   role: string;
