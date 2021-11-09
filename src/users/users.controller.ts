@@ -15,6 +15,7 @@ import { RoleGuard } from 'src/auth/role.guard';
 import { CurUser } from 'src/auth/user-auth.decorator';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateUserDto } from './dto/create-user.dto';
+import { SelectAllUserDto } from './dto/select-all-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { EnumRole, User } from './users.model';
 import { UsersService } from './users.service';
@@ -35,12 +36,13 @@ export class UsersController {
   // }
 
   @ApiOperation({ summary: 'Получить всех пользователей' })
-  @ApiResponse({ status: 200, type: [User] })
+  @ApiResponse({ status: 200, type: [SelectAllUserDto] })
   @Roles(EnumRole.admin)
   @UseGuards(RoleGuard)
   @Get()
   getALL() {
-    return this.userService.getAllUsers();
+    const userDto = this.userService.getAllUsers();
+    return userDto;
   }
 
   @ApiOperation({ summary: 'Удалить пользователя' })
@@ -63,7 +65,10 @@ export class UsersController {
     return this.userService.updateUserByEmail(userDto, email);
   }
 
-  @ApiOperation({ summary: 'Обновить данные, текущего, пользователя' })
+  @ApiOperation({
+    summary:
+      'Обновить данные, текущего, пользователя (обновление данных самого себя)',
+  })
   @ApiResponse({ status: 200, type: [User] })
   @Roles(
     EnumRole.admin,

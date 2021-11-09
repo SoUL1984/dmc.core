@@ -17,7 +17,7 @@
     * [Работа с прайслистом](documentation/director/doc__price_and_productcategory___director.md)
     * [Редактирование своего профиля](documentation/director/doc__user__director.md)
 6. [Сценарий работы в роли Courier](####6-script-Courier)
-7. [Сценарий работы в роли None](documentation/none/singlepage_app.md)
+7. [Работа с таблицей пользователей](documentation/crud_for_users/crud_for_users.md)
 8. [Схема БД](documentation/dmcdb.png)
 
 #### 1. Сценарий авторизация пользователя
