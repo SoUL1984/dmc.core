@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
+import { SelectAllUserDto } from './dto/select-all-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { User } from './users.model';
 
@@ -15,7 +16,23 @@ export class UsersService {
     return user;
   }
   async getAllUsers() {
-    const users = await this.userRepository.findAll();
+    const users: SelectAllUserDto[] = await this.userRepository.findAll({
+      attributes: [
+        'email',
+        'name',
+        'city',
+        'address',
+        'desc',
+        'phone',
+        'birthday',
+        'role',
+        'isDelete',
+        'lastVisit',
+        'createdAt',
+        'updatedAt',
+        'deletedAt',
+      ],
+    });
     return users;
   }
   async getUserByEmail(email: string) {
@@ -23,11 +40,13 @@ export class UsersService {
     return user;
   }
   async updateUserByEmail(dto: UpdateUserDto, email: string) {
-    return await this.userRepository.update(dto, { where: { email } })[0];
+    return await this.userRepository.update(dto, {
+      where: { email, isDelete: false },
+    });
   }
   async deleteUserByEmail(email: string) {
     return await this.userRepository.update(
-      { isDelete: true },
+      { isDelete: true, deletedAt: new Date() },
       { where: { email } },
     );
   }
