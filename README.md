@@ -1,73 +1,49 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
-</p>
+## dmc.core (Dental Milling Center)
+1. [Сценарий авторизация пользователя](####1-script-auth-user)
+2. Сценарий работы в роли Manager
+    * [Просмотр и оформление заказ-нарядов](documentation/manager/doc__order_and_order_price__admin.md)
+    * [Работа с прайслистом](documentation/manager/doc__price_and_productcategory__admin.md)
+    * [Редактирование своего профиля](documentation/manager/doc__user__admin.md)
+3. Сценарий работы в роли Customer
+    * [Просмотр и оформление заказ-нарядов](documentation/customer/doc__order_and_order_price__customer.md)
+    * [Работа с прайслистом](documentation/customer/doc__price_and_productcategory__customer.md)
+    * [Редактирование своего профиля](documentation/customer/doc__user__customer.md)
+4. Сценарий работы в роли Dental Technician (dentaltechn)
+    * [Просмотр заказ-нарядов](documentation/technican/doc__order_and_order_price___technican.md)
+    * [Работа с прайслистом](documentation/technican/doc__price_and_productcategory___technican.md)
+    * [Редактирование своего профиля](documentation/technican/doc__user__technican.md)
+5. Сценарий работы в роли Director
+    * [Просмотр заказ-нарядов](documentation/director/doc__order_and_order_price___director.md)
+    * [Работа с прайслистом](documentation/director/doc__price_and_productcategory___director.md)
+    * [Редактирование своего профиля](documentation/director/doc__user__director.md)
+6. [Сценарий работы в роли Courier](####6-script-Courier)
+7. [Работа с таблицей пользователей](documentation/crud_for_users/crud_for_users.md)
+8. [Схема БД](documentation/dmcdb.png)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+#### 1. Сценарий авторизация пользователя
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+#### 2. Сценарий работы в роли Admin
 
-## Description
+#### 3. Сценарий работы в роли Customer
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+#### 6. Сценарий работы в роли Courier
+Пользователь с ролью Courier (Курьер) заходит на сайт и видит таблицу:
 
-## Installation
+Отображается дата сегодняшнего дня и перечень заказ-нарядов, которые необходимо развести
 
-```bash
-$ npm install
-```
+ Фио заказчика |     Адрес       |    Телефон        | Половина дня
+:-------------:|:---------------:|:-----------------:|:-----------:
+ Богданов А    |ул. Силовая 4    |+1 (234) 567-89-00 |   утро       
+ Пащенко Э     |ул. Самфирова 95 |+1 (234) 567-89-00 |   вечер      
 
-## Running the app
+ После того, как заказ доcтавлен курьер нажимает на строку поля, после этого появляется окно в котором необходимо подтвердить доставку. 
+ Он нажимает и подтверждает доставку. Проиходит запись в базу данных, что доставка осуществлена, после этого данная запись у курьера висит в перечне еще полчаса и исчезает.
 
-```bash
-# development
-$ npm run start
+* Пользователь может производить сортировку по всем столбцам.
 
-# watch mode
-$ npm run start:dev
+#### 7. Сценарий работы в роли None
+Обычное singl page приложение c рекламной информацией. 
+TODO: продумать логику синг паже приложения, с логикой.
 
-# production mode
-$ npm run start:prod
-```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+#### 8. Схема БД
+![Схема БД](documentation/dmcdb.png)

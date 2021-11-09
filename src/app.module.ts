@@ -5,6 +5,10 @@ import { Order } from './order/order.model';
 import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
+import { PricegroupModule } from './pricegroup/pricegroup.module';
+import { Price } from './price/price.model';
+import { PriceGroup } from './pricegroup/pricegroup.model';
+import { OrderPrice } from './order_price/order_price.model';
 
 @Module({
   imports: [
@@ -18,11 +22,12 @@ import { AuthModule } from './auth/auth.module';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DB,
-      models: [User, Order],
+      models: [User, Order, PriceGroup, Price, OrderPrice],
       autoLoadModels: true,
     }),
     UsersModule,
     AuthModule,
+    PricegroupModule,
   ],
 })
 export class AppModule {}
