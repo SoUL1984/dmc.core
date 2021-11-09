@@ -15,7 +15,6 @@ interface UserCreationAttrs {
   password: string;
   name: string;
   phone: string;
-  //role?: string;
 }
 
 @Table({ tableName: 'users', paranoid: true })
@@ -95,6 +94,27 @@ export class User extends Model<User, UserCreationAttrs> {
   })
   @Column({ type: DataType.DATE })
   lastVisit: Date;
+
+  @ApiProperty({
+    example: '01.01.2021',
+    description: 'Дата создания',
+  })
+  @Column({ type: DataType.DATE })
+  createdAt: Date;
+
+  @ApiProperty({
+    example: '01.01.2021',
+    description: 'Дата обновления',
+  })
+  @Column({ type: DataType.DATE })
+  updatedAt: Date;
+
+  @ApiProperty({
+    example: '01.01.2021',
+    description: 'Дата удаления',
+  })
+  @Column({ type: DataType.DATE })
+  deletedAt: Date;
 
   @HasMany(() => Order)
   orders: Order[];
