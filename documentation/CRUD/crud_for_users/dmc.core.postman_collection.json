@@ -1,0 +1,243 @@
+{
+	"info": {
+		"_postman_id": "f759a78d-eb4f-445a-8b40-df1ab14851ae",
+		"name": "dmc.core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "!!!POST_CREATE!!!",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\":\"volk_p@yandex.ru\",\n    \"password\":\"volk\",\n    \"name\": \"Пащенко Э.В.\",\n    \"phone\": \"+7-902-290-40-61\",\n    \"role\": \"director\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET_ALL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InEyMTQ1MzQzMzU0QG1haWwucnUiLCJpZCI6NSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM2NDgxMjgwLCJleHAiOjE2MzY1Njc2ODB9.Z1WtLu1vTO4BtZzatwq5q3xsce81KZWFynVJ7V5GL0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "AUTH_LOGIN",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"p1@mail.ru\",\n    \"password\": \"volk\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/auth/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "REGISTARTION",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InAyQG1haWwucnUiLCJpZCI6Nywicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjM2MzE3MzQ5LCJleHAiOjE2MzY0MDM3NDl9.-mCBZ_MphTUjN0J1gXUMPxNQOl5P2QJMz92GspS53QA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"p2@mail.ru\",\n    \"password\": \"volk\",\n    \"name\": \"Татьянапп\",\n    \"city\": \"Самара\",\n    \"address\": \"Силовая ул., дом 4, кв. 144\",\n    \"desc\": \"Дополнительное описание\",\n    \"phone\": \"+7 (905) 3332-54-4348\",\n    \"birthday\": \"05.12.1984\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/auth/registration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"auth",
+						"registration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE_BY_EMAIL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InEyMTQ1MzQzMzU0QG1haWwucnUiLCJpZCI6NSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM2NDgxMjgwLCJleHAiOjE2MzY1Njc2ODB9.Z1WtLu1vTO4BtZzatwq5q3xsce81KZWFynVJ7V5GL0w",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/users/p1@mail.ru",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"p1@mail.ru"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH_BY_EMAIL",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InExNDUzNDMzNTRAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzY0ODU5NTcsImV4cCI6MTYzNjU3MjM1N30.-I8yHESeL-ON3XmqMBMySqha-8gCLtxxbGgAHD3GR-8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"Sylovaya 4-144\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/q145354@mail.ru",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						"q145354@mail.ru"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PATCH_BY_AUTH_DATA",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InExNDU1NEBtYWlsLnJ1IiwiaWQiOjEsInJvbGUiOiJjdXN0b21lciIsImlhdCI6MTYzNjQ4NzMwNSwiZXhwIjoxNjM2NTczNzA1fQ.FlP-r3Qe9uubMPYVAhpaeogwUx9W7g6L9ymc5wKKTUw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"address\": \"Sylovaya 4-314453\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:5000/users/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
