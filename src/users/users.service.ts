@@ -15,6 +15,7 @@ export class UsersService {
     //user.role = role;
     return user;
   }
+
   async getAllUsers() {
     const users: SelectAllUserDto[] = await this.userRepository.findAll({
       attributes: [
