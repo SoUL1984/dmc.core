@@ -32,6 +32,7 @@ export class OrderPrice extends Model<OrderPrice, OrderPriceCreationAttrs> {
   @ForeignKey(() => Price)
   @Column({
     type: DataType.INTEGER,
+    allowNull: false,
     comment: 'Индентификатор прайса',
   })
   priceId: number;
@@ -42,6 +43,7 @@ export class OrderPrice extends Model<OrderPrice, OrderPriceCreationAttrs> {
   @ForeignKey(() => Order)
   @Column({
     type: DataType.INTEGER,
+    allowNull: false,
     comment: 'Индентификатор заказ-наряда',
   })
   orderId: number;
@@ -65,6 +67,7 @@ export class OrderPrice extends Model<OrderPrice, OrderPriceCreationAttrs> {
 
   @Column({
     type: DataType.BOOLEAN,
+    allowNull: false,
     defaultValue: false,
     comment: 'Флаг удаления связи заказ-наряда___прайс',
   })

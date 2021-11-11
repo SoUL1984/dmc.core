@@ -30,6 +30,7 @@ export class Price extends Model<Price, PriceCreationAttrs> {
   @ForeignKey(() => PriceGroup)
   @Column({
     type: DataType.INTEGER,
+    allowNull: false,
     comment: 'Индентификатор индивидуального прайса для клиента',
   })
   pricegroupId: number;

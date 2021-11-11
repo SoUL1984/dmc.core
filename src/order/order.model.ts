@@ -73,6 +73,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   @ApiProperty({ example: 'I07112021', description: 'Номер ордера' })
   @Column({
     type: DataType.STRING (16),
+    allowNull: false,
     comment: 'Номер ордера',
   })
   orderNum: string;
