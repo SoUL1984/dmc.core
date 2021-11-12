@@ -3,8 +3,8 @@ import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Price } from 'src/price/price.model';
 
 interface PriceGroupCreationAttrs {
-  name: string;
-  description: string;
+  pricegroup_name: string;
+  pricegroup_desc: string;
 }
 
 @Table({ tableName: 'pricegroup', paranoid: true })
@@ -31,7 +31,7 @@ export class PriceGroup extends Model<PriceGroup, PriceGroupCreationAttrs> {
     description: 'Дополнительная информация',
   })
   @Column({ type: DataType.STRING })
-  pricegroup_description: string;
+  pricegroup_desc: string;
 
   @ApiProperty({ example: 'true', description: 'Признак удаленной записи' })
   @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
