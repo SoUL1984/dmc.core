@@ -13,22 +13,28 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
+import { SelectAllUserDto } from 'src/users/dto/select-all-user.dto';
 import { EnumRole } from 'src/users/users.model';
 import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
+import { SelectPriceGroupDto } from './dto/select-pricegroup.dto';
 import { UpdatePriceGroupDto } from './dto/update-pricegroup.dto';
 import { PriceGroup } from './pricegroup.model';
 import { PriceGroupService } from './pricegroup.service';
 
 @ApiTags('Группа для прайс-листа')
-@Controller('pricegroup')
+@Controller('price-group')
 export class PriceGroupController {
   constructor(private priceGroupService: PriceGroupService) {}
 
   @ApiOperation({ summary: 'Создать группу для прайс-листа' })
   @ApiResponse({ status: 200, type: [PriceGroup] })
   @Roles(EnumRole.admin)
+  @UseGuards(RoleGuard)
   @Post('/create')
   create(@Body() priceGroupDto: CreatePriceGroupDto) {
+    // const selectPriceGroupDto: SelectPriceGroupDto =
+    //   this.priceGroupService.createPriceGroup(priceGroupDto);
+    //console.log('selectPriceGroupDto :>> ', selectPriceGroupDto);
     return this.priceGroupService.createPriceGroup(priceGroupDto);
   }
 
