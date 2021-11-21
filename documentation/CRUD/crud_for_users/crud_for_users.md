@@ -5,7 +5,9 @@
 - [X] Удаление пользователя (by email)
 - [X] Изменение данных пользователя (by email)
 - [X] Редактирование собственного профиля
-- [X] [Коллекция для работы с end points для Postman v2.1](dmc.core.postman_collection.json)
+  
+- [X] [Коллекция для работы с end points для Postman v2.0](../dmc.core.postman_collection_21112021.json)
+
 
 #### Создание пользователя 
 
