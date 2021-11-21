@@ -50,8 +50,25 @@ export class PriceGroupController {
   @UseGuards(RoleGuard)
   @Get()
   getALL() {
-    const userDto = this.priceGroupService.getAllPriceGroup();
-    return userDto;
+    const listPriceGroup = this.priceGroupService.getAllPriceGroup();
+    return listPriceGroup;
+  }
+
+  @ApiOperation({ summary: 'Получить все группы и позиции для прайc-листа' })
+  @ApiResponse({ status: 200, type: [PriceGroup] })
+  @Roles(
+    EnumRole.admin,
+    EnumRole.courier,
+    EnumRole.customer,
+    EnumRole.dentaltechn,
+    EnumRole.director,
+  )
+  @UseGuards(RoleGuard)
+  @Get('/all-pricegroup-and-price')
+  getAllPriceGroupAndPrice() {
+    const priceGroupAndPrice =
+      this.priceGroupService.getAllPriceGroupAndPrice();
+    return priceGroupAndPrice;
   }
 
   @ApiOperation({

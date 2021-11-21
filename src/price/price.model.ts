@@ -12,8 +12,10 @@ import { OrderPrice } from 'src/order_price/order_price.model';
 import { PriceGroup } from 'src/pricegroup/pricegroup.model';
 
 interface PriceCreationAttrs {
+  pricegroupId: number;
   name: string;
-  description: string;
+  price: number;
+  desc: string;
 }
 
 @Table({ tableName: 'price', paranoid: true })
@@ -30,8 +32,7 @@ export class Price extends Model<Price, PriceCreationAttrs> {
   @ForeignKey(() => PriceGroup)
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
-    comment: 'Индентификатор индивидуального прайса для клиента',
+    comment: 'Индентификатор группы в прайс-листе',
   })
   pricegroupId: number;
 

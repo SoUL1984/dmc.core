@@ -9,6 +9,7 @@ import { PricegroupModule } from './pricegroup/pricegroup.module';
 import { Price } from './price/price.model';
 import { PriceGroup } from './pricegroup/pricegroup.model';
 import { OrderPrice } from './order_price/order_price.model';
+import { PriceModule } from './price/price.module';
 
 @Module({
   imports: [
@@ -22,12 +23,13 @@ import { OrderPrice } from './order_price/order_price.model';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DB,
-      models: [User, Order, PriceGroup, Price, OrderPrice],
+      models: [User, PriceGroup, Price, OrderPrice, Order],
       autoLoadModels: true,
     }),
     UsersModule,
     AuthModule,
     PricegroupModule,
+    PriceModule,
   ],
 })
 export class AppModule {}
