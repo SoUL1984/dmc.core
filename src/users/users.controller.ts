@@ -16,6 +16,7 @@ import { CurUser } from 'src/auth/user-auth.decorator';
 import { ValidationPipe } from 'src/pipes/validation.pipe';
 import { CreateUserDto } from './dto/create-user.dto';
 import { SelectAllUserDto } from './dto/select-all-user.dto';
+import { UpdateMyDto } from './dto/update-my.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { EnumRole, User } from './users.model';
 import { UsersService } from './users.service';
@@ -79,7 +80,9 @@ export class UsersController {
   )
   @UseGuards(RoleGuard)
   @Patch()
-  updateCurrentlyUser(@CurUser() user, @Body() userDto: UpdateUserDto) {
+  updateCurrentlyUser(@CurUser() user, @Body() myDto: UpdateMyDto) {
+    // преобразование типов сделано, чтобы нельзя было обновить роль самому себе
+    const userDto: UpdateUserDto = myDto as UpdateUserDto;
     const email = user.email;
     return this.userService.updateUserByEmail(userDto, email);
   }

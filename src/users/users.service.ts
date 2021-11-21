@@ -43,7 +43,7 @@ export class UsersService {
   async updateUserByEmail(dto: UpdateUserDto, email: string) {
     return await this.userRepository.update(dto, {
       where: { email, isDelete: false },
-    });
+    })[0];
   }
   async deleteUserByEmail(email: string) {
     return await this.userRepository.update(
