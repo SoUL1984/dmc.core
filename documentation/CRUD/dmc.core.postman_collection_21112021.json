@@ -1,0 +1,333 @@
+{
+	"info": {
+		"_postman_id": "462568e9-9892-43dc-98b2-c33fb63a5424",
+		"name": "dmc.core",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "pricegroup_price",
+			"item": [
+				{
+					"name": "GET_ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/price-group"
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL_PRICEGROUP_AND_PRICE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0NzQ4NTksImV4cCI6MTYzNzU2MTI1OX0.cC1s9dnpmVyvFvgYcfUnxx5w9JHZDk0YKbs2lrtZKbs"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/price-group/all-pricegroup-and-price"
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pricegroup_name\": \"Титан7\",\n    \"pricegroup_desc\": \"Содержит основные позиции титановых работ7\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/price-group/create"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzQ3NjAsImV4cCI6MTYzNzI2MTE2MH0.9r_pcDf0fnMP1LdHwhvjmcIwSlR3hosQ4XgbHwANpzk"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"id\": 1,\n    \"pricegroup_name\": \"Титанffg\",\n    \"pricegroup_desc\": \"Содержит основные позиции титановых раdfsdfsadfVVVVVбот\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/price-group/1"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzQ3NjAsImV4cCI6MTYzNzI2MTE2MH0.9r_pcDf0fnMP1LdHwhvjmcIwSlR3hosQ4XgbHwANpzk"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/price-group/2"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "price",
+			"item": [
+				{
+					"name": "GET_ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/price-group"
+					},
+					"response": []
+				},
+				{
+					"name": "CREATE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0MjU0NDgsImV4cCI6MTYzNzUxMTg0OH0.0yZYV75CzGOCdYPVSduERnD-6sdnfeeoMlNhzsuB8r4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"pricegroupId\":1,\n        \"name\":\"Циркониевый абатмент\",\n        \"price\": 10100.10,\n        \"desc\": \"Дополнительное описание\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/price/create"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0MjU0NDgsImV4cCI6MTYzNzUxMTg0OH0.0yZYV75CzGOCdYPVSduERnD-6sdnfeeoMlNhzsuB8r4"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"pricegroupId\":1,\n        \"name\":\"Циркониевый абатмент\",\n        \"price\": 10200.10,\n        \"desc\": \"Дополнительное описание\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/price/11"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0MjU0NDgsImV4cCI6MTYzNzUxMTg0OH0.0yZYV75CzGOCdYPVSduERnD-6sdnfeeoMlNhzsuB8r4"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/price/11"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "users",
+			"item": [
+				{
+					"name": "PATCH_BY_EMAIL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MzcwODU1OTgsImV4cCI6MTYzNzE3MTk5OH0.mMc5DQ63fEmPP3n_IUxz4aQInYQWLGZw8ZDk6TdQ6WY"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Sylovaya 4-144\",\n    \"role\":\"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/users/loshkarevs@mail.ru"
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH_BY_AUTH_DATA",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MzcwODU1OTgsImV4cCI6MTYzNzE3MTk5OH0.mMc5DQ63fEmPP3n_IUxz4aQInYQWLGZw8ZDk6TdQ6WY"
+							}
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"address\": \"Sylovaya 4-314453\",\n    \"email\": \"loshkarevs@mail.ru\",\n    \"role\": \"admin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/users/"
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE_BY_EMAIL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InEyMTQ1MzQzMzU0QG1haWwucnUiLCJpZCI6NSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM2NDgxMjgwLCJleHAiOjE2MzY1Njc2ODB9.Z1WtLu1vTO4BtZzatwq5q3xsce81KZWFynVJ7V5GL0w"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/users/p1@mail.ru"
+					},
+					"response": []
+				},
+				{
+					"name": "REGISTARTION",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InAyQG1haWwucnUiLCJpZCI6Nywicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjM2MzE3MzQ5LCJleHAiOjE2MzY0MDM3NDl9.-mCBZ_MphTUjN0J1gXUMPxNQOl5P2QJMz92GspS53QA"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"loshkarevs@mail.ru\",\n    \"password\": \"volk\",\n    \"name\": \"Татьяна Андреевна Запрудская\",\n    \"city\": \"Самара\",\n    \"address\": \"Силовая ул., дом 4, кв. 144\",\n    \"desc\": \"Дополнительное описание\",\n    \"phone\": \"+7 (905) 3332-54-43438\",\n    \"birthday\": \"06.01.1984\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/auth/registration"
+					},
+					"response": []
+				},
+				{
+					"name": "AUTH_LOGIN",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"loshkarevs@mail.ru\",\n    \"password\": \"volk\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/auth/login"
+					},
+					"response": []
+				},
+				{
+					"name": "!!!POST_CREATE!!!",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"volk_p@yandex.ru\",\n    \"password\":\"volk\",\n    \"name\": \"Пащенко Э.В.\",\n    \"phone\": \"+7-902-290-40-61\",\n    \"role\": \"director\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/users/create"
+					},
+					"response": []
+				},
+				{
+					"name": "GET_ALL",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InEyMTQ1MzQzMzU0QG1haWwucnUiLCJpZCI6NSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM2NDgxMjgwLCJleHAiOjE2MzY1Njc2ODB9.Z1WtLu1vTO4BtZzatwq5q3xsce81KZWFynVJ7V5GL0w"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:5000/users"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
