@@ -11,7 +11,7 @@
 - [X] (U) Изменение данных прайслиста
 - [X] (D) Удаление позиции в прайслисте
 
--[X] [Коллекция для работы с end points для Postman v2.0](../dmc.core.postman_collection_21112021.json)
+- [X] [Коллекция для работы с end points для Postman v2.0](../dmc.core.postman_collection_21112021.json)
 
 #### (C) Создание группы для прайслиста
 
