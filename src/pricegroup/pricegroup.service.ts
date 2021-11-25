@@ -1,9 +1,4 @@
-import {
-  HttpException,
-  HttpStatus,
-  Injectable,
-  NotFoundException,
-} from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Price } from 'src/price/price.model';
 import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
@@ -72,19 +67,20 @@ export class PriceGroupService {
   }
 
   async updatePriceGroupById(dto: UpdatePriceGroupDto, pricegroup_id: number) {
+    const existing = await this.priceGroupRepository.findOne({
+      where: { id: pricegroup_id, isDelete: false },
+    });
+    if (existing === undefined || existing === null) {
+      throw new HttpException(
+        'Произошла ошибка при удалении группы прайс-листа. Обновить запись не возможно.',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
     try {
-      const priceGroup = await this.priceGroupRepository.findOne({
+      return await this.priceGroupRepository.update(dto, {
         where: { id: pricegroup_id, isDelete: false },
       });
-      if (priceGroup === null) {
-        throw new NotFoundException(
-          'Группа прайс-листа не найдена. Обновить данные не удалось.',
-        );
-      } else {
-        return await this.priceGroupRepository.update(dto, {
-          where: { id: pricegroup_id, isDelete: false },
-        })[0];
-      }
     } catch (e) {
       throw new HttpException(
         'Произошла ошибка при удалении группы прайс-листа. Обновить запись не возможно.',
@@ -94,20 +90,21 @@ export class PriceGroupService {
   }
 
   async deletePriceGroupById(id: number) {
+    const existing = await this.priceGroupRepository.findOne({
+      where: { id, isDelete: false },
+    });
+    if (existing === undefined || existing === null) {
+      throw new HttpException(
+        'Произошла ошибка при удалении группы прайс-листа. Удалить запись не возможно.',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
     try {
-      const priceGroup = await this.priceGroupRepository.findOne({
-        where: { id, isDelete: false },
-      });
-      if (priceGroup === null) {
-        throw new NotFoundException(
-          'Группа прайс-листа не найдена. Удалить данные не удалось.',
-        );
-      } else {
-        return await this.priceGroupRepository.update(
-          { isDelete: true, deletedAt: new Date() },
-          { where: { id } },
-        )[0];
-      }
+      return await this.priceGroupRepository.update(
+        { isDelete: true, deletedAt: new Date() },
+        { where: { id } },
+      );
     } catch (e) {
       throw new HttpException(
         'Произошла ошибка при удалении группы прайс-листа. Удалить запись не возможно.',

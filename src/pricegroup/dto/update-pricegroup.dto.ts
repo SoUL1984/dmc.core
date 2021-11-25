@@ -2,12 +2,6 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsNumber, IsOptional, IsString, MinLength } from 'class-validator';
 
 export class UpdatePriceGroupDto {
-  @ApiProperty({ example: '1', description: 'id' })
-  @IsNumber({ allowInfinity: true }, { message: 'Должно быть числом' })
-  //TODO:В этом параметре скорее всего нет необходимости, этот параметр не должен обновляться
-  @IsOptional()
-  readonly id: number;
-
   @ApiProperty({
     example: 'Цирконий',
     description: 'Название группы для прайс-листа',

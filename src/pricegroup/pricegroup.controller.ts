@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  UseFilters,
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
@@ -20,9 +21,11 @@ import { SelectPriceGroupDto } from './dto/select-pricegroup.dto';
 import { UpdatePriceGroupDto } from './dto/update-pricegroup.dto';
 import { PriceGroup } from './pricegroup.model';
 import { PriceGroupService } from './pricegroup.service';
+import { HttpExceptionFilter } from '../common/filters/http-exceptions.filter';
 
 @ApiTags('Группа для прайс-листа')
 @Controller('price-group')
+@UseFilters(new HttpExceptionFilter())
 export class PriceGroupController {
   constructor(private priceGroupService: PriceGroupService) {}
 

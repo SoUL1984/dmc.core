@@ -59,20 +59,20 @@ export class PriceService {
   }
 
   async updatePriceById(dto: UpdatePriceDto, price_id: number) {
+    const existing = await this.priceRepository.findOne({
+      where: { id: price_id, isDelete: false },
+    });
+    if (existing === undefined || existing === null) {
+      throw new HttpException(
+        'Произошла ошибка при удалении позиции прайс-листа. Обновить запись не возможно.',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
     try {
-      const price = await this.priceRepository.findOne({
+      return await this.priceRepository.update(dto, {
         where: { id: price_id, isDelete: false },
-      });
-      if (price === null) {
-        throw new HttpException(
-          'Позиция прайс-листа не найдена. Обновить данные не удалось.',
-          HttpStatus.NOT_FOUND,
-        );
-      } else {
-        return await this.priceRepository.update(dto, {
-          where: { id: price_id, isDelete: false },
-        })[0];
-      }
+      })[0];
     } catch (e) {
       throw new HttpException(
         'Произошла ошибка при изменении позиции прайс-листа. Обновить запись не возможно.',
@@ -82,21 +82,21 @@ export class PriceService {
   }
 
   async deletePriceById(id: number) {
+    const existing = await this.priceRepository.findOne({
+      where: { id, isDelete: false },
+    });
+    if (existing === undefined || existing === null) {
+      throw new HttpException(
+        'Произошла ошибка при удалении позиции прайс-листа. Удалить запись не возможно.',
+        HttpStatus.NOT_FOUND,
+      );
+    }
+
     try {
-      const price = await this.priceRepository.findOne({
-        where: { id, isDelete: false },
-      });
-      if (price === null) {
-        throw new HttpException(
-          'Позиция прайс-листа не найдена. Обновить данные не удалось.',
-          HttpStatus.NOT_FOUND,
-        );
-      } else {
-        return await this.priceRepository.update(
-          { isDelete: true, deletedAt: new Date() },
-          { where: { id } },
-        )[0];
-      }
+      return await this.priceRepository.update(
+        { isDelete: true, deletedAt: new Date() },
+        { where: { id } },
+      )[0];
     } catch (e) {
       throw new HttpException(
         'Произошла ошибка при удалении позиции из прайс-листа. Удалить запись не возможно.',
