@@ -1,4 +1,3 @@
-import { NOW } from 'sequelize';
 import {
   BelongsTo,
   Column,
@@ -9,7 +8,6 @@ import {
 } from 'sequelize-typescript';
 import { Order } from 'src/order/order.model';
 import { Price } from 'src/price/price.model';
-import { User } from 'src/users/users.model';
 
 interface OrderPriceCreationAttrs {
   priceId: number;
