@@ -1,0 +1,36 @@
+version: '3.0'
+
+services:
+  main:
+    container_name: main
+    build:
+      context: .
+    ports:
+      - "5000:5000"
+      - "9229:9229"
+    env_file:
+      - .env
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run start:dev
+    depends_on:
+      - dmcdb_mysql
+    restart: always
+
+  dmcdb_mysql:
+    image: mysql:8.0
+    container_name: dmcdb_mysql
+    env_file:
+      - .development.mysql.env
+    ports:
+      - 3310:3306
+    volumes:
+      - ./init-mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - dmcdb:/var/lib/mysql
+    restart: always 
+
+volumes:
+  dmcdb:
+
+
