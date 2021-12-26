@@ -2,7 +2,7 @@
 
 
 ##### примерный срок сдачи backend (dmc.core) проекта 30 ноября 2021): 
-![38%](https://progress-bar.dev/38)
+![42%](https://progress-bar.dev/42)
 
 1. [Сценарий аутентификации пользователя](documentation/scenario/scenario-auth-user.md)
 2. Сценарий работы в роли Manager

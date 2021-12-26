@@ -9,6 +9,7 @@ import {
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
@@ -96,6 +97,11 @@ export class PriceGroupController {
   @UseGuards(RoleGuard)
   @Delete(':pricegroup_id')
   remove(@Param('pricegroup_id') pricegroup_id: number) {
+    // this.priceGroup.addHook('afterDestroy', (priceGroup) => {
+    //   console.log('priceGroup :>> ', priceGroup);
+    // });
+    console.log('111222 :>> ', 111222);
     return this.priceGroupService.deletePriceGroupById(pricegroup_id);
+    //return this.priceGroup.destroy({ where: { id: pricegroup_id } });
   }
 }

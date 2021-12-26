@@ -39,6 +39,7 @@ export class PriceController {
 
   @ApiOperation({ summary: 'Получить все группы и позиции для прайс-листе' })
   @ApiResponse({ status: 200, type: [Price] })
+  @UseGuards(RoleGuard)
   @Roles(
     EnumRole.admin,
     EnumRole.courier,

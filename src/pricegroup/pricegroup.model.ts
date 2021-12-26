@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { AfterBulkDestroy, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
 import { Price } from 'src/price/price.model';
 
 interface PriceGroupCreationAttrs {
@@ -39,4 +39,10 @@ export class PriceGroup extends Model<PriceGroup, PriceGroupCreationAttrs> {
 
   @HasMany(() => Price)
   price: Price[];
+
+  @AfterBulkDestroy
+  static async onDestroyCascadePrice(pricegroup: PriceGroup) {
+      const pricegroupId:number = pricegroup.where['id'];
+      await Price.destroy({where: { pricegroupId }});
+  }
 }
