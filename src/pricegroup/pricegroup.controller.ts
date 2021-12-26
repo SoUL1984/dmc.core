@@ -9,6 +9,7 @@ import {
   UseGuards,
   UsePipes,
 } from '@nestjs/common';
+import { InjectModel } from '@nestjs/sequelize';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';

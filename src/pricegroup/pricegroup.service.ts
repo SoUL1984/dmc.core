@@ -103,9 +103,7 @@ export class PriceGroupService {
           'Группа прайс-листа не найдена. Удалить данные не удалось.',
         );
       } else {
-        return await this.priceGroupRepository.update(
-          { isDelete: true, deletedAt: new Date() },
-          { where: { id } },
+        return await this.priceGroupRepository.destroy({ where: { id } },
         )[0];
       }
     } catch (e) {
