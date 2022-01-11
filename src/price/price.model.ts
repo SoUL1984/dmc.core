@@ -1,6 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   BelongsTo,
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
@@ -8,6 +9,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
+import { Order } from 'src/order/order.model';
 import { OrderPrice } from 'src/order_price/order_price.model';
 import { PriceGroup } from 'src/pricegroup/pricegroup.model';
 
@@ -65,6 +67,6 @@ export class Price extends Model<Price, PriceCreationAttrs> {
   @Column({ type: DataType.BOOLEAN, allowNull: false, defaultValue: false })
   isDelete: boolean;
 
-  @HasMany(() => OrderPrice)
-  orderPrices: OrderPrice[];
+  @BelongsToMany(()=>Order,()=>OrderPrice)
+  orders: Order[];
 }
