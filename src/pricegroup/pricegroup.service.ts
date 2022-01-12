@@ -91,6 +91,7 @@ export class PriceGroupService {
         HttpStatus.BAD_REQUEST,
       );
     }
+
   }
 
   async deletePriceGroupById(id: number) {
