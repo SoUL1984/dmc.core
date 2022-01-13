@@ -35,8 +35,11 @@ export enum EnumColor {
 }
 
 interface OrderCreationAttrs {
+  userId: number;
+  orderNum: string;
   technician: string;
   executor_n1: number;
+  fittingDateN1: Date;
 }
 
 @Table({ tableName: 'order', paranoid: true })

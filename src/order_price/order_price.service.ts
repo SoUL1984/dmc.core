@@ -32,6 +32,28 @@ export class OrderPriceService {
     }
   }
 
+  async getAllPriceAndOrderPriceByOrderId(orderId: number) {
+    try {
+      const listPriceAndOrderPrice = await this.priceRepository.findAll({
+        attributes: ['id', 'name'],
+        include: [
+          {
+            model: OrderPrice,
+            attributes: ['number', 'tprice'],
+            where: { isDelete: false },
+          },
+        ],
+        where: { isDelete: false },
+      });
+      return listPriceAndOrderPrice;
+    } catch (e) {
+      throw new HttpException(
+        'Получить позиции заказ-наряда не удалось.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
   async createOrderPrice(dto:CreateOrderPriceDto) {
     const tprice = await this.priceRepository.findByPk(dto.priceId, {attributes:['price']})[0];
     const orderPrice = await this.orderPriceRepository.create({
@@ -65,5 +87,7 @@ export class OrderPriceService {
       );
     }
   }
+
+
 
 }
