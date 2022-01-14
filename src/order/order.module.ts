@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { OrderPrice } from 'src/order_price/order_price.model';
 import { Price } from 'src/price/price.model';
@@ -11,4 +11,4 @@ import { OrderService } from './order.service';
   providers: [OrderService],
   imports: [SequelizeModule.forFeature([Order, Price, OrderPrice])],
 })
-export class UsersModule {}
+export class OrderModule {}

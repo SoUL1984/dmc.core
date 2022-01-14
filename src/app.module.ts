@@ -6,10 +6,12 @@ import { User } from './users/users.model';
 import { UsersModule } from './users/users.module';
 import { AuthModule } from './auth/auth.module';
 import { PricegroupModule } from './pricegroup/pricegroup.module';
+import { OrderModule } from './order/order.module';
 import { Price } from './price/price.model';
 import { PriceGroup } from './pricegroup/pricegroup.model';
 import { OrderPrice } from './order_price/order_price.model';
 import { PriceModule } from './price/price.module';
+import { OrderPriceModule } from './order_price/order_price.module';
 
 @Module({
   imports: [
@@ -30,6 +32,8 @@ import { PriceModule } from './price/price.module';
     AuthModule,
     PricegroupModule,
     PriceModule,
+    OrderModule,
+    OrderPriceModule
   ],
 })
 export class AppModule {}

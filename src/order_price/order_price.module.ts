@@ -11,4 +11,4 @@ import { OrderPriceService } from './order_price.service';
   providers: [OrderPriceService],
   imports: [SequelizeModule.forFeature([OrderPrice, Order, Price])],
 })
-export class UsersModule {}
+export class OrderPriceModule {}
