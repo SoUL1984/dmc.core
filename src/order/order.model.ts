@@ -1,14 +1,15 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
   BelongsTo,
+  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
-  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
 import { OrderPrice } from 'src/order_price/order_price.model';
+import { Price } from 'src/price/price.model';
 import { User } from 'src/users/users.model';
 
 export enum EnumColor {
@@ -33,8 +34,11 @@ export enum EnumColor {
 }
 
 interface OrderCreationAttrs {
+  userId: number;
+  orderNum: string;
   technician: string;
   executor_n1: number;
+  fittingDateN1: Date;
 }
 
 @Table({ tableName: 'order', paranoid: true })
@@ -287,6 +291,6 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   isDelete: boolean;
 
-  @HasMany(() => OrderPrice)
-  orderPrices: OrderPrice[];
+  @BelongsToMany(()=>Price,()=>OrderPrice)
+  prices: Price[];
 }

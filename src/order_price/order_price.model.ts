@@ -1,5 +1,4 @@
 import {
-  BelongsTo,
   Column,
   DataType,
   ForeignKey,
@@ -12,7 +11,7 @@ import { Price } from 'src/price/price.model';
 interface OrderPriceCreationAttrs {
   priceId: number;
   orderId: number;
-  number: number;
+  amount: number;
   tprice: number;
 }
 
@@ -30,24 +29,16 @@ export class OrderPrice extends Model<OrderPrice, OrderPriceCreationAttrs> {
   @ForeignKey(() => Price)
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
     comment: 'Индентификатор прайса',
   })
   priceId: number;
 
-  @BelongsTo(() => Price)
-  price: Price;
-
   @ForeignKey(() => Order)
   @Column({
     type: DataType.INTEGER,
-    allowNull: false,
     comment: 'Индентификатор заказ-наряда',
   })
   orderId: number;
-
-  @BelongsTo(() => Order)
-  order: Order;
 
   @Column({
     type: DataType.INTEGER,

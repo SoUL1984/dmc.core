@@ -2,7 +2,7 @@
 
 
 ##### примерный срок сдачи backend (dmc.core) проекта 30 ноября 2021): 
-![44%](https://progress-bar.dev/44)
+![46%](https://progress-bar.dev/46)
 
 1. [Сценарий аутентификации пользователя](documentation/scenario/scenario-auth-user.md)
 2. Сценарий работы в роли Manager
@@ -23,7 +23,7 @@
     * [Редактирование своего профиля](documentation/director/doc__user__director.md)
 6. [Сценарий работы в роли Courier](####6-script-Courier)
 7. [Работа с таблицей пользователей](documentation/CRUD/crud_for_users/crud_for_users.md)
-8. [Docker-compose и создание инфраструктуру для разработки](documentation/docker-compose/docker-compose.md)
+8. [Docker-compose и создание инфраструктуры для разработки](documentation/docker-compose/docker-compose.md)
 9. [Схема БД](documentation/dmcdb.png)
 
 #### 1. Сценарий аутентификации пользователя
