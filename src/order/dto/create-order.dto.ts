@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsString, MinLength } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateOrderDto {
   @ApiProperty({
@@ -22,4 +22,13 @@ export class CreateOrderDto {
   })
   @IsString({ message: 'Должно быть строкой' })
   readonly fittingDateN1: Date;
+
+  @ApiProperty({
+    example: 'TODO:Пока не знаю как и что',
+    description:
+      'Прикрпеленные файлы (закешированный фал и путь к нему) TODO:Продумать это',
+  })
+  @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
+  readonly uploadFiles: string;
 }

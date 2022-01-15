@@ -39,6 +39,7 @@ interface OrderCreationAttrs {
   technician: string;
   executor_n1: number;
   fittingDateN1: Date;
+  uploadFiles: string;
 }
 
 @Table({ tableName: 'order', paranoid: true })
@@ -189,6 +190,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   @Column({
     type: DataType.STRING(600),
+    allowNull: false,
     comment: 'Прикрпеленные файлы',
   })
   uploadFiles: string;
