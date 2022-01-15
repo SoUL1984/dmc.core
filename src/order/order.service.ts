@@ -8,18 +8,12 @@ export class OrderService {
   constructor(@InjectModel(Order) private orderRepository: typeof Order) {}
   async createOrder(dto: CreateOrderDto, userId: number) {
     const currentYear = new Date().getFullYear().toString();
-    // let lastOrder = await this.orderRepository.findAll({
-    //   attributes: ['orderNum'],
-    //   limit: 1,
-    //   order: [ [ 'createdAt', 'DESC' ]],
-    // });
     let lastOrder = await this.orderRepository.findOne({
-      order: [ [ 'createdAt', 'DESC' ]],
+      order: [ [ 'id', 'DESC' ]],
     });
     let orderNum:string = '000001-И-'+ currentYear;
     if (lastOrder !== null) {
       const aOrderNum = lastOrder.orderNum.split('-');
-      console.log('aOrderNum[0] :>> ', aOrderNum[0]);
       orderNum = '000001-И-'+ currentYear;
       if (aOrderNum[2] == currentYear) {
         const num = Number(aOrderNum[0].replace(/[0]+/, ''));
