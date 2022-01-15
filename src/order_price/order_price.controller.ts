@@ -1,12 +1,12 @@
 import { Body, Controller, Param, Post, Patch, Delete, UseGuards, Get } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/auth/role-auth.decorator';
-import { RoleGuard } from 'src/auth/role.guard';
-import { EnumRole } from 'src/users/users.model';
 import { CreateOrderPriceDto } from './dto/create-order_price.dto';
 import { UpdateOrderPriceDto } from './dto/update-order_price.dto';
 import { OrderPrice } from './order_price.model';
 import { OrderPriceService } from './order_price.service';
+import { RoleGuard } from 'src/auth/role.guard';
+import { EnumRole } from 'src/users/users.model';
+import { Roles } from 'src/auth/role-auth.decorator';
 
 @ApiTags('Заказ-наряд')
 @Controller('order-price')
@@ -31,8 +31,8 @@ export class OrderController {
     return priceAndOrderPrice;
   }
 
-  @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
+ @Roles(EnumRole.admin)
+ @UseGuards(RoleGuard)
   @Post()
   create(@Body() orderPriceDto: CreateOrderPriceDto) {
     return this.orderPriceService.createOrderPrice(orderPriceDto);

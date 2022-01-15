@@ -6,7 +6,7 @@ import { CurUser } from 'src/auth/user-auth.decorator';
 import { EnumRole } from 'src/users/users.model';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { Order } from './order.model';
-import { OrderService } from './order.service';
+import { OrderService } from './order.service'
 
 @ApiTags('Заказ-наряд')
 @Controller('order')

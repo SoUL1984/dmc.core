@@ -25,7 +25,7 @@ import { OrderPriceModule } from './order_price/order_price.module';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DB,
-      models: [User, PriceGroup, Price, OrderPrice, Order],
+      models: [User, PriceGroup, Price, Order, OrderPrice],
       autoLoadModels: true,
     }),
     UsersModule,

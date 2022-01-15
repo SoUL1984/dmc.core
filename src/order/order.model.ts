@@ -5,7 +5,6 @@ import {
   Column,
   DataType,
   ForeignKey,
-  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -265,7 +264,6 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   @Column({
     type: DataType.DATE,
-    allowNull: false,
     comment: 'Примерка №2',
   })
   fittingDateN2: Date;
@@ -276,7 +274,6 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   @Column({
     type: DataType.DATE,
-    allowNull: false,
     comment: 'Примерка №3',
   })
   fittingDateN3: Date;
