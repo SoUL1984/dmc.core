@@ -6,7 +6,7 @@ export class UpdatePriceDto {
     example: '1',
     description: 'Индентификатор группы для прайс-листа (pricegroupId)',
   })
-  @IsNumber({ allowInfinity: true }, { message: 'Должно быть числом' })
+  @IsNumber({}, { message: 'Должно быть числом' })
   @MinLength(5, { message: 'Не меньше 5 символов' })
   @IsOptional()
   readonly pricegroupId: number;
@@ -23,7 +23,7 @@ export class UpdatePriceDto {
     example: '10100.10',
     description: 'Цена позиции в прайс-листе',
   })
-  @IsNumber({}, { message: 'Должно быть строкой' })
+  @IsNumber({}, { message: 'Должно быть числом' })
   @IsOptional()
   readonly price: number;
 

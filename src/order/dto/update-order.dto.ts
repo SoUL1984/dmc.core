@@ -1,28 +1,78 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
-export class CreateOrderDto {
+export class UpdateOrderDto {
   @ApiProperty({ example: 'Белов А.А.', description: 'ФИО доктора' })
   @IsOptional()
   @IsString({ message: 'Должно быть строкой' })
   readonly doctorName: string;
 
   @ApiProperty({ example: 'Иванов И. И.', description: 'ФИО пациента' })
+  @IsOptional() 
   @IsString({ message: 'Должно быть строкой' })
-  @IsOptional()
   readonly pacientName: string;
 
   @ApiProperty({
     example: 'Макаров Е.В.',
     description: 'ФИО техника',
   })
+  @IsOptional()  
   @IsString({ message: 'Должно быть строкой' })
   readonly technician: string;
 
   @ApiProperty({ example: 'А1', description: 'Цвет конструкции' })
-  @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
   readonly color: string;
+
+  @ApiProperty({
+    example: '10.01.2021',
+    description: 'Дата сдачи работы (окончательная, которая произошла)',
+  })
+  @IsOptional()
+  readonly deliveryWork: Date;
+
+  @ApiProperty({
+    example: 'TODO:Написать верное значение',
+    description: 'Акт выполненных работ',
+  })
+  @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
+  readonly certComplete: string;
+
+  @ApiProperty({
+    example: 'TODO:Написать верное значение',
+    description: 'Факт оплаты (подтверждение оплаты)',
+  })
+  @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
+  readonly factPayment: string;
+
+  @ApiProperty({ example: 'true', description: 'Флаг, работа сдана' })
+  @IsOptional()
+  @IsBoolean()
+  readonly isComplete: boolean;
+
+  @ApiProperty({ example: 'true', description: 'Флаг, оплаты работы' })
+  @IsOptional()
+  @IsBoolean()
+  readonly isPayment: boolean;
+
+  @ApiProperty({
+    example: 'false',
+    description: 'Флаг, работу можно отправить',
+  })
+  @IsOptional()
+  @IsBoolean()
+  readonly isDelivery: boolean;
+
+  @ApiProperty({
+    example: 'false',
+    description: 'Флаг, доставка произведена',
+  })
+  @IsOptional()
+  @IsBoolean()
+  readonly isDeliveryMade: boolean;
 
   @ApiProperty({
     example: 'TODO:Пока не знаю как и что',
@@ -53,6 +103,7 @@ export class CreateOrderDto {
     example: '3',
     description: 'Первый исполнитель',
   })
+  @IsOptional()
   @IsNumber({}, { message: 'Должно быть числом' })
   readonly executor_n1: number;
 
@@ -76,6 +127,7 @@ export class CreateOrderDto {
     example: '05.12.1984',
     description: 'Дата первой примерки',
   })
+  @IsOptional()
   @IsString({ message: 'Должно быть строкой' })
   readonly fittingDateN1: Date;
 

@@ -1,6 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
+import { OrderPrice } from 'src/order_price/order_price.model';
+import { UpdatePriceDto } from 'src/price/dto/update-price.dto';
+import { Price } from 'src/price/price.model';
 import { CreateOrderDto } from './dto/create-order.dto';
+import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.model';
 
 @Injectable()
@@ -41,8 +45,73 @@ export class OrderService {
     return order;
   }
 
-  async getAllOrders() {
-    const listOrder = await this.orderRepository.findAll();
-    return listOrder;
+  async updateOrderById(dto: UpdateOrderDto, orderId: number) {
+    try {
+      const order = await this.orderRepository.findOne({
+        where: { id: orderId, isDelete: false },
+      });
+      console.log('order :>> ', order);
+      if (order === null) {
+        throw new HttpException(
+          'Заказ-нард не найден. Обновить данные не удалось.',
+          HttpStatus.NOT_FOUND,
+        );
+      } else {
+        return await this.orderRepository.update(dto, {
+          where: { id: orderId, isDelete: false },
+        })[0];
+      }
+    } catch (e) {
+      throw new HttpException(
+        'Произошла ошибка при изменении заказ-наряда. Обновить запись не возможно.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async deleteOrderById(oderId: number) {
+    try {
+      const order = await this.orderRepository.findOne({
+        where: { id: oderId, isDelete: false },
+      });
+      if (order === null) {
+        throw new HttpException(
+          'Произошла ошибка при удалении заказ-наряда. Удалить запись не возможно.',
+          HttpStatus.NOT_FOUND,
+        );
+      } else {
+        return await this.orderRepository.destroy({ where: { id:oderId } },
+        )[0];
+      }
+    } catch (e) {
+      throw new HttpException(
+        'Произошла ошибка при удалении заказ-наряда. Удалить запись не возможно.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async getFullOrders(userId:number) {
+    try {
+      //attributes: ['id', 'pricegroup_name', 'pricegroup_desc'],
+      //attributes: ['id', 'name', 'price', 'desc'],
+      const listOrders = await this.orderRepository.findAll({        
+        include: [
+          {
+            model: OrderPrice,
+            include: [{
+              model: Price,
+            }]
+          },
+        ],
+        where: { isDelete: false, userId },
+      });
+      return listOrders;
+    } catch (e) {
+      throw new HttpException(
+        'Получить все заказ-наряды с полными данными не удалось.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
   }
 }

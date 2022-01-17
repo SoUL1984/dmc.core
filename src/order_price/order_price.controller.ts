@@ -31,8 +31,8 @@ export class OrderController {
     return priceAndOrderPrice;
   }
 
- @Roles(EnumRole.admin)
- @UseGuards(RoleGuard)
+  @Roles(EnumRole.admin)
+  @UseGuards(RoleGuard)
   @Post()
   create(@Body() orderPriceDto: CreateOrderPriceDto) {
     return this.orderPriceService.createOrderPrice(orderPriceDto);

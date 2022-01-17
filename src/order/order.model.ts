@@ -1,5 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  AfterBulkDestroy,
   BelongsTo,
   BelongsToMany,
   Column,
@@ -68,18 +69,11 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   @BelongsTo(() => User)
   user: User;
 
-  // @Column({
-  //   type: DataType.DATE,
-  //   defaultValue: NOW,
-  //   comment: 'Дата и время создания заказ-наряда',
-  // })
-  // dateOrder: Date;
-
-  @ApiProperty({ example: 'I07112021', description: 'Номер ордера' })
+  @ApiProperty({ example: '000001-И-2022', description: 'Номер заказ-наряда' })
   @Column({
-    type: DataType.STRING(16),
+    type: DataType.STRING(13),
     allowNull: false,
-    comment: 'Номер ордера',
+    comment: 'Номер заказ-наряда',
   })
   orderNum: string;
 
@@ -174,7 +168,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
 
   @ApiProperty({
     example: 'false',
-    description: 'Флаг, работу можно отправить',
+    description: 'Флаг, доставка произведена',
   })
   @Column({
     type: DataType.BOOLEAN,
@@ -295,4 +289,10 @@ export class Order extends Model<Order, OrderCreationAttrs> {
 
   @BelongsToMany(()=>Price,()=>OrderPrice)
   prices: Price[];
+
+  @AfterBulkDestroy
+  static async onDestroyCascadeOrderPrice(order: Order) {
+      const orderId:number = order.where['id'];
+      await OrderPrice.destroy({where: { orderId }});
+  }
 }
