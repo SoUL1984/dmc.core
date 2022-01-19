@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { OrderPrice } from 'src/order_price/order_price.model';
-import { UpdatePriceDto } from 'src/price/dto/update-price.dto';
 import { Price } from 'src/price/price.model';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -9,7 +8,9 @@ import { Order } from './order.model';
 
 @Injectable()
 export class OrderService {
-  constructor(@InjectModel(Order) private orderRepository: typeof Order) {}
+  constructor(
+    @InjectModel(Order) private orderRepository: typeof Order,
+  ) {}
   async createOrder(dto: CreateOrderDto, userId: number) {
     const currentYear = new Date().getFullYear().toString();
     
@@ -91,22 +92,72 @@ export class OrderService {
     }
   }
 
-  async getFullOrders(userId:number) {
+  async getListOrder(userId:number) {
     try {
-      //attributes: ['id', 'pricegroup_name', 'pricegroup_desc'],
-      //attributes: ['id', 'name', 'price', 'desc'],
-      const listOrders = await this.orderRepository.findAll({        
-        include: [
-          {
-            model: OrderPrice,
-            include: [{
-              model: Price,
-            }]
-          },
-        ],
+      const listOrders = await this.orderRepository.findAll({     
+        attributes: [
+          'id', 
+          'orderNum', 
+          'doctorName', 
+          'pacientName', 
+          'technician', 
+          'isComplete', 
+          'isPayment',
+          'isDelivery',
+          'isDeliveryMade',
+          'executor_n1',
+          'executor_n2',
+          'executor_n3',
+          'fittingDateN1',
+          'fittingDateN2',
+          'fittingDateN3',
+        ],   
         where: { isDelete: false, userId },
       });
+
       return listOrders;
+    } catch (e) {
+      throw new HttpException(
+        'Получить все заказ-наряды с полными данными не удалось.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async getOrderAndOrderPriceById(orderId:number) {
+    try {
+      const listOrderPriceAndPrice = await this.orderRepository.findAll({
+        // attributes: ['userId',
+        //              'orderNum',
+        //              'doctorName',
+        //              'pacientName',
+        //              'technician',
+        //              'isComplete',
+        //              'isPayment',
+        //              'isDelivery',
+        //              'isDeliveryMade',
+        //              'executor_n1',
+        //              'executor_n2',
+        //              'executor_n3',
+        //              'fittingDateN1',
+        //              'fittingDateN2',
+        //              'fittingDateN3',
+        //              'createdAt'],
+        include: [
+          {
+            attributes: ['amount', 'tprice'],
+            model: OrderPrice,
+            include:[{
+                attributes: ['id', 'name'],
+                model: Price,
+                where: { isDelete: false },
+              }],
+            where: { isDelete: false },
+          },
+        ],
+        where: { isDelete: false,  id:orderId },
+      });
+      return { listOrderPriceAndPrice };
     } catch (e) {
       throw new HttpException(
         'Получить все заказ-наряды с полными данными не удалось.',

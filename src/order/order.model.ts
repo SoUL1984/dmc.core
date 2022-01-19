@@ -2,10 +2,10 @@ import { ApiProperty } from '@nestjs/swagger';
 import {
   AfterBulkDestroy,
   BelongsTo,
-  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -287,8 +287,8 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   isDelete: boolean;
 
-  @BelongsToMany(()=>Price,()=>OrderPrice)
-  prices: Price[];
+  @HasMany(()=>OrderPrice)
+  orderPrice: OrderPrice[];
 
   @AfterBulkDestroy
   static async onDestroyCascadeOrderPrice(order: Order) {

@@ -58,11 +58,10 @@ export class OrderController {
     EnumRole.director,
   )
   @UseGuards(RoleGuard)
-  @Get('/get-full-orders')
-  getFullOrders(@CurUser() user) {
+  @Get('/get-list-order')
+  getListOrder(@CurUser() user) {
     const userId = user.id;
-    console.log('userId :>> ', userId);
-    const aOrder = this.orderService.getFullOrders(userId);
+    const aOrder = this.orderService.getListOrder(userId);
     return aOrder;
   }
 
@@ -76,11 +75,29 @@ export class OrderController {
     EnumRole.director,
   )
   @UseGuards(RoleGuard)
-  @Get('/get-full-orders-by-user-id/:user_id')
-  getFullOrdersByUserId(
+  @Get('/get-list-order-by-user-id/:user_id')
+  getListOrderByUserId(
     @Param('user_id') userId:number 
   ) {
-    const aOrder = this.orderService.getFullOrders(userId);
+    const aOrder = this.orderService.getListOrder(userId);
     return aOrder;
+  }
+
+  @ApiOperation({ summary: 'Получить все заказ-наряды с полными данными' })
+  @ApiResponse({ status: 200, type: [Order] })
+  @Roles(
+    EnumRole.admin,
+    EnumRole.courier,
+    EnumRole.customer,
+    EnumRole.dentaltechn,
+    EnumRole.director,
+  )
+  @UseGuards(RoleGuard)
+  @Get('/order-and-order-price-by-id/:order_id')
+  getOrderAndOrderPriceById(
+    @Param('order_id') orderId:number 
+  ) {
+    const listFullOrder = this.orderService.getOrderAndOrderPriceById(orderId);
+    return listFullOrder;
   }
 }

@@ -10,7 +10,7 @@ import { Roles } from 'src/auth/role-auth.decorator';
 
 @ApiTags('Заказ-наряд')
 @Controller('order-price')
-export class OrderController {
+export class OrderPriceController {
   constructor(private orderPriceService: OrderPriceService) {}
 
   @ApiOperation({ summary: 'Получить все позиции заказ-наряда' })
