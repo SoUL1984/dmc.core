@@ -6,7 +6,7 @@ export class CreatePriceDto {
     example: '1',
     description: 'Индентификатор группы для прайс-листа (pricegroupId)',
   })
-  @IsNumber({ allowInfinity: true }, { message: 'Должно быть числом' })
+  @IsNumber({}, { message: 'Должно быть числом' })
   readonly pricegroupId: number;
 
   @ApiProperty({
@@ -20,7 +20,7 @@ export class CreatePriceDto {
     example: '10100.10',
     description: 'Цена позиции в прайс-листе',
   })
-  @IsNumber({}, { message: 'Должно быть строкой' })
+  @IsNumber({}, { message: 'Должно быть числом' })
   readonly price: number;
 
   @ApiProperty({

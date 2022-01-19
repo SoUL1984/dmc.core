@@ -10,7 +10,7 @@ import { Roles } from 'src/auth/role-auth.decorator';
 
 @ApiTags('Заказ-наряд')
 @Controller('order-price')
-export class OrderController {
+export class OrderPriceController {
   constructor(private orderPriceService: OrderPriceService) {}
 
   @ApiOperation({ summary: 'Получить все позиции заказ-наряда' })
@@ -31,8 +31,8 @@ export class OrderController {
     return priceAndOrderPrice;
   }
 
- @Roles(EnumRole.admin)
- @UseGuards(RoleGuard)
+  @Roles(EnumRole.admin)
+  @UseGuards(RoleGuard)
   @Post()
   create(@Body() orderPriceDto: CreateOrderPriceDto) {
     return this.orderPriceService.createOrderPrice(orderPriceDto);

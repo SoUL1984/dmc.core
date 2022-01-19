@@ -40,6 +40,7 @@ export class PriceGroup extends Model<PriceGroup, PriceGroupCreationAttrs> {
   @HasMany(() => Price)
   price: Price[];
 
+  //Каскадное удаление
   @AfterBulkDestroy
   static async onDestroyCascadePrice(pricegroup: PriceGroup) {
       const pricegroupId:number = pricegroup.where['id'];

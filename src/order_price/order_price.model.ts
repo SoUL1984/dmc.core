@@ -1,4 +1,5 @@
 import {
+  BelongsTo,
   Column,
   DataType,
   ForeignKey,
@@ -33,6 +34,9 @@ export class OrderPrice extends Model<OrderPrice, OrderPriceCreationAttrs> {
   })
   priceId: number;
 
+  @BelongsTo(() => Price)
+  price: Price;
+
   @ForeignKey(() => Order)
   @Column({
     type: DataType.INTEGER,
@@ -40,12 +44,15 @@ export class OrderPrice extends Model<OrderPrice, OrderPriceCreationAttrs> {
   })
   orderId: number;
 
+  @BelongsTo(() => Order)
+  order: Order;
+
   @Column({
     type: DataType.INTEGER,
     allowNull: false,
     comment: 'Количество выбранных позиций',
   })
-  number: number;
+  amount: number;
 
   @Column({
     type: DataType.DECIMAL(8, 2),

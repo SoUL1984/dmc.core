@@ -40,7 +40,7 @@ export class OrderPriceService {
           {
             model: OrderPrice,
             attributes: ['number', 'tprice'],
-            where: { isDelete: false },
+            where: { isDelete: false, orderId },
           },
         ],
         where: { isDelete: false },
@@ -55,7 +55,7 @@ export class OrderPriceService {
   }
 
   async createOrderPrice(dto:CreateOrderPriceDto) {
-    const tprice = await this.priceRepository.findByPk(dto.priceId, {attributes:['price']})[0];
+    const tprice = (await this.priceRepository.findByPk(dto.priceId, {attributes:['price']})).price;
     const orderPrice = await this.orderPriceRepository.create({
       priceId: dto.priceId, 
       orderId: dto.orderId,

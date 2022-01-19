@@ -1,10 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
 import {
+  AfterBulkDestroy,
   BelongsTo,
-  BelongsToMany,
   Column,
   DataType,
   ForeignKey,
+  HasMany,
   Model,
   Table,
 } from 'sequelize-typescript';
@@ -39,6 +40,7 @@ interface OrderCreationAttrs {
   technician: string;
   executor_n1: number;
   fittingDateN1: Date;
+  uploadFiles: string;
 }
 
 @Table({ tableName: 'order', paranoid: true })
@@ -67,18 +69,11 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   @BelongsTo(() => User)
   user: User;
 
-  // @Column({
-  //   type: DataType.DATE,
-  //   defaultValue: NOW,
-  //   comment: 'Дата и время создания заказ-наряда',
-  // })
-  // dateOrder: Date;
-
-  @ApiProperty({ example: 'I07112021', description: 'Номер ордера' })
+  @ApiProperty({ example: '000001-И-2022', description: 'Номер заказ-наряда' })
   @Column({
-    type: DataType.STRING(16),
+    type: DataType.STRING(13),
     allowNull: false,
-    comment: 'Номер ордера',
+    comment: 'Номер заказ-наряда',
   })
   orderNum: string;
 
@@ -173,7 +168,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
 
   @ApiProperty({
     example: 'false',
-    description: 'Флаг, работу можно отправить',
+    description: 'Флаг, доставка произведена',
   })
   @Column({
     type: DataType.BOOLEAN,
@@ -189,6 +184,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   @Column({
     type: DataType.STRING(600),
+    allowNull: false,
     comment: 'Прикрпеленные файлы',
   })
   uploadFiles: string;
@@ -291,6 +287,12 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   })
   isDelete: boolean;
 
-  @BelongsToMany(()=>Price,()=>OrderPrice)
-  prices: Price[];
+  @HasMany(()=>OrderPrice)
+  orderPrice: OrderPrice[];
+
+  @AfterBulkDestroy
+  static async onDestroyCascadeOrderPrice(order: Order) {
+      const orderId:number = order.where['id'];
+      await OrderPrice.destroy({where: { orderId }});
+  }
 }
