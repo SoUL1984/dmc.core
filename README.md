@@ -26,6 +26,11 @@
 8. [Docker-compose и создание инфраструктуры для разработки](documentation/docker-compose/docker-compose.md)
 9. [Схема БД](documentation/dmcdb.png)
 
+---
+
+1. [Как завести новую сущность для пооекта](documentation/new_entity/new_entity.md)
+2. [Документация для саморазвития](documentation/library/library.md)
+
 #### 1. Сценарий аутентификации пользователя
 
 #### 2. Сценарий работы в роли Admin
