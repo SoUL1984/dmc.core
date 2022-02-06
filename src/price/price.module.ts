@@ -15,5 +15,6 @@ import { OrderPrice } from 'src/order_price/order_price.model';
     SequelizeModule.forFeature([Price, Order, OrderPrice]),
     forwardRef(() => AuthModule),
   ],
+  exports: [PriceService],
 })
 export class PriceModule {}

@@ -73,6 +73,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
   @Column({
     type: DataType.STRING(13),
     allowNull: false,
+    unique: true,
     comment: 'Номер заказ-наряда',
   })
   orderNum: string;
