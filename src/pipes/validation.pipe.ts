@@ -9,6 +9,7 @@ export class ValidationPipe implements PipeTransform<any> {
     if (metadata.type !== 'body') {
       return value;
     }
+    console.log('metadata :>> ', metadata);
     const { metatype } = metadata;
     if (!metatype || !this.toValidate(metatype)) {
       return value;

@@ -22,6 +22,7 @@ export class AuthController {
   @Post('/registration')
   @UsePipes(ValidationPipe)
   registration(@Body() userDto: CreateUserDto) {
+    console.log('userDto :>> ', userDto);
     return this.authService.registration(userDto);
   }
 }

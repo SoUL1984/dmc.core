@@ -24,10 +24,10 @@ export class AuthService {
   }
 
   async registration(userDto: CreateUserDto) {
-    const candidate = await this.userService.getUserByEmail(userDto.email);
+    const candidate = await this.userService.getUserByEmailOrPhone(userDto.email, userDto.phone);
     if (candidate) {
       throw new HttpException(
-        'Пользователь с таким email существует',
+        'Пользователь с таким email или телефоном существует',
         HttpStatus.BAD_REQUEST,
       );
     }
