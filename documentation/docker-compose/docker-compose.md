@@ -49,6 +49,8 @@ Set their values to "false" and "true" by double clicking on the "value" column
 Для интеграции postman и github, необходимо завести token в github (Заходим в пользователя Settings -> Developer settings -> Personal access tokens -> Заводим токен с галочкой repo(одна галочка)).  
 
 Затем идем в postman Home -> Integrations -> Browse All Integrations -> GitHub -> Backup a collection  
+
+#### Пример Postman итеграции через backup
 ![Пример Postman итеграции через backup](documentation/docker-compose/postman_integration.png)
 
 
