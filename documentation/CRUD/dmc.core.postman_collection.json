@@ -1,8 +1,647 @@
 {
   "info": {
-    "_postman_id": "8f195171-9a91-4f8b-9305-d3016510ad4c",
+    "_postman_id": "0afc5829-ac95-4686-abc8-ad5ef4a6b53e",
     "name": "dmc.core",
     "schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
   },
-  "item": []
+  "item": [
+    {
+      "name": "pricegroup_price",
+      "item": [
+        {
+          "name": "GET_ALL",
+          "_postman_id": "491c72c8-0756-430c-b0e2-977faa366c87",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/price-group"
+          },
+          "response": []
+        },
+        {
+          "name": "GET_ALL_PRICEGROUP_AND_PRICE",
+          "_postman_id": "5954acfb-bfca-4fbe-b358-9cbad9b2c75d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0NzQ4NTksImV4cCI6MTYzNzU2MTI1OX0.cC1s9dnpmVyvFvgYcfUnxx5w9JHZDk0YKbs2lrtZKbs"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/price-group/all-pricegroup-and-price"
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE",
+          "_postman_id": "a21bf015-32c2-459e-815c-eb78ed844711",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"pricegroup_name\": \"Титан7\",\n    \"pricegroup_desc\": \"Содержит основные позиции титановых работ7\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/price-group/create"
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH",
+          "_postman_id": "6e2a2078-20c8-43d5-8267-5dd2f5d49ef7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzQ3NjAsImV4cCI6MTYzNzI2MTE2MH0.9r_pcDf0fnMP1LdHwhvjmcIwSlR3hosQ4XgbHwANpzk"
+              }
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 1,\n    \"pricegroup_name\": \"Титанffg\",\n    \"pricegroup_desc\": \"Содержит основные позиции титановых раdfsdfsadfVVVVVбот\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/price-group/1"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "_postman_id": "8fa143cc-0415-4337-86af-d3cbc706cf1a",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzQ3NjAsImV4cCI6MTYzNzI2MTE2MH0.9r_pcDf0fnMP1LdHwhvjmcIwSlR3hosQ4XgbHwANpzk"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:5000/price-group/2"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "68c2094f-4ffb-4151-8a14-f44b6486628a"
+    },
+    {
+      "name": "price",
+      "item": [
+        {
+          "name": "GET_ALL",
+          "_postman_id": "d77d8cf7-aab7-4221-af4b-51197edcb029",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/price-group"
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE",
+          "_postman_id": "d294bbad-ef5a-42ff-b066-7a4e664722de",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0MjU0NDgsImV4cCI6MTYzNzUxMTg0OH0.0yZYV75CzGOCdYPVSduERnD-6sdnfeeoMlNhzsuB8r4"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"pricegroupId\":1,\n        \"name\":\"Циркониевый абатмент\",\n        \"price\": 10100.10,\n        \"desc\": \"Дополнительное описание\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/price/create"
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH",
+          "_postman_id": "af6389b4-44b1-43b9-927e-e8a76af905d9",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0MjU0NDgsImV4cCI6MTYzNzUxMTg0OH0.0yZYV75CzGOCdYPVSduERnD-6sdnfeeoMlNhzsuB8r4"
+              }
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n        \"pricegroupId\":1,\n        \"name\":\"Циркониевый абатмент\",\n        \"price\": 10200.10,\n        \"desc\": \"Дополнительное описание\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/price/11"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "_postman_id": "159d6384-d2f9-48a1-ae54-de36553b69a7",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0MjU0NDgsImV4cCI6MTYzNzUxMTg0OH0.0yZYV75CzGOCdYPVSduERnD-6sdnfeeoMlNhzsuB8r4"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:5000/price/11"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "3da8e694-3288-4295-a9f1-3a76dcc17c84"
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "PATCH_BY_EMAIL",
+          "_postman_id": "bd636c3b-3f78-493a-9f43-7e5bb1d9ac5d",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MzcwODU1OTgsImV4cCI6MTYzNzE3MTk5OH0.mMc5DQ63fEmPP3n_IUxz4aQInYQWLGZw8ZDk6TdQ6WY"
+              }
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"address\": \"Sylovaya 4-144\",\n    \"role\":\"admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/users/loshkarevs@mail.ru"
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH_BY_AUTH_DATA",
+          "_postman_id": "07505291-6505-4cd3-a8ab-a556456ae623",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2MzcwODU1OTgsImV4cCI6MTYzNzE3MTk5OH0.mMc5DQ63fEmPP3n_IUxz4aQInYQWLGZw8ZDk6TdQ6WY"
+              }
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"address\": \"Sylovaya 4-314453\",\n    \"email\": \"loshkarevs@mail.ru\",\n    \"role\": \"admin\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/users/"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE_BY_EMAIL",
+          "_postman_id": "458c3ed7-0ae4-49b0-b76a-f0c63ab23390",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InEyMTQ1MzQzMzU0QG1haWwucnUiLCJpZCI6NSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM2NDgxMjgwLCJleHAiOjE2MzY1Njc2ODB9.Z1WtLu1vTO4BtZzatwq5q3xsce81KZWFynVJ7V5GL0w"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:5000/users/p1@mail.ru"
+          },
+          "response": []
+        },
+        {
+          "name": "REGISTARTION",
+          "_postman_id": "2658d334-c69f-4077-84a5-6684b62e8cb6",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InAyQG1haWwucnUiLCJpZCI6Nywicm9sZSI6ImN1c3RvbWVyIiwiaWF0IjoxNjM2MzE3MzQ5LCJleHAiOjE2MzY0MDM3NDl9.-mCBZ_MphTUjN0J1gXUMPxNQOl5P2QJMz92GspS53QA"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"loshkarevs@mail.ru\",\n    \"password\": \"volk\",\n    \"name\": \"Татьяна Андреевна Запрудская\",\n    \"city\": \"Самара\",\n    \"address\": \"Силовая ул., дом 4, кв. 144\",\n    \"desc\": \"Дополнительное описание\",\n    \"phone\": \"+7 (905) 3332-54-43438\",\n    \"birthday\": \"06.01.1984\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/auth/registration"
+          },
+          "response": []
+        },
+        {
+          "name": "AUTH_LOGIN",
+          "_postman_id": "3b11ee75-b72f-491b-bc2f-4981a850a60f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"loshkarevs@mail.ru\",\n    \"password\": \"volk\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/auth/login"
+          },
+          "response": []
+        },
+        {
+          "name": "!!!POST_CREATE!!!",
+          "_postman_id": "21f461bd-22bd-4268-9904-75ecc35ff61b",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\":\"volk_p@yandex.ru\",\n    \"password\":\"volk\",\n    \"name\": \"Пащенко Э.В.\",\n    \"phone\": \"+7-902-290-40-61\",\n    \"role\": \"director\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/users/create"
+          },
+          "response": []
+        },
+        {
+          "name": "GET_ALL",
+          "_postman_id": "17369a27-2dcd-49e8-aba5-712059bd1909",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InEyMTQ1MzQzMzU0QG1haWwucnUiLCJpZCI6NSwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM2NDgxMjgwLCJleHAiOjE2MzY1Njc2ODB9.Z1WtLu1vTO4BtZzatwq5q3xsce81KZWFynVJ7V5GL0w"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/users"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "8ce40c2b-3c15-4ae3-a1c6-9dd28d86f13a"
+    },
+    {
+      "name": "order_price",
+      "item": [
+        {
+          "name": "GET_ALL_PRICE_AND_ORDER_PRICE_BY_ORDER_ID",
+          "_postman_id": "931e8c8a-11ba-4470-acd0-5130307edd23",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0NzQ4NTksImV4cCI6MTYzNzU2MTI1OX0.cC1s9dnpmVyvFvgYcfUnxx5w9JHZDk0YKbs2lrtZKbs"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/price-group/all-pricegroup-and-price"
+          },
+          "response": []
+        },
+        {
+          "name": "CREATE",
+          "_postman_id": "5195b910-f76e-445e-a4aa-b1d581009a4e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"priceId\": 1,\n    \"orderId\": 488,\n    \"amount\": 4\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/order-price/create"
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH",
+          "_postman_id": "cba28b4c-745e-4b16-a3fc-72b4af4026b1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzQ3NjAsImV4cCI6MTYzNzI2MTE2MH0.9r_pcDf0fnMP1LdHwhvjmcIwSlR3hosQ4XgbHwANpzk"
+              }
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"id\": 1,\n    \"pricegroup_name\": \"Титанffg\",\n    \"pricegroup_desc\": \"Содержит основные позиции титановых раdfsdfsadfVVVVVбот\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/price-group/1"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "_postman_id": "7a8b61d8-9ae7-407e-9f10-9642c9e1dacc",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzQ3NjAsImV4cCI6MTYzNzI2MTE2MH0.9r_pcDf0fnMP1LdHwhvjmcIwSlR3hosQ4XgbHwANpzk"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:5000/price-group/2"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "733f9ea2-1fde-47b5-b216-37f7260f7ced"
+    },
+    {
+      "name": "order",
+      "item": [
+        {
+          "name": "CREATE",
+          "_postman_id": "ecc0839b-7d9a-43d6-a2cd-459aeb2e56e1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI0NDg5NjAsImV4cCI6MTY0MjUzNTM2MH0.sQczj_uX5ignv2LeIYyZDWcQRcTsAW1Pebvq7knm2vk"
+              }
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"technician\":\"Сидоров\",\n    \"executor_n1\": 1,\n    \"fittingDateN1\": \"06.01.1984\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/order/create"
+          },
+          "response": []
+        },
+        {
+          "name": "DELETE",
+          "_postman_id": "4b5e5d69-18bf-400b-802b-7e1690b09caf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI2MTQ2OTcsImV4cCI6MTY0MjcwMTA5N30.gy-VAW0FuTYYiq895NpKMxgveY52v7qRfKRhBPVIe7I"
+              }
+            },
+            "method": "DELETE",
+            "header": [],
+            "url": "http://localhost:5000/order/2"
+          },
+          "response": []
+        },
+        {
+          "name": "PATCH",
+          "_postman_id": "6bb2a230-519e-4a0b-8572-cc225d9ff84f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI0NDg5NjAsImV4cCI6MTY0MjUzNTM2MH0.sQczj_uX5ignv2LeIYyZDWcQRcTsAW1Pebvq7knm2vk"
+              }
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"isComplete\": true,\n    \"isPayment\": true,\n    \"isDelivery\": true,\n    \"executor_n2\": 555,\n    \"fittingDateN3\": \"06.01.2024\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/order/488"
+          },
+          "response": []
+        },
+        {
+          "name": "GET_ALL",
+          "_postman_id": "e8cb23c9-0639-404d-893a-e2472a97c4b5",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/order/get-list-order"
+          },
+          "response": []
+        },
+        {
+          "name": "GET_ALL_BY_USER_ID",
+          "_postman_id": "054b84e1-1cb4-415a-8aef-de9af3686bc4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": "http://localhost:5000/order/get-list-order-by-user-id/1"
+          },
+          "response": []
+        },
+        {
+          "name": "GET_FULL_ORDER_BY_ID",
+          "_postman_id": "1d807409-fbd0-4652-a873-e8f842c055f4",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+              }
+            },
+            "method": "GET",
+            "header": [],
+            "url": "http://localhost:5000/order/order-and-order-price-by-id/488"
+          },
+          "response": []
+        }
+      ],
+      "_postman_id": "da3cd5ae-4a9e-4b1f-94f1-4fb557c4bdba"
+    }
+  ]
 }
