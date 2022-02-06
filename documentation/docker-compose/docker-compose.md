@@ -16,30 +16,30 @@ https://www.digitalocean.com/community/tutorials/how-to-remove-docker-images-con
 * docker-compose build
 * docker-compose up
 
-Необходимо изучить механизм работы с докером на этой странице TODO: https://github.com/IvoNet/docker-mysql
+Необходимо изучить механизм работы с докером на этой странице TODO: https://github.com/IvoNet/docker-mysql  
 
-Чтобы присоединиться и наблюдать за docker-compose нужно выполнить команду 
-docker ps     // выводит список всех запущенных контейнеров
-docker ps -a  // выводит список всех контейнеров
+Чтобы присоединиться и наблюдать за docker-compose нужно выполнить команду   
+docker ps     // выводит список всех запущенных контейнеров  
+docker ps -a  // выводит список всех контейнеров  
 
-docker run -it ubuntu:18.10 /bin/bash // запустить и подключиться к контейнеру
-docker container logs -f dff69b8decc8 // наблюдаем за работой контейнера
-docker exec -it 7579c85c8b7e /bin/bash  // подключиться к существующему контейнеру
+docker run -it ubuntu:18.10 /bin/bash // запустить и подключиться к контейнеру  
+docker container logs -f dff69b8decc8 // наблюдаем за работой контейнера  
+docker exec -it 7579c85c8b7e /bin/bash  // подключиться к существующему контейнеру  
 
-Также к контейнеру можно присоединяться и в нем работать как в операционной системе
+Также к контейнеру можно присоединяться и в нем работать как в операционной системе  
 
 
-В docker-compose есть хранилище данных, поэтому инициализация базы данных происходит один раз.
+В docker-compose есть хранилище данных, поэтому инициализация базы данных происходит один раз.  
 Если нужно остановить docker-compose и удалить все хранилища, чтобы снова проиницилизировать и пересоздать базу данных, нужно воспользоваться командой.
-docker-compose down -v
+docker-compose down -v  
 
-connect db (https://stackoverflow.com/questions/50379839/connection-java-mysql-public-key-retrieval-is-not-allowed):
+connect db (https://stackoverflow.com/questions/50379839/  connection-java-mysql-public-key-retrieval-is-not-allowed):  
 
-Если есть проблемы при подключении к базе данных через DBeaver:
+Если есть проблемы при подключении к базе данных через DBeaver:  
 
-Right click your connection, choose "Edit Connection"
-On the "Connection settings" screen (main screen) click on "Edit Driver Settings"
-Click on "Connection properties"
-Right click the "user properties" area and choose "Add new property"
-Add two properties: "useSSL" and "allowPublicKeyRetrieval"
-Set their values to "false" and "true" by double clicking on the "value" column
+Right click your connection, choose "Edit Connection"  
+On the "Connection settings" screen (main screen) click on "Edit Driver Settings"  
+Click on "Connection properties"  
+Right click the "user properties" area and choose "Add new property"  
+Add two properties: "useSSL" and "allowPublicKeyRetrieval"  
+Set their values to "false" and "true" by double clicking on the "value" column  
