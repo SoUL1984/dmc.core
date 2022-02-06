@@ -50,7 +50,7 @@ Set their values to "false" and "true" by double clicking on the "value" column
 
 Затем идем в postman Home -> Integrations -> Browse All Integrations -> GitHub -> Backup a collection  
 
-#### Пример Postman итеграции через backup
-![Пример Postman итеграции через backup](documentation/docker-compose/postman_integration.png)
+**Пример Postman итеграции через backup**
+![Пример Postman итеграции через backup](../docker-compose/postman_integration.png)
 
 
