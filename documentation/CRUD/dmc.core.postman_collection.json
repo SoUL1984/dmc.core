@@ -137,12 +137,12 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQzNDU1OTEsImV4cCI6MTY0NDQzMTk5MX0.KpXB5zpkjgqAFReIu4spKK6mpSSjHOPHaTMOZ1OgDT8"
               }
             },
             "method": "GET",
             "header": [],
-            "url": "http://localhost:5000/price-group"
+            "url": "http://localhost:5000/price"
           },
           "response": []
         },
