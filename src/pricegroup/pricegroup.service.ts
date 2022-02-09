@@ -76,15 +76,17 @@ export class PriceGroupService {
       const priceGroup = await this.priceGroupRepository.findOne({
         where: { id: pricegroup_id, isDelete: false },
       });
+      let res = null;
       if (priceGroup === null) {
         throw new NotFoundException(
           'Группа прайс-листа не найдена. Обновить данные не удалось.',
         );
       } else {
-        return await this.priceGroupRepository.update(dto, {
+        res = await this.priceGroupRepository.update(dto, {
           where: { id: pricegroup_id, isDelete: false },
         })[0];
       }
+      return res;
     } catch (e) {
       throw new HttpException(
         'Произошла ошибка при удалении группы прайс-листа. Обновить запись не возможно.',
