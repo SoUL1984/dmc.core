@@ -22,6 +22,7 @@ export class OrderController {
   @Post('/create')
   create(@CurUser() user, @Body() orderDto: CreateOrderDto) {
     const userId = user.id;
+    console.log('orderDto :>> ', orderDto);
     return this.orderService.createOrder(orderDto, userId);
   }
 

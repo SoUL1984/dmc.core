@@ -35,14 +35,22 @@ export class OrderService {
         orderNum = fullNum+'-'+prefixOrderNum+'-'+ currentYear;
       }
     };
+    // const order = await this.orderRepository.create({
+    //   userId, 
+    //   orderNum,
+    //   uploadFiles,
+    //   technician: dto.technician,
+    //   executor_n1: dto.executor_n1,
+    //   fittingDateN1: dto.fittingDateN1,
+    // });
     const order = await this.orderRepository.create({
+      ...dto,
       userId, 
       orderNum,
-      uploadFiles,
-      technician: dto.technician,
-      executor_n1: dto.executor_n1,
-      fittingDateN1: dto.fittingDateN1,
+      uploadFiles
     });
+
+    
     return order;
   }
 
