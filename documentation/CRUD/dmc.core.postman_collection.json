@@ -137,12 +137,12 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2MzcxNzM2MjAsImV4cCI6MTYzNzI2MDAyMH0.WIdV7q_Z4v_Q-NoTz8vHykaBxGbdXOqWMdS0Q6xDPk0"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQzNDU1OTEsImV4cCI6MTY0NDQzMTk5MX0.KpXB5zpkjgqAFReIu4spKK6mpSSjHOPHaTMOZ1OgDT8"
               }
             },
             "method": "GET",
             "header": [],
-            "url": "http://localhost:5000/price-group"
+            "url": "http://localhost:5000/price"
           },
           "response": []
         },
@@ -509,14 +509,14 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI0NDg5NjAsImV4cCI6MTY0MjUzNTM2MH0.sQczj_uX5ignv2LeIYyZDWcQRcTsAW1Pebvq7knm2vk"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ0MzQ4OTAsImV4cCI6MTY0NDUyMTI5MH0.MwelHvYsnNznkHeNjZOFTZ5xuar4Ci4cpViCFIUpS9E"
               }
             },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"technician\":\"Сидоров\",\n    \"executor_n1\": 1,\n    \"fittingDateN1\": \"06.01.1984\"\n}",
+              "raw": "{\n    \"technician\": \"Пащенко Э.В.\",\n    \"doctorName\": \"Доктор З. В.\",\n    \"pacientName\": \"Новый\",\n    \"executor_n1\": 14,\n    \"fittingDateN1\": \"06.01.1984\",\n    \"uploadFiles\": \"\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
