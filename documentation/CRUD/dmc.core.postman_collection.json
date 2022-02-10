@@ -400,25 +400,6 @@
       "name": "order_price",
       "item": [
         {
-          "name": "GET_ALL_PRICE_AND_ORDER_PRICE_BY_ORDER_ID",
-          "id": "931e8c8a-11ba-4470-acd0-5130307edd23",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ1MjEzMzksImV4cCI6MTY0NDYwNzczOX0.dIXUdQ-b394-DUjrYCKuRPyoB_-hkl-ljitOzhRuXOQ"
-              }
-            },
-            "method": "GET",
-            "header": [],
-            "url": "http://localhost:5000/price-group/all-pricegroup-and-price"
-          },
-          "response": []
-        },
-        {
           "name": "CREATE",
           "id": "5195b910-f76e-445e-a4aa-b1d581009a4e",
           "protocolProfileBehavior": {
