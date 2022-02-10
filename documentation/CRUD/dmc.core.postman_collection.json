@@ -516,7 +516,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"technician\": \"Пащенко Э.В.\",\n    \"doctorName\": \"Доктор З. В.\",\n    \"pacientName\": \"Новый\",\n    \"executor_n1\": 14,\n    \"fittingDateN1\": \"06.01.1984\",\n    \"uploadFiles\": \"\"\n}",
+              "raw": "{\n  \"userId\": 15,\n  \"orderNum\": \"sdfsdfsad\",\n  \"doctorName\": \"Пуговкин В.В.\",\n  \"pacientName\": \"Петров П.П.\",\n  \"technician\": \"Васин В.В.\",\n  \"color\": \"A1\",\n  \"executor_n1\": 14,\n  \"executor_n2\": 14,\n  \"executor_n3\": 14,\n  \"fittingDateN1\": \"2022-12-15\",\n  \"fittingDateN2\": \"2022-12-15\",\n  \"fittingDateN3\": \"2022-12-15\",\n  \"uploadFiles\": \"files.stl\",\n  \"desc\": \"Тест\",\n  \"descCourier\": \"Тест 2\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
