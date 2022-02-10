@@ -428,14 +428,14 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ0MzQ4OTAsImV4cCI6MTY0NDUyMTI5MH0.MwelHvYsnNznkHeNjZOFTZ5xuar4Ci4cpViCFIUpS9E"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ1MjEzMzksImV4cCI6MTY0NDYwNzczOX0.dIXUdQ-b394-DUjrYCKuRPyoB_-hkl-ljitOzhRuXOQ"
               }
             },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"priceId\": 1,\n    \"orderId\": 12,\n    \"amount\": 4\n}",
+              "raw": "{\n    \"priceId\": 3,\n    \"orderId\": 12,\n    \"amount\": 4\n}",
               "options": {
                 "raw": {
                   "language": "json"
