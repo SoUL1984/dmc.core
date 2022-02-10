@@ -556,7 +556,7 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI0NDg5NjAsImV4cCI6MTY0MjUzNTM2MH0.sQczj_uX5ignv2LeIYyZDWcQRcTsAW1Pebvq7knm2vk"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ0MzQ4OTAsImV4cCI6MTY0NDUyMTI5MH0.MwelHvYsnNznkHeNjZOFTZ5xuar4Ci4cpViCFIUpS9E"
               }
             },
             "method": "PATCH",
