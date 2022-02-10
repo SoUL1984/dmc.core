@@ -563,7 +563,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"isComplete\": true,\n    \"isPayment\": true,\n    \"isDelivery\": true,\n    \"executor_n2\": 555,\n    \"fittingDateN3\": \"06.01.2024\"\n}",
+              "raw": "{\n    \"doctorName\": \"Пупок\",\n    \"isComplete\": true,\n    \"isPayment\": true,\n    \"isDelivery\": true,\n    \"executor_n2\": 555,\n    \"fittingDateN3\": \"06.01.2024\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
