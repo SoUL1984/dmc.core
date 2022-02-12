@@ -44,6 +44,24 @@ Right click the "user properties" area and choose "Add new property"
 Add two properties: "useSSL" and "allowPublicKeyRetrieval"  
 Set their values to "false" and "true" by double clicking on the "value" column  
 
+##Установка и запуск docker-compose под Windows
+1. Скачать и установить Docker Desktop for Windows (необходимо чтоб в Windows была активна WSL 2 (подсистема Windows для Linux))
+2. Запустить (убедиться что запущен) Docker Desktop for Windows (если WSL 2 изначально была активна ребутов не требуется)
+3. ***<На этом шаге нужно убедиться в корректных настройках джейсонов в проекте?>*** 
+Далее в VSCode команда: npm i (появится папка dist)
+4. Далее в VSCode команда: npm build
+5. В powerShell Windows команды: cd C:\Users\{curUser}\{dmcFolder}\dmc.core
+docker-compose build (ожидаем загрузку и настройку компонентов)
+docker-compose up
+
+####Старт приложения без Docker:
+npm start
+
+####Старт приложения с конфигурацией docker-compose:
+1. Запуск docker-compose (Docker Desktop for Windows)
+2. В powerShell Windows команды: cd C:\Users\{curUser}\{dmcFolder}\dmc.core
+docker-compose up
+
 ## Настройка интеграции postman и github
 
 Для интеграции postman и github, необходимо завести token в github (Заходим в пользователя Settings -> Developer settings -> Personal access tokens -> Заводим токен с галочкой repo(одна галочка)).  
