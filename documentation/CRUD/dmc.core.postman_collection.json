@@ -400,25 +400,6 @@
       "name": "order_price",
       "item": [
         {
-          "name": "GET_ALL_PRICE_AND_ORDER_PRICE_BY_ORDER_ID",
-          "id": "931e8c8a-11ba-4470-acd0-5130307edd23",
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          },
-          "request": {
-            "auth": {
-              "type": "bearer",
-              "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjo0LCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2Mzc0NzQ4NTksImV4cCI6MTYzNzU2MTI1OX0.cC1s9dnpmVyvFvgYcfUnxx5w9JHZDk0YKbs2lrtZKbs"
-              }
-            },
-            "method": "GET",
-            "header": [],
-            "url": "http://localhost:5000/price-group/all-pricegroup-and-price"
-          },
-          "response": []
-        },
-        {
           "name": "CREATE",
           "id": "5195b910-f76e-445e-a4aa-b1d581009a4e",
           "protocolProfileBehavior": {
@@ -428,21 +409,21 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ1MjEzMzksImV4cCI6MTY0NDYwNzczOX0.dIXUdQ-b394-DUjrYCKuRPyoB_-hkl-ljitOzhRuXOQ"
               }
             },
             "method": "POST",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"priceId\": 1,\n    \"orderId\": 488,\n    \"amount\": 4\n}",
+              "raw": "{\n    \"priceId\": 3,\n    \"orderId\": 12,\n    \"amount\": 4\n}",
               "options": {
                 "raw": {
                   "language": "json"
                 }
               }
             },
-            "url": "http://localhost:5000/order-price/create"
+            "url": "http://localhost:5000/order-price"
           },
           "response": []
         },
@@ -516,7 +497,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"technician\": \"Пащенко Э.В.\",\n    \"doctorName\": \"Доктор З. В.\",\n    \"pacientName\": \"Новый\",\n    \"executor_n1\": 14,\n    \"fittingDateN1\": \"06.01.1984\",\n    \"uploadFiles\": \"\"\n}",
+              "raw": "{\n  \"userId\": 15,\n  \"orderNum\": \"sdfsdfsad\",\n  \"doctorName\": \"Пуговкин В.В.\",\n  \"pacientName\": \"Петров П.П.\",\n  \"technician\": \"Васин В.В.\",\n  \"color\": \"A1\",\n  \"executor_n1\": 14,\n  \"executor_n2\": 14,\n  \"executor_n3\": 14,\n  \"fittingDateN1\": \"2022-12-15\",\n  \"fittingDateN2\": \"2022-12-15\",\n  \"fittingDateN3\": \"2022-12-15\",\n  \"uploadFiles\": \"files.stl\",\n  \"desc\": \"Тест\",\n  \"descCourier\": \"Тест 2\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -556,21 +537,21 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI0NDg5NjAsImV4cCI6MTY0MjUzNTM2MH0.sQczj_uX5ignv2LeIYyZDWcQRcTsAW1Pebvq7knm2vk"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ0MzQ4OTAsImV4cCI6MTY0NDUyMTI5MH0.MwelHvYsnNznkHeNjZOFTZ5xuar4Ci4cpViCFIUpS9E"
               }
             },
             "method": "PATCH",
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\n    \"isComplete\": true,\n    \"isPayment\": true,\n    \"isDelivery\": true,\n    \"executor_n2\": 555,\n    \"fittingDateN3\": \"06.01.2024\"\n}",
+              "raw": "{\n    \"doctorName\": \"Пупок\",\n    \"isComplete\": true,\n    \"isPayment\": true,\n    \"isDelivery\": true,\n    \"executor_n2\": 555,\n    \"fittingDateN3\": \"06.01.2024\"\n}",
               "options": {
                 "raw": {
                   "language": "json"
                 }
               }
             },
-            "url": "http://localhost:5000/order/488"
+            "url": "http://localhost:5000/order/12"
           },
           "response": []
         },
@@ -584,7 +565,7 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ0MzQ4OTAsImV4cCI6MTY0NDUyMTI5MH0.MwelHvYsnNznkHeNjZOFTZ5xuar4Ci4cpViCFIUpS9E"
               }
             },
             "method": "GET",
@@ -603,7 +584,7 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ0MzQ4OTAsImV4cCI6MTY0NDUyMTI5MH0.MwelHvYsnNznkHeNjZOFTZ5xuar4Ci4cpViCFIUpS9E"
               }
             },
             "method": "GET",
@@ -631,12 +612,12 @@
             "auth": {
               "type": "bearer",
               "bearer": {
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDI1MjMzMzIsImV4cCI6MTY0MjYwOTczMn0.d7frt7-uW-gcSjh_os2F_2gUXYNJjT3JtpZptK8Y9xg"
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imxvc2hrYXJldnNAbWFpbC5ydSIsImlkIjoxLCJyb2xlIjoiYWRtaW4iLCJpYXQiOjE2NDQ1MjEzMzksImV4cCI6MTY0NDYwNzczOX0.dIXUdQ-b394-DUjrYCKuRPyoB_-hkl-ljitOzhRuXOQ"
               }
             },
             "method": "GET",
             "header": [],
-            "url": "http://localhost:5000/order/order-and-order-price-by-id/488"
+            "url": "http://localhost:5000/order/order-and-order-price-by-id/12"
           },
           "response": []
         }
