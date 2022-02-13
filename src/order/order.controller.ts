@@ -1,14 +1,22 @@
-import { Body, Controller, Delete, Get, Param, Patch, Post, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
 import { CurUser } from 'src/auth/user-auth.decorator';
-import { UpdatePriceDto } from 'src/price/dto/update-price.dto';
 import { EnumRole } from 'src/users/users.model';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.model';
-import { OrderService } from './order.service'
+import { OrderService } from './order.service';
 
 @ApiTags('Заказ-наряд')
 @Controller('order')
@@ -22,7 +30,6 @@ export class OrderController {
   @Post('/create')
   create(@CurUser() user, @Body() orderDto: CreateOrderDto) {
     const userId = user.id;
-    console.log('orderDto :>> ', orderDto);
     return this.orderService.createOrder(orderDto, userId);
   }
 
@@ -31,10 +38,7 @@ export class OrderController {
   @Roles(EnumRole.admin)
   @UseGuards(RoleGuard)
   @Patch(':order_id')
-  update(
-    @Param('order_id') orderId: number,
-    @Body() orderDto: UpdateOrderDto,
-  ) {
+  update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
     return this.orderService.updateOrderById(orderDto, orderId);
   }
 
@@ -77,9 +81,7 @@ export class OrderController {
   )
   @UseGuards(RoleGuard)
   @Get('/get-list-order-by-user-id/:user_id')
-  getListOrderByUserId(
-    @Param('user_id') userId:number 
-  ) {
+  getListOrderByUserId(@Param('user_id') userId: number) {
     const aOrder = this.orderService.getListOrder(userId);
     return aOrder;
   }
@@ -95,9 +97,7 @@ export class OrderController {
   )
   @UseGuards(RoleGuard)
   @Get('/order-and-order-price-by-id/:order_id')
-  getOrderAndOrderPriceById(
-    @Param('order_id') orderId:number 
-  ) {
+  getOrderAndOrderPriceById(@Param('order_id') orderId: number) {
     const listFullOrder = this.orderService.getOrderAndOrderPriceById(orderId);
     return listFullOrder;
   }

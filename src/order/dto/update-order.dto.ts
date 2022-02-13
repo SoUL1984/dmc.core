@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsBoolean, IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsBoolean, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class UpdateOrderDto {
   @ApiProperty({ example: 'Белов А.А.', description: 'ФИО доктора' })
@@ -8,7 +8,7 @@ export class UpdateOrderDto {
   readonly doctorName: string;
 
   @ApiProperty({ example: 'Иванов И. И.', description: 'ФИО пациента' })
-  @IsOptional() 
+  @IsOptional()
   @IsString({ message: 'Должно быть строкой' })
   readonly pacientName: string;
 
@@ -16,7 +16,7 @@ export class UpdateOrderDto {
     example: 'Макаров Е.В.',
     description: 'ФИО техника',
   })
-  @IsOptional()  
+  @IsOptional()
   @IsString({ message: 'Должно быть строкой' })
   readonly technician: string;
 

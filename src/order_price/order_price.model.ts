@@ -13,7 +13,7 @@ interface OrderPriceCreationAttrs {
   priceId: number;
   orderId: number;
   amount: number;
-  tprice: number;
+  tprice?: number;
 }
 
 @Table({ tableName: 'order_price', paranoid: true })

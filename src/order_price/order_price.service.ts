@@ -11,10 +11,10 @@ export class OrderPriceService {
     @InjectModel(OrderPrice) private orderPriceRepository: typeof OrderPrice,
     @InjectModel(Price) private priceRepository: typeof Price,
   ) {}
-  async deleteOrderPriceById(orderId: number, priceId:number) {
+  async deleteOrderPriceById(orderId: number, priceId: number) {
     try {
       const orderPrice = await this.orderPriceRepository.findOne({
-        where: { orderId, priceId , isDelete: false },
+        where: { orderId, priceId, isDelete: false },
       });
       if (orderPrice === null) {
         throw new HttpException(
@@ -22,7 +22,9 @@ export class OrderPriceService {
           HttpStatus.NOT_FOUND,
         );
       } else {
-        return await this.orderPriceRepository.destroy({ where: { orderId, priceId } })[0];
+        return await this.orderPriceRepository.destroy({
+          where: { orderId, priceId },
+        })[0];
       }
     } catch (e) {
       throw new HttpException(
@@ -32,40 +34,48 @@ export class OrderPriceService {
     }
   }
 
-  async getAllPriceAndOrderPriceByOrderId(orderId: number) {
-    try {
-      const listPriceAndOrderPrice = await this.priceRepository.findAll({
-        attributes: ['id', 'name'],
-        include: [
-          {
-            model: OrderPrice,
-            attributes: ['number', 'tprice'],
-            where: { isDelete: false, orderId },
-          },
-        ],
-        where: { isDelete: false },
-      });
-      return listPriceAndOrderPrice;
-    } catch (e) {
-      throw new HttpException(
-        'Получить позиции заказ-наряда не удалось.',
-        HttpStatus.BAD_REQUEST,
-      );
-    }
-  }
+  // async getAllPriceAndOrderPriceByOrderId(orderId: number) {
+  //   try {
+  //     const listPriceAndOrderPrice = await this.priceRepository.findAll({
+  //       attributes: ['id', 'name'],
+  //       include: [
+  //         {
+  //           attributes: ['amount', 'tprice'],
+  //           model: OrderPrice,
+  //           //where: { isDelete: false, orderId },
+  //         },
+  //       ],
+  //       where: { isDelete: false },
+  //     });
+  //     return listPriceAndOrderPrice;
+  //   } catch (e) {
+  //     throw new HttpException(
+  //       'Получить позиции заказ-наряда не удалось.',
+  //       HttpStatus.BAD_REQUEST,
+  //     );
+  //   }
+  // }
 
-  async createOrderPrice(dto:CreateOrderPriceDto) {
-    const tprice = (await this.priceRepository.findByPk(dto.priceId, {attributes:['price']})).price;
+  async createOrderPrice(dto: CreateOrderPriceDto) {
+    const tprice = (
+      await this.priceRepository.findByPk(dto.priceId, {
+        attributes: ['price'],
+      })
+    ).price;
     const orderPrice = await this.orderPriceRepository.create({
-      priceId: dto.priceId, 
+      priceId: dto.priceId,
       orderId: dto.orderId,
-      amount:dto.amount,
-      tprice
+      amount: dto.amount,
+      tprice,
     });
     return orderPrice;
   }
 
-  async updateOrderPriceById(dto: UpdateOrderPriceDto, priceId: number, orderId: number) {
+  async updateOrderPriceById(
+    dto: UpdateOrderPriceDto,
+    priceId: number,
+    orderId: number,
+  ) {
     try {
       const orderPrice = await this.orderPriceRepository.findOne({
         where: { priceId, orderId, isDelete: false },
@@ -87,7 +97,4 @@ export class OrderPriceService {
       );
     }
   }
-
-
-
 }

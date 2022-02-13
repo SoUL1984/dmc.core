@@ -8,35 +8,33 @@ import { Order } from './order.model';
 
 @Injectable()
 export class OrderService {
-  constructor(
-    @InjectModel(Order) private orderRepository: typeof Order,
-  ) {}
+  constructor(@InjectModel(Order) private orderRepository: typeof Order) {}
   async createOrder(dto: CreateOrderDto, userId: number) {
     const currentYear = new Date().getFullYear().toString();
-    
-    let lastOrder = await this.orderRepository.findOne({
-      order: [ [ 'id', 'DESC' ]],
+
+    const lastOrder = await this.orderRepository.findOne({
+      order: [['id', 'DESC']],
     });
-    
+
     let prefixOrderNum = 'А';
     let uploadFiles = '';
     if (dto.uploadFiles !== undefined) {
       uploadFiles = dto.uploadFiles;
       prefixOrderNum = 'И';
     }
-    
-    let orderNum:string = '000001-'+prefixOrderNum+'-'+ currentYear;
+
+    let orderNum: string = '000001-' + prefixOrderNum + '-' + currentYear;
     if (lastOrder !== null) {
       const aOrderNum = lastOrder.orderNum.split('-');
-      orderNum = '000001-'+prefixOrderNum+'-'+ currentYear;
+      orderNum = '000001-' + prefixOrderNum + '-' + currentYear;
       if (aOrderNum[2] == currentYear) {
         const num = Number(aOrderNum[0].replace(/[0]+/, ''));
-        const fullNum = ('00000'+(num+1).toString()).slice(-6);
-        orderNum = fullNum+'-'+prefixOrderNum+'-'+ currentYear;
+        const fullNum = ('00000' + (num + 1).toString()).slice(-6);
+        orderNum = fullNum + '-' + prefixOrderNum + '-' + currentYear;
       }
-    };
+    }
     // const order = await this.orderRepository.create({
-    //   userId, 
+    //   userId,
     //   orderNum,
     //   uploadFiles,
     //   technician: dto.technician,
@@ -45,12 +43,11 @@ export class OrderService {
     // });
     const order = await this.orderRepository.create({
       ...dto,
-      userId, 
+      userId,
       orderNum,
-      uploadFiles
+      uploadFiles,
     });
 
-    
     return order;
   }
 
@@ -89,8 +86,7 @@ export class OrderService {
           HttpStatus.NOT_FOUND,
         );
       } else {
-        return await this.orderRepository.destroy({ where: { id:oderId } },
-        )[0];
+        return await this.orderRepository.destroy({ where: { id: oderId } })[0];
       }
     } catch (e) {
       throw new HttpException(
@@ -100,16 +96,16 @@ export class OrderService {
     }
   }
 
-  async getListOrder(userId:number) {
+  async getListOrder(userId: number) {
     try {
-      const listOrders = await this.orderRepository.findAll({     
+      const listOrders = await this.orderRepository.findAll({
         attributes: [
-          'id', 
-          'orderNum', 
-          'doctorName', 
-          'pacientName', 
-          'technician', 
-          'isComplete', 
+          'id',
+          'orderNum',
+          'doctorName',
+          'pacientName',
+          'technician',
+          'isComplete',
           'isPayment',
           'isDelivery',
           'isDeliveryMade',
@@ -119,7 +115,7 @@ export class OrderService {
           'fittingDateN1',
           'fittingDateN2',
           'fittingDateN3',
-        ],   
+        ],
         where: { isDelete: false, userId },
       });
 
@@ -132,7 +128,7 @@ export class OrderService {
     }
   }
 
-  async getOrderAndOrderPriceById(orderId:number) {
+  async getOrderAndOrderPriceById(orderId: number) {
     try {
       const listOrderPriceAndPrice = await this.orderRepository.findAll({
         // attributes: ['userId',
@@ -155,15 +151,17 @@ export class OrderService {
           {
             attributes: ['amount', 'tprice'],
             model: OrderPrice,
-            include:[{
+            include: [
+              {
                 attributes: ['id', 'name'],
                 model: Price,
                 where: { isDelete: false },
-              }],
+              },
+            ],
             where: { isDelete: false },
           },
         ],
-        where: { isDelete: false,  id:orderId },
+        where: { isDelete: false, id: orderId },
       });
       return { listOrderPriceAndPrice };
     } catch (e) {
