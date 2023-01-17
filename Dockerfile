@@ -4,11 +4,13 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm install -g npm@latest
+RUN npm install -g npm@6.14.11
+
+RUN npm --version
 
 RUN npm install --verbose
 
 COPY . .
 
-CMD ["npm", "run", "start:dev"]
+CMD ["npm", "run", "start:de
 
