@@ -12,5 +12,5 @@ RUN npm install --verbose
 
 COPY . .
 
-CMD ["npm", "run", "start:de
+CMD ["npm", "run", "start:dev"]
 
