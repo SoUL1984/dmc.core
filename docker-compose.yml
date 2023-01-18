@@ -10,9 +10,7 @@ services:
     deploy:
       resources:
         limits:
-          memory: 200m
-        reservations:
-          memory-swap: 400m
+          memory: 300m
     env_file:
       - .development.env
     volumes:
@@ -35,8 +33,6 @@ services:
       resources:
         limits:
           memory: 100m
-        reservations:
-          memory-swap: 200m
     volumes:
       - ./init-mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
       - dmcdb:/var/lib/mysql
