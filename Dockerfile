@@ -8,7 +8,7 @@ RUN npm install -g npm@6.14.11
 
 RUN npm --version
 
-RUN npm install --verbose
+RUN npm install
 
 COPY . .
 
