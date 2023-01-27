@@ -4,9 +4,13 @@ WORKDIR /app
 
 COPY package*.json ./
 
-COPY . .
+RUN npm install -g npm@6.14.11
 
-RUN npm install
+RUN npm --version
+
+RUN npm install --verbose
+
+COPY . .
 
 CMD ["npm", "run", "start:dev"]
 
