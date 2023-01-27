@@ -7,5 +7,5 @@ echo "======================================="
 cd ..
 git pull
 docker-compose down
-docker-compose up
+COMPOSE_HTTP_TIMEOUT=300 docker-compose up
 exit
