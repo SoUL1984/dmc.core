@@ -33,7 +33,7 @@ import { OrderPriceModule } from './order_price/order_price.module';
     PricegroupModule,
     PriceModule,
     OrderModule,
-    OrderPriceModule
+    OrderPriceModule,
   ],
 })
 export class AppModule {}
