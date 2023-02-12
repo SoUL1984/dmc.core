@@ -1,15 +1,15 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CreateOrderDto {
-  @ApiProperty({ example: 'Белов А.А.', description: 'ФИО доктора' })
+  @ApiPropertyOptional({ example: 'Белов А.А.', description: 'ФИО доктора' })
   @IsOptional()
   @IsString({ message: 'Должно быть строкой' })
   readonly doctorName: string;
 
-  @ApiProperty({ example: 'Иванов И. И.', description: 'ФИО пациента' })
-  @IsString({ message: 'Должно быть строкой' })
+  @ApiPropertyOptional({ example: 'Иванов И. И.', description: 'ФИО пациента' })
   @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
   readonly pacientName: string;
 
   @ApiProperty({
@@ -19,12 +19,12 @@ export class CreateOrderDto {
   @IsString({ message: 'Должно быть строкой' })
   readonly technician: string;
 
-  @ApiProperty({ example: 'А1', description: 'Цвет конструкции' })
-  @IsString({ message: 'Должно быть строкой' })
+  @ApiPropertyOptional({ example: 'А1', description: 'Цвет конструкции' })
   @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
   readonly color: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'TODO:Пока не знаю как и что',
     description:
       'Прикрпеленные файлы (закешированный фал и путь к нему) TODO:Продумать это',
@@ -33,20 +33,20 @@ export class CreateOrderDto {
   @IsString({ message: 'Должно быть строкой' })
   readonly uploadFiles: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Данный заказ-наряд не обязательно делать срочно',
     description: 'Дополнительные комментарии',
   })
-  @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
   readonly desc: string;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: 'Код домофона 07112021',
     description: 'Коментарий для курьера',
   })
-  @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
+  @IsString({ message: 'Должно быть строкой' })
   descCourier: string;
 
   @ApiProperty({
@@ -56,20 +56,20 @@ export class CreateOrderDto {
   @IsNumber({}, { message: 'Должно быть числом' })
   readonly executor_n1: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '2',
     description: 'Второй исполнитель',
   })
-  @IsNumber({}, { message: 'Должно быть числом' })
   @IsOptional()
+  @IsNumber({}, { message: 'Должно быть числом' })
   readonly executor_n2: number;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '1',
     description: 'Третий исполнитель',
   })
-  @IsNumber({}, { message: 'Должно быть числом' })
   @IsOptional()
+  @IsNumber({}, { message: 'Должно быть числом' })
   readonly executor_n3: number;
 
   @ApiProperty({
@@ -79,7 +79,7 @@ export class CreateOrderDto {
   @IsString({ message: 'Должно быть строкой' })
   readonly fittingDateN1: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '05.12.1984',
     description: 'Дата второй примерки',
   })
@@ -87,7 +87,7 @@ export class CreateOrderDto {
   @IsString({ message: 'Должно быть строкой' })
   readonly fittingDateN2: Date;
 
-  @ApiProperty({
+  @ApiPropertyOptional({
     example: '05.12.1984',
     description: 'Дата третьей примерки',
   })

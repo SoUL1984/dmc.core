@@ -19,13 +19,13 @@ import { PriceGroupService } from './pricegroup.service';
 
 @ApiTags('Группа для прайс-листа')
 @Controller('price-group')
+@UseGuards(RoleGuard)
 export class PriceGroupController {
   constructor(private readonly priceGroupService: PriceGroupService) {}
 
   @ApiOperation({ summary: 'Создать группу для прайс-листа' })
   @ApiResponse({ status: 200, type: [PriceGroup] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Post('/create')
   create(@Body() priceGroupDto: CreatePriceGroupDto) {
     // const selectPriceGroupDto: SelectPriceGroupDto =
@@ -43,7 +43,6 @@ export class PriceGroupController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Get()
   getALL() {
     const listPriceGroup = this.priceGroupService.getAllPriceGroup();
@@ -59,7 +58,6 @@ export class PriceGroupController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Get('/all-pricegroup-and-price')
   getAllPriceGroupAndPrice() {
     const priceGroupAndPrice =
@@ -72,7 +70,6 @@ export class PriceGroupController {
   })
   @ApiResponse({ status: 200, type: [PriceGroup] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Patch(':pricegroup_id')
   update(
     @Param('pricegroup_id') pricegroup_id: number,
@@ -89,7 +86,6 @@ export class PriceGroupController {
   })
   @ApiResponse({ status: 200, type: [PriceGroup] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Delete(':pricegroup_id')
   remove(@Param('pricegroup_id') pricegroup_id: number) {
     return this.priceGroupService.deletePriceGroupById(pricegroup_id);

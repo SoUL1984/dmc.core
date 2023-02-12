@@ -20,13 +20,13 @@ import { OrderService } from './order.service';
 
 @ApiTags('Заказ-наряд')
 @Controller('order')
+@UseGuards(RoleGuard)
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @ApiOperation({ summary: 'Создать заказ-наряд' })
   @ApiResponse({ status: 200, type: [Order] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Post('/create')
   create(@CurUser() user, @Body() orderDto: CreateOrderDto) {
     const userId = user.id;
@@ -36,7 +36,6 @@ export class OrderController {
   @ApiOperation({ summary: 'Обновить заказ-наряд' })
   @ApiResponse({ status: 200, type: [Order] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Patch(':order_id')
   update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
     return this.orderService.updateOrderById(orderDto, orderId);
@@ -47,7 +46,6 @@ export class OrderController {
   })
   @ApiResponse({ status: 200, type: [Order] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Delete(':order_id')
   remove(@Param('order_id') orderId: number) {
     return this.orderService.deleteOrderById(orderId);
@@ -62,7 +60,6 @@ export class OrderController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Get('/get-list-order')
   getListOrder(@CurUser() user) {
     const userId = user.id;
@@ -79,7 +76,6 @@ export class OrderController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Get('/get-list-order-by-user-id/:user_id')
   getListOrderByUserId(@Param('user_id') userId: number) {
     const aOrder = this.orderService.getListOrder(userId);
@@ -95,7 +91,6 @@ export class OrderController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Get('/order-and-order-price-by-id/:order_id')
   getOrderAndOrderPriceById(@Param('order_id') orderId: number) {
     const listFullOrder = this.orderService.getOrderAndOrderPriceById(orderId);

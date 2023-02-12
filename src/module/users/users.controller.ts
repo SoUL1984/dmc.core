@@ -19,6 +19,7 @@ import { UsersService } from './users.service';
 
 @ApiTags('Пользователи')
 @Controller('users')
+@UseGuards(RoleGuard)
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
@@ -35,7 +36,6 @@ export class UsersController {
   @ApiOperation({ summary: 'Получить всех пользователей' })
   @ApiResponse({ status: 200, type: [SelectAllUserDto] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Get()
   getALL() {
     const userDto = this.userService.getAllUsers();
@@ -45,7 +45,6 @@ export class UsersController {
   @ApiOperation({ summary: 'Удалить пользователя' })
   @ApiResponse({ status: 200, type: [User] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Delete(':email')
   remove(@Param('email') email: string) {
     return this.userService.deleteUserByEmail(email);
@@ -56,7 +55,6 @@ export class UsersController {
   })
   @ApiResponse({ status: 200, type: [User] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Patch(':email')
   update(@Param('email') email: string, @Body() userDto: UpdateUserDto) {
     return this.userService.updateUserByEmail(userDto, email);
@@ -74,7 +72,6 @@ export class UsersController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Patch()
   updateCurrentlyUser(@CurUser() user, @Body() myDto: UpdateMyDto) {
     // преобразование типов сделано, чтобы нельзя было обновить роль самому себе

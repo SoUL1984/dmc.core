@@ -17,6 +17,7 @@ import { Roles } from 'src/module/auth/role-auth.decorator';
 
 @ApiTags('Заказ-наряд')
 @Controller('order-price')
+@UseGuards(RoleGuard)
 export class OrderPriceController {
   constructor(private readonly orderPriceService: OrderPriceService) {}
 
@@ -38,14 +39,12 @@ export class OrderPriceController {
   // }
 
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Post()
   create(@Body() orderPriceDto: CreateOrderPriceDto) {
     return this.orderPriceService.createOrderPrice(orderPriceDto);
   }
 
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Patch([':priceId', ':orderId'])
   update(
     @Param('priceId') priceId: number,
@@ -60,7 +59,6 @@ export class OrderPriceController {
   }
 
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Delete([':priceId', ':orderId'])
   remove(@Param('priceId') priceId: number, @Param('orderId') orderId: number) {
     return this.orderPriceService.deleteOrderPriceById(orderId, priceId);

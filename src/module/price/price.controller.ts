@@ -19,13 +19,13 @@ import { PriceService } from './price.service';
 
 @ApiTags('Позиция в прайс-листе')
 @Controller('price')
+@UseGuards(RoleGuard)
 export class PriceController {
   constructor(private readonly priceService: PriceService) {}
 
   @ApiOperation({ summary: 'Создать позицию в прайс-листе' })
   @ApiResponse({ status: 200, type: [Price] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Post('/create')
   create(@Body() priceDto: CreatePriceDto) {
     // const selectPriceDto: SelectPriceDto =
@@ -36,7 +36,6 @@ export class PriceController {
 
   @ApiOperation({ summary: 'Получить все группы и позиции для прайс-листе' })
   @ApiResponse({ status: 200, type: [Price] })
-  @UseGuards(RoleGuard)
   @Roles(
     EnumRole.admin,
     EnumRole.courier,
@@ -44,19 +43,15 @@ export class PriceController {
     EnumRole.dentaltechn,
     EnumRole.director,
   )
-  @UseGuards(RoleGuard)
   @Get()
   getALL() {
     const userDto = this.priceService.getAllPrice();
     return userDto;
   }
 
-  @ApiOperation({
-    summary: 'Изменение данных позиции в прайс-листе',
-  })
+  @ApiOperation({ summary: 'Изменение данных позиции в прайс-листе' })
   @ApiResponse({ status: 200, type: [Price] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Patch(':price_id')
   update(
     @Param('price_id') price_id: number,
@@ -65,12 +60,9 @@ export class PriceController {
     return this.priceService.updatePriceById(priceDto, price_id);
   }
 
-  @ApiOperation({
-    summary: 'Удаление позиции в прайс-листе',
-  })
+  @ApiOperation({ summary: 'Удаление позиции в прайс-листе' })
   @ApiResponse({ status: 200, type: [Price] })
   @Roles(EnumRole.admin)
-  @UseGuards(RoleGuard)
   @Delete(':price_id')
   remove(@Param('price_id') price_id: number) {
     return this.priceService.deletePriceById(price_id);
