@@ -1,17 +1,17 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { Order } from './order/order.model';
-import { User } from './users/users.model';
-import { UsersModule } from './users/users.module';
+import { Order } from './module/order/order.entity';
+import { User } from './module/users/users.entity';
+import { UsersModule } from './module/users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { PricegroupModule } from './pricegroup/pricegroup.module';
-import { Price } from './price/price.model';
-import { PriceGroup } from './pricegroup/pricegroup.model';
-import { OrderPrice } from './order_price/order_price.model';
-import { PriceModule } from './price/price.module';
-import { OrderModule } from './order/order.module';
-import { OrderPriceModule } from './order_price/order_price.module';
+import { PricegroupModule } from './module/pricegroup/pricegroup.module';
+import { Price } from './module/price/price.entity';
+import { PriceGroup } from './module/pricegroup/pricegroup.entity';
+import { OrderPrice } from './module/order_price/order_price.entity';
+import { PriceModule } from './module/price/price.module';
+import { OrderModule } from './module/order/order.module';
+import { OrderPriceModule } from './module/order_price/order_price.module';
 
 @Module({
   imports: [

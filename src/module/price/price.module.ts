@@ -1,12 +1,11 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { PriceService } from './price.service';
 import { PriceController } from './price.controller';
-import { PriceGroup } from 'src/pricegroup/pricegroup.model';
-import { Price } from './price.model';
+import { Price } from './price.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from 'src/auth/auth.module';
-import { Order } from 'src/order/order.model';
-import { OrderPrice } from 'src/order_price/order_price.model';
+import { Order } from 'src/module/order/order.entity';
+import { OrderPrice } from 'src/module/order_price/order_price.entity';
 
 @Module({
   providers: [PriceService],

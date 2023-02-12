@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { Order } from 'src/order/order.model';
+import { Order } from 'src/module/order/order.entity';
 
 export enum EnumRole {
   customer = 'customer',

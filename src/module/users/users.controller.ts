@@ -5,26 +5,22 @@ import {
   Get,
   Param,
   Patch,
-  Post,
   UseGuards,
-  UsePipes,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
 import { CurUser } from 'src/auth/user-auth.decorator';
-import { ValidationPipe } from 'src/pipes/validation.pipe';
-import { CreateUserDto } from './dto/create-user.dto';
 import { SelectAllUserDto } from './dto/select-all-user.dto';
 import { UpdateMyDto } from './dto/update-my.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { EnumRole, User } from './users.model';
+import { EnumRole, User } from './users.entity';
 import { UsersService } from './users.service';
 
 @ApiTags('Пользователи')
 @Controller('users')
 export class UsersController {
-  constructor(private userService: UsersService) {}
+  constructor(private readonly userService: UsersService) {}
 
   //TODO:Данный блок вероятно не нужен его покрывает регистрация пользователя.
   // @ApiOperation({ summary: 'Создать пользователя' })

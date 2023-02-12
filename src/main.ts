@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { AppModule } from './app.module';
 import { ValidationPipe } from './pipes/validation.pipe';
+import * as packageJson from '../package.json';
 
 async function start() {
   const PORT = process.env.PORT || 5000;
@@ -10,7 +11,7 @@ async function start() {
   const config = new DocumentBuilder()
     .setTitle('dmc.core')
     .setDescription('Документация BACKEND REST API')
-    .setVersion('1.0.0')
+    .setVersion(packageJson.version)
     .addTag('Loshkarev Pavel')
     .build();
 

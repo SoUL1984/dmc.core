@@ -12,16 +12,16 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
 import { CurUser } from 'src/auth/user-auth.decorator';
-import { EnumRole } from 'src/users/users.model';
+import { EnumRole } from 'src/module/users/users.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './order.model';
+import { Order } from './order.entity';
 import { OrderService } from './order.service';
 
 @ApiTags('Заказ-наряд')
 @Controller('order')
 export class OrderController {
-  constructor(private orderService: OrderService) {}
+  constructor(private readonly orderService: OrderService) {}
 
   @ApiOperation({ summary: 'Создать заказ-наряд' })
   @ApiResponse({ status: 200, type: [Order] })

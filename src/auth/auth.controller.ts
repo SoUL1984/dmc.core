@@ -7,7 +7,7 @@ import {
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { AuthService } from './auth.service';
-import { AuthUserDto, CreateUserDto } from '../users/dto/create-user.dto';
+import { AuthUserDto, CreateUserDto } from '../module/users/dto/create-user.dto';
 
 @ApiTags('Авторизация')
 @Controller('auth')
@@ -22,7 +22,6 @@ export class AuthController {
   @Post('/registration')
   @UsePipes(ValidationPipe)
   registration(@Body() userDto: CreateUserDto) {
-    console.log('userDto :>> ', userDto);
     return this.authService.registration(userDto);
   }
 }

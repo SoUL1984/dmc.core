@@ -1,4 +1,3 @@
-import { Optional } from 'sequelize';
 import { ApiProperty } from '@nestjs/swagger';
 import {
   AfterBulkDestroy,
@@ -10,8 +9,8 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { OrderPrice } from 'src/order_price/order_price.model';
-import { User } from 'src/users/users.model';
+import { OrderPrice } from 'src/module/order_price/order_price.entity';
+import { User } from 'src/module/users/users.entity';
 
 export enum EnumColor {
   none = 'none',
@@ -53,7 +52,7 @@ interface OrderCreationAttrs {
 }
 
 @Table({ tableName: 'order', paranoid: true })
-export class Order extends Model<Order, OrderCreationAttrs>{
+export class Order extends Model<Order, OrderCreationAttrs> {
   @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
   @Column({
     type: DataType.INTEGER,
@@ -297,7 +296,7 @@ export class Order extends Model<Order, OrderCreationAttrs>{
   })
   isDelete: boolean;
 
-  @HasMany(()=>OrderPrice)
+  @HasMany(() => OrderPrice)
   orderPrice: OrderPrice[];
 
   @AfterBulkDestroy

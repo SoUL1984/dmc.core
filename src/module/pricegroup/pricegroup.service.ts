@@ -5,11 +5,11 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Price } from 'src/price/price.model';
+import { Price } from 'src/module/price/price.entity';
 import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
 import { SelectPriceGroupDto } from './dto/select-pricegroup.dto';
 import { UpdatePriceGroupDto } from './dto/update-pricegroup.dto';
-import { PriceGroup } from './pricegroup.model';
+import { PriceGroup } from './pricegroup.entity';
 
 @Injectable()
 export class PriceGroupService {
@@ -73,19 +73,9 @@ export class PriceGroupService {
 
   async updatePriceGroupById(dto: UpdatePriceGroupDto, pricegroup_id: number) {
     try {
-      const priceGroup = await this.priceGroupRepository.findOne({
+      const res = await this.priceGroupRepository.update(dto, {
         where: { id: pricegroup_id, isDelete: false },
-      });
-      let res = null;
-      if (priceGroup === null) {
-        throw new NotFoundException(
-          'Группа прайс-листа не найдена. Обновить данные не удалось.',
-        );
-      } else {
-        res = await this.priceGroupRepository.update(dto, {
-          where: { id: pricegroup_id, isDelete: false },
-        })[0];
-      }
+      })[0];
       return res;
     } catch (e) {
       throw new HttpException(
@@ -93,7 +83,6 @@ export class PriceGroupService {
         HttpStatus.BAD_REQUEST,
       );
     }
-
   }
 
   async deletePriceGroupById(id: number) {
@@ -106,8 +95,7 @@ export class PriceGroupService {
           'Группа прайс-листа не найдена. Удалить данные не удалось.',
         );
       } else {
-        return await this.priceGroupRepository.destroy({ where: { id } },
-        )[0];
+        return await this.priceGroupRepository.destroy({ where: { id } })[0];
       }
     } catch (e) {
       throw new HttpException(

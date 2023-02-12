@@ -1,8 +1,8 @@
 ## dmc.core (Dental Milling Center)
 
 
-##### примерный срок сдачи backend (dmc.core) проекта 30 ноября 2021): 
-![49%](https://progress-bar.dev/49)
+##### примерный срок сдачи backend (dmc.core) проекта 30 ноября 2021 (Срок перенесен на 30.04.2023)): 
+![52%](https://progress-bar.dev/49)c
 
 1. [Сценарий аутентификации пользователя](documentation/scenario/scenario-auth-user.md)
 2. Сценарий работы в роли Manager
@@ -25,7 +25,8 @@
 7. [Работа с таблицей пользователей](documentation/CRUD/crud_for_users/crud_for_users.md)
 8. [Docker-compose и создание инфраструктуры для разработки](documentation/docker-compose/docker-compose.md)
 9. [Автоматизированное локальное развертывание проекта](sh/README.md)
-10. [Схема БД](documentation/dmcdb.png)
+10. [Тонкости развертывания vps сервера](documentation/docker-compose/docker-compose.md)
+11. [Схема БД](documentation/dmcdb.png)
 
 ---
 

@@ -1,10 +1,10 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from 'src/auth/auth.module';
-import { OrderPrice } from 'src/order_price/order_price.model';
-import { Price } from 'src/price/price.model';
+import { OrderPrice } from 'src/module/order_price/order_price.entity';
+import { Price } from 'src/module/price/price.entity';
 import { OrderController } from './order.controller';
-import { Order } from './order.model';
+import { Order } from './order.entity';
 import { OrderService } from './order.service';
 
 @Module({
@@ -12,7 +12,7 @@ import { OrderService } from './order.service';
   providers: [OrderService],
   imports: [
     SequelizeModule.forFeature([Order, Price, OrderPrice]),
-    forwardRef(() => AuthModule),  
+    forwardRef(() => AuthModule),
   ],
   exports: [OrderService],
 })

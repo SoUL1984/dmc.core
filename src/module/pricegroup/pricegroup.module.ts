@@ -1,7 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { PriceGroupService } from './pricegroup.service';
 import { PriceGroupController } from './pricegroup.controller';
-import { PriceGroup } from './pricegroup.model';
+import { PriceGroup } from './pricegroup.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from 'src/auth/auth.module';
 

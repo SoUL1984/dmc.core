@@ -7,23 +7,20 @@ import {
   Patch,
   Post,
   UseGuards,
-  UsePipes,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Roles } from 'src/auth/role-auth.decorator';
 import { RoleGuard } from 'src/auth/role.guard';
-import { ValidationPipe } from 'src/pipes/validation.pipe';
-import { SelectAllUserDto } from 'src/users/dto/select-all-user.dto';
-import { EnumRole } from 'src/users/users.model';
+import { EnumRole } from 'src/module/users/users.entity';
 import { CreatePriceDto } from './dto/create-price.dto';
 import { UpdatePriceDto } from './dto/update-price.dto';
-import { Price } from './price.model';
+import { Price } from './price.entity';
 import { PriceService } from './price.service';
 
 @ApiTags('Позиция в прайс-листе')
 @Controller('price')
 export class PriceController {
-  constructor(private priceService: PriceService) {}
+  constructor(private readonly priceService: PriceService) {}
 
   @ApiOperation({ summary: 'Создать позицию в прайс-листе' })
   @ApiResponse({ status: 200, type: [Price] })

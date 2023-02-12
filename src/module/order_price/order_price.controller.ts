@@ -12,13 +12,13 @@ import { CreateOrderPriceDto } from './dto/create-order_price.dto';
 import { UpdateOrderPriceDto } from './dto/update-order_price.dto';
 import { OrderPriceService } from './order_price.service';
 import { RoleGuard } from 'src/auth/role.guard';
-import { EnumRole } from 'src/users/users.model';
+import { EnumRole } from 'src/module/users/users.entity';
 import { Roles } from 'src/auth/role-auth.decorator';
 
 @ApiTags('Заказ-наряд')
 @Controller('order-price')
 export class OrderPriceController {
-  constructor(private orderPriceService: OrderPriceService) {}
+  constructor(private readonly orderPriceService: OrderPriceService) {}
 
   // @ApiOperation({ summary: 'Получить все позиции заказ-наряда' })
   // @ApiResponse({ status: 200, type: [OrderPrice] })

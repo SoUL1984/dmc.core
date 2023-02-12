@@ -13,7 +13,7 @@ export class CreateUserDto {
   @IsEmail({}, { message: 'Некорректный email' })
   readonly email: string;
 
-  @ApiProperty({ example: '12345678', description: 'Пароль' })
+  @ApiProperty({ example: 'volk', description: 'Пароль' })
   @IsString({ message: 'Должно быть строкой' })
   @Length(4, 16, { message: 'Не меньше 4 и небольше 16' })
   readonly password: string;
@@ -23,12 +23,12 @@ export class CreateUserDto {
   @MinLength(8, { message: 'Не меньше 8 символов' })
   readonly name: string;
 
-  @ApiProperty({ example: 'Силовая ул., д. 4, кв. 144', description: 'Адрес' })
+  @ApiProperty({ example: 'Самара', description: 'Адрес' })
   @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
   readonly city: string;
 
-  @ApiProperty({ example: 'Самара', description: 'Город' })
+  @ApiProperty({ example: 'Силовая ул., д. 4, кв. 144', description: 'Город' })
   @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
   readonly address: string;
@@ -41,12 +41,12 @@ export class CreateUserDto {
   @IsOptional()
   readonly desc: string;
 
-  @ApiProperty({ example: '+7 (123) 456-78-90', description: 'Телефон' })
+  @ApiProperty({ example: '+7 (987) 787-80-76', description: 'Телефон' })
   @IsString({ message: 'Должно быть строкой' })
   readonly phone: string;
 
   @ApiProperty({
-    example: '05.12.1984',
+    example: '1956-05-11',
     description: 'День рождение',
   })
   @IsOptional()
@@ -56,12 +56,12 @@ export class CreateUserDto {
 }
 
 export class AuthUserDto {
-  @ApiProperty({ example: 'user@mail.ru', description: 'Почта' })
+  @ApiProperty({ example: 'Baranov@yandex.ru', description: 'Почта' })
   @IsString({ message: 'Должно быть строкой' })
   @IsEmail({}, { message: 'Некорректный email' })
   readonly email: string;
 
-  @ApiProperty({ example: '12345678', description: 'Пароль' })
+  @ApiProperty({ example: 'volk', description: 'Пароль' })
   @IsString({ message: 'Должно быть строкой' })
   readonly password: string;
 }

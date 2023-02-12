@@ -6,8 +6,8 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { Order } from 'src/order/order.model';
-import { Price } from 'src/price/price.model';
+import { Order } from 'src/module/order/order.entity';
+import { Price } from 'src/module/price/price.entity';
 
 interface OrderPriceCreationAttrs {
   priceId: number;

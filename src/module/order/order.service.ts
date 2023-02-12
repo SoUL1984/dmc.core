@@ -1,10 +1,10 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { OrderPrice } from 'src/order_price/order_price.model';
-import { Price } from 'src/price/price.model';
+import { OrderPrice } from 'src/module/order_price/order_price.entity';
+import { Price } from 'src/module/price/price.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
-import { Order } from './order.model';
+import { Order } from './order.entity';
 
 @Injectable()
 export class OrderService {
@@ -53,23 +53,15 @@ export class OrderService {
 
   async updateOrderById(dto: UpdateOrderDto, orderId: number) {
     try {
-      const order = await this.orderRepository.findOne({
+      // производим обновление данных
+      const order = await this.orderRepository.update(dto, {
         where: { id: orderId, isDelete: false },
-      });
-      console.log('order :>> ', order);
-      if (order === null) {
-        throw new HttpException(
-          'Заказ-нард не найден. Обновить данные не удалось.',
-          HttpStatus.NOT_FOUND,
-        );
-      } else {
-        return await this.orderRepository.update(dto, {
-          where: { id: orderId, isDelete: false },
-        })[0];
-      }
+      })[0];
+
+      return order;
     } catch (e) {
       throw new HttpException(
-        'Произошла ошибка при изменении заказ-наряда. Обновить запись не возможно.',
+        'Произошла ошибка при обновлении данных заказ-наряда. Обновить запись не удалось.',
         HttpStatus.BAD_REQUEST,
       );
     }

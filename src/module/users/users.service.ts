@@ -4,7 +4,7 @@ import { Op } from 'sequelize';
 import { CreateUserDto } from './dto/create-user.dto';
 import { SelectAllUserDto } from './dto/select-all-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from './users.model';
+import { User } from './users.entity';
 
 @Injectable()
 export class UsersService {
