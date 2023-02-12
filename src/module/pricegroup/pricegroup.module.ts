@@ -3,7 +3,7 @@ import { PriceGroupService } from './pricegroup.service';
 import { PriceGroupController } from './pricegroup.controller';
 import { PriceGroup } from './pricegroup.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from 'src/module/auth/auth.module';
 
 @Module({
   providers: [PriceGroupService],

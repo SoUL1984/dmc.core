@@ -4,7 +4,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { Order } from './module/order/order.entity';
 import { User } from './module/users/users.entity';
 import { UsersModule } from './module/users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './module/auth/auth.module';
 import { PricegroupModule } from './module/pricegroup/pricegroup.module';
 import { Price } from './module/price/price.entity';
 import { PriceGroup } from './module/pricegroup/pricegroup.entity';

@@ -8,9 +8,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/auth/role-auth.decorator';
-import { RoleGuard } from 'src/auth/role.guard';
-import { CurUser } from 'src/auth/user-auth.decorator';
+import { Roles } from 'src/module/auth/role-auth.decorator';
+import { RoleGuard } from 'src/module/auth/role.guard';
+import { CurUser } from 'src/module/auth/user-auth.decorator';
 import { SelectAllUserDto } from './dto/select-all-user.dto';
 import { UpdateMyDto } from './dto/update-my.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
