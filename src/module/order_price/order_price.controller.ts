@@ -13,7 +13,7 @@ import { UpdateOrderPriceDto } from './dto/update-order_price.dto';
 import { OrderPriceService } from './order_price.service';
 import { RoleGuard } from 'src/module/auth/role.guard';
 import { EnumRole } from 'src/module/users/users.entity';
-import { Roles } from 'src/module/auth/role-auth.decorator';
+import { Roles } from 'src/decorator/role-auth.decorator';
 
 @ApiTags('Заказ-наряд')
 @Controller('order-price')

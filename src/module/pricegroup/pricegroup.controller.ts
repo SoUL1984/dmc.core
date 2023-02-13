@@ -9,7 +9,7 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/module/auth/role-auth.decorator';
+import { Roles } from 'src/decorator/role-auth.decorator';
 import { RoleGuard } from 'src/module/auth/role.guard';
 import { EnumRole } from 'src/module/users/users.entity';
 import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
@@ -25,7 +25,7 @@ export class PriceGroupController {
 
   @ApiOperation({ summary: 'Создать группу для прайс-листа' })
   @ApiResponse({ status: 200, type: [PriceGroup] })
-  @Roles(EnumRole.admin)
+  @Roles('Создать группу для прайс-листа', PriceGroup, [EnumRole.admin])
   @Post('/create')
   create(@Body() priceGroupDto: CreatePriceGroupDto) {
     // const selectPriceGroupDto: SelectPriceGroupDto =
@@ -50,7 +50,7 @@ export class PriceGroupController {
   }
 
   @ApiOperation({ summary: 'Получить все группы и позиции для прайc-листа' })
-  @ApiResponse({ status: 200, type: [PriceGroup] })
+  @ApiResponse({ status: 200, type: PriceGroup })
   @Roles(
     EnumRole.admin,
     EnumRole.courier,

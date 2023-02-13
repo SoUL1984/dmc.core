@@ -8,10 +8,10 @@ import {
   Post,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/module/auth/role-auth.decorator';
+import { ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/decorator/role-auth.decorator';
+import { CurUser } from 'src/decorator/user-auth.decorator';
 import { RoleGuard } from 'src/module/auth/role.guard';
-import { CurUser } from 'src/module/auth/user-auth.decorator';
 import { EnumRole } from 'src/module/users/users.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
@@ -24,41 +24,35 @@ import { OrderService } from './order.service';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @ApiOperation({ summary: 'Создать заказ-наряд' })
-  @ApiResponse({ status: 200, type: [Order] })
-  @Roles(EnumRole.admin)
+  @Roles('Создать заказ-наряд', [Order], [EnumRole.admin])
   @Post('/create')
   create(@CurUser() user, @Body() orderDto: CreateOrderDto) {
     const userId = user.id;
     return this.orderService.createOrder(orderDto, userId);
   }
 
-  @ApiOperation({ summary: 'Обновить заказ-наряд' })
-  @ApiResponse({ status: 200, type: [Order] })
-  @Roles(EnumRole.admin)
+  @Roles('Обновить заказ-наряд', [Order], [EnumRole.admin])
   @Patch(':order_id')
   update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
     return this.orderService.updateOrderById(orderDto, orderId);
   }
 
-  @ApiOperation({
-    summary: 'Удаление заказ-наряд',
-  })
-  @ApiResponse({ status: 200, type: [Order] })
-  @Roles(EnumRole.admin)
+  @Roles('Удаление заказ-наряд', [Order], [EnumRole.admin])
   @Delete(':order_id')
   remove(@Param('order_id') orderId: number) {
     return this.orderService.deleteOrderById(orderId);
   }
 
-  @ApiOperation({ summary: 'Получить все заказ-наряды с полными данными' })
-  @ApiResponse({ status: 200, type: [Order] })
   @Roles(
-    EnumRole.admin,
-    EnumRole.courier,
-    EnumRole.customer,
-    EnumRole.dentaltechn,
-    EnumRole.director,
+    'Получить все заказ-наряды с полными данными',
+    [Order],
+    [
+      EnumRole.admin,
+      EnumRole.courier,
+      EnumRole.customer,
+      EnumRole.dentaltechn,
+      EnumRole.director,
+    ],
   )
   @Get('/get-list-order')
   getListOrder(@CurUser() user) {
@@ -67,14 +61,16 @@ export class OrderController {
     return aOrder;
   }
 
-  @ApiOperation({ summary: 'Получить все заказ-наряды с полными данными' })
-  @ApiResponse({ status: 200, type: [Order] })
   @Roles(
-    EnumRole.admin,
-    EnumRole.courier,
-    EnumRole.customer,
-    EnumRole.dentaltechn,
-    EnumRole.director,
+    'Получить все заказ-наряды с полными данными',
+    [Order],
+    [
+      EnumRole.admin,
+      EnumRole.courier,
+      EnumRole.customer,
+      EnumRole.dentaltechn,
+      EnumRole.director,
+    ],
   )
   @Get('/get-list-order-by-user-id/:user_id')
   getListOrderByUserId(@Param('user_id') userId: number) {
@@ -82,14 +78,16 @@ export class OrderController {
     return aOrder;
   }
 
-  @ApiOperation({ summary: 'Получить все заказ-наряды с полными данными' })
-  @ApiResponse({ status: 200, type: [Order] })
   @Roles(
-    EnumRole.admin,
-    EnumRole.courier,
-    EnumRole.customer,
-    EnumRole.dentaltechn,
-    EnumRole.director,
+    'Получить все заказ-наряды с полными данными',
+    [Order],
+    [
+      EnumRole.admin,
+      EnumRole.courier,
+      EnumRole.customer,
+      EnumRole.dentaltechn,
+      EnumRole.director,
+    ],
   )
   @Get('/order-and-order-price-by-id/:order_id')
   getOrderAndOrderPriceById(@Param('order_id') orderId: number) {

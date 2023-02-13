@@ -29,5 +29,6 @@ export class CreatePriceDto {
   })
   @IsString({ message: 'Должно быть строкой' })
   @IsOptional()
+  
   readonly desc: string;
 }
