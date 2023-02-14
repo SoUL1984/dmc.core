@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -17,6 +17,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.entity';
 import { OrderService } from './order.service';
+import { or } from 'sequelize';
 
 @ApiTags('Заказ-наряд')
 @Controller('order')
@@ -25,7 +26,7 @@ export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
   @ApiOperation({ summary: 'Создать заказ-наряд' })
-  @ApiResponse({ status: 200, type: [Order] })
+  @ApiResponse({ status: 200, type: Order })
   @Roles(EnumRole.admin)
   @Post('/create')
   create(@CurUser() user, @Body() orderDto: CreateOrderDto) {
@@ -34,11 +35,12 @@ export class OrderController {
   }
 
   @ApiOperation({ summary: 'Обновить заказ-наряд' })
-  @ApiResponse({ status: 200, type: [Order] })
+  @ApiResponse({ status: 200, type: Order })
   @Roles(EnumRole.admin)
-  @Patch(':order_id')
-  update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
-    return this.orderService.updateOrderById(orderDto, orderId);
+  @Put(':order_id')
+  async update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
+    const orderIdUpdated = await this.orderService.updateOrderById(orderDto, orderId);
+    return await this.orderService.getById(orderIdUpdated);
   }
 
   @ApiOperation({

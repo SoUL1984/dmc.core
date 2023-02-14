@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Put,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -24,7 +24,7 @@ export class PriceGroupController {
   constructor(private readonly priceGroupService: PriceGroupService) {}
 
   @ApiOperation({ summary: 'Создать группу для прайс-листа' })
-  @ApiResponse({ status: 200, type: [PriceGroup] })
+  @ApiResponse({ status: 200, type: PriceGroup })
   @Roles(EnumRole.admin)
   @Post('/create')
   create(@Body() priceGroupDto: CreatePriceGroupDto) {
@@ -68,17 +68,19 @@ export class PriceGroupController {
   @ApiOperation({
     summary: 'Изменение данных группы для прайслиста',
   })
-  @ApiResponse({ status: 200, type: [PriceGroup] })
+  @ApiResponse({ status: 200, type: PriceGroup })
   @Roles(EnumRole.admin)
-  @Patch(':pricegroup_id')
-  update(
+  @Put(':pricegroup_id')
+  async update(
     @Param('pricegroup_id') pricegroup_id: number,
     @Body() priceGroupDto: UpdatePriceGroupDto,
   ) {
-    return this.priceGroupService.updatePriceGroupById(
+    const idPriceGroup = await this.priceGroupService.updatePriceGroupById(
       priceGroupDto,
       pricegroup_id,
     );
+
+    return this.priceGroupService.getById(idPriceGroup);
   }
 
   @ApiOperation({

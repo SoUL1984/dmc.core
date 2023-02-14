@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString, MaxLength } from 'class-validator';
+import { IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateOrderDto {
   @ApiPropertyOptional({ example: 'Белов А.А.', description: 'ФИО доктора' })
@@ -47,7 +47,7 @@ export class CreateOrderDto {
   })
   @IsOptional()
   @IsString({ message: 'Должно быть строкой' })
-  descCourier: string;
+  readonly descCourier: string;
 
   @ApiProperty({
     example: '3',

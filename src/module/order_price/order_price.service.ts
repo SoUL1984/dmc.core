@@ -66,7 +66,8 @@ export class OrderPriceService {
       priceId: dto.priceId,
       orderId: dto.orderId,
       amount: dto.amount,
-      tprice,
+      // так? или итоговая сумма может быть другая?
+      tprice: tprice * dto.amount,
     });
     return orderPrice;
   }
