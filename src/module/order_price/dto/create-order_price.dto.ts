@@ -1,25 +1,16 @@
-import { ApiProperty } from "@nestjs/swagger";
 import { IsNumber } from "class-validator";
+import { IsRequired } from "src/decorator/dto.decorator";
 
 export class CreateOrderPriceDto {
-  @ApiProperty({
-    example: '10',
-    description: 'Индентификатор прайс-листа (priceId)',
-  })
+  @IsRequired('10', 'Индентификатор прайс-листа (priceId)', true)
   @IsNumber({}, { message: 'Должно быть числом' })
   readonly priceId: number;
 
-  @ApiProperty({
-    example: '10',
-    description: 'Индентификатор заказ-наряда (orderId)',
-  })
+  @IsRequired('10', 'Индентификатор заказ-наряда (orderId)', true)
   @IsNumber({}, { message: 'Должно быть числом' })
   readonly orderId: number;
 
-  @ApiProperty({
-    example: '10',
-    description: 'Количество',
-  })
+  @IsRequired('10', 'Количество', true)
   @IsNumber({}, { message: 'Должно быть числом' })
   readonly amount: number;
 }

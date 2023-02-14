@@ -1,15 +1,10 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { IsRequired } from 'src/decorator/dto.decorator';
 
 export class UpdateOrderPriceDto {
-  @ApiProperty({
-    example: '10',
-    description: 'Количество',
-  })
+  @IsRequired('10', 'Количество', true)
   readonly amount: number;
 
-  @ApiProperty({
-    example: '1100',
-    description: 'Текущая цена',
-  })
+  @IsRequired('1100', 'Текущая цена', true)
   readonly tprice: number;
 }

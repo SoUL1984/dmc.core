@@ -1,24 +1,19 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { IsRequired } from 'src/decorator/dto.decorator';
 
 export class SelectPriceGroupDto {
-  @ApiProperty({ example: '1', description: 'id' })
+  @IsRequired('1', 'id', true)
   readonly id: number;
 
-  @ApiProperty({
-    example: 'Цирконий',
-    description: 'Название группы для прайс-листа',
-  })
+  @IsRequired('Цирконий', 'Название группы для прайс-листа', true)
   readonly pricegroup_name: string;
 
-  @ApiProperty({
-    example: 'Группа где находятся позиции по цирконию',
-    description: 'Дполнительное описание группы прайс-лист',
-  })
+  @IsRequired(
+    'Группа где находятся позиции по цирконию',
+    'Дополнительное описание группы прайс-лист',
+    true,
+  )
   readonly pricegroup_desc: string;
 
-  @ApiProperty({
-    example: 'false',
-    description: 'Флаг удаления Заказ-наряда',
-  })
+  @IsRequired('false', 'Флаг удаления Заказ-наряда', true)
   readonly isDelete: boolean;
 }
