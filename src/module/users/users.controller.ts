@@ -35,7 +35,7 @@ export class UsersController {
 
   @Roles('Получить всех пользователей', [SelectAllUserDto], [EnumRole.admin])
   @Get()
-  getALL() {
+  getAll() {
     const userDto = this.userService.getAllUsers();
     return userDto;
   }

@@ -21,7 +21,7 @@ export class AuthController {
 
   @Post('/registration')
   @UsePipes(ValidationPipe)
-  registration(@Body() userDto: CreateUserDto) {
+  registration(@Body() userDto: CreateUserDto): Promise<{ token: string }> {
     return this.authService.registration(userDto);
   }
 }
