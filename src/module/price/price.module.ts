@@ -5,7 +5,7 @@ import { Price } from './price.entity';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { AuthModule } from 'src/module/auth/auth.module';
 import { Order } from 'src/module/order/order.entity';
-import { OrderPrice } from 'src/module/order_price/order_price.entity';
+import { OrderPrice } from 'src/module/OrderPrice/OrderPrice.entity';
 
 @Module({
   providers: [PriceService],

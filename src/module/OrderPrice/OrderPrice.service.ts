@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Price } from 'src/module/price/price.entity';
 import { CreateOrderPriceDto } from './dto/create-order_price.dto';
 import { UpdateOrderPriceDto } from './dto/update-order_price.dto';
-import { OrderPrice } from './order_price.entity';
+import { OrderPrice } from './OrderPrice.entity';
 
 @Injectable()
 export class OrderPriceService {

@@ -10,11 +10,11 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { CreateOrderPriceDto } from './dto/create-order_price.dto';
 import { UpdateOrderPriceDto } from './dto/update-order_price.dto';
-import { OrderPriceService } from './order_price.service';
+import { OrderPriceService } from './OrderPrice.service';
 import { RoleGuard } from 'src/module/auth/role.guard';
 import { EnumRole } from 'src/module/users/users.entity';
 import { Roles } from 'src/decorator/role-auth.decorator';
-import { OrderPrice } from './order_price.entity';
+import { OrderPrice } from './OrderPrice.entity';
 
 //TODO: Нужно поставить вопрос нужны ли эти методы, возможно они должны работать под капотом
 @ApiTags('Заказ-наряд')
