@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -24,7 +24,7 @@ export class PriceController {
   constructor(private readonly priceService: PriceService) {}
 
   @ApiOperation({ summary: 'Создать позицию в прайс-листе' })
-  @ApiResponse({ status: 200, type: [Price] })
+  @ApiResponse({ status: 200, type: Price })
   @Roles(EnumRole.admin)
   @Post('/create')
   create(@Body() priceDto: CreatePriceDto) {
@@ -50,14 +50,15 @@ export class PriceController {
   }
 
   @ApiOperation({ summary: 'Изменение данных позиции в прайс-листе' })
-  @ApiResponse({ status: 200, type: [Price] })
+  @ApiResponse({ status: 200, type: Price })
   @Roles(EnumRole.admin)
   @Patch(':price_id')
-  update(
+  async update(
     @Param('price_id') price_id: number,
     @Body() priceDto: UpdatePriceDto,
   ) {
-    return this.priceService.updatePriceById(priceDto, price_id);
+    const idPrice = await this.priceService.updatePriceById(priceDto, price_id);
+    return await this.priceService.getById(idPrice);
   }
 
   @ApiOperation({ summary: 'Удаление позиции в прайс-листе' })

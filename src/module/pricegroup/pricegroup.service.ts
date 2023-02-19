@@ -10,13 +10,28 @@ import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
 import { SelectPriceGroupDto } from './dto/select-pricegroup.dto';
 import { UpdatePriceGroupDto } from './dto/update-pricegroup.dto';
 import { PriceGroup } from './pricegroup.entity';
+import { log } from 'util';
 
 @Injectable()
 export class PriceGroupService {
   constructor(
     @InjectModel(PriceGroup) private priceGroupRepository: typeof PriceGroup,
   ) {}
-  async createPriceGroup(dto: CreatePriceGroupDto) {
+
+  async getById(priceGroupId: number): Promise<SelectPriceGroupDto> {
+    try {
+      return await this.priceGroupRepository.findByPk(priceGroupId, {
+        attributes: ['id', 'pricegroup_name', 'pricegroup_desc'],
+      });
+    } catch (e) {
+      throw new HttpException(
+        'Не удалось получить группу прайс-листа',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async createPriceGroup(dto: CreatePriceGroupDto): Promise<SelectPriceGroupDto> {
     try {
       const { id, pricegroup_name, pricegroup_desc, isDelete } =
         await this.priceGroupRepository.create(dto);
@@ -35,7 +50,7 @@ export class PriceGroupService {
     }
   }
 
-  async getAllPriceGroupAndPrice() {
+  async getAllPriceGroupAndPrice(): Promise<PriceGroup[]> {
     try {
       const listPriceGroupAndPrice = await this.priceGroupRepository.findAll({
         attributes: ['id', 'pricegroup_name', 'pricegroup_desc'],
@@ -57,7 +72,7 @@ export class PriceGroupService {
     }
   }
 
-  async getAllPriceGroup() {
+  async getAllPriceGroup(): Promise<SelectPriceGroupDto[]> {
     try {
       const listPriceGroup = await this.priceGroupRepository.findAll({
         attributes: ['id', 'pricegroup_name', 'pricegroup_desc', 'isDelete'],
@@ -71,15 +86,15 @@ export class PriceGroupService {
     }
   }
 
-  async updatePriceGroupById(dto: UpdatePriceGroupDto, pricegroup_id: number) {
+  async updatePriceGroupById(dto: UpdatePriceGroupDto, pricegroup_id: number): Promise<number> {
     try {
-      const res = await this.priceGroupRepository.update(dto, {
+      const [priceGroupId] = await this.priceGroupRepository.update(dto, {
         where: { id: pricegroup_id, isDelete: false },
-      })[0];
-      return res;
+      });
+      return priceGroupId;
     } catch (e) {
       throw new HttpException(
-        'Произошла ошибка при удалении группы прайс-листа. Обновить запись не возможно.',
+        'Произошла ошибка при обновлении группы прайс-листа. Обновить запись не возможно.',
         HttpStatus.BAD_REQUEST,
       );
     }
