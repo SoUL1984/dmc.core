@@ -1,5 +1,5 @@
 import { IsNumber, IsString } from 'class-validator';
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class CreatePriceDto {
   @IsRequired('1', 'Индентификатор группы для прайс-листа (pricegroupId)', true)

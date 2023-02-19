@@ -1,5 +1,5 @@
 import { IsBoolean, IsNumber, IsString } from 'class-validator';
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class UpdateOrderDto {
   @IsRequired('Белов А.А.', 'ФИО доктора', false)

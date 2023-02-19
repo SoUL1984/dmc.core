@@ -5,7 +5,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { Price } from 'src/module/price/price.entity';
+import { Price } from '../../module/price/price.entity';
 import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
 import { SelectPriceGroupDto } from './dto/select-pricegroup.dto';
 import { UpdatePriceGroupDto } from './dto/update-pricegroup.dto';

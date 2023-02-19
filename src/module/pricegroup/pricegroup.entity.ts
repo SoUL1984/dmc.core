@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { AfterBulkDestroy, Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
-import { Price } from 'src/module/price/price.entity';
+import { Price } from '../../module/price/price.entity';
 
 interface PriceGroupCreationAttrs {
   pricegroup_name: string;

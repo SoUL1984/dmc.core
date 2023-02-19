@@ -9,10 +9,10 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/decorator/role-auth.decorator';
-import { CurUser } from 'src/decorator/user-auth.decorator';
-import { RoleGuard } from 'src/module/auth/role.guard';
-import { EnumRole } from 'src/module/users/users.entity';
+import { Roles } from '../../decorator/role-auth.decorator';
+import { CurUser } from '../../decorator/user-auth.decorator';
+import { RoleGuard } from '../..//module/auth/role.guard';
+import { EnumRole } from '../../module/users/users.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.entity';

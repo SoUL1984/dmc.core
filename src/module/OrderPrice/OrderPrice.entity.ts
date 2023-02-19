@@ -1,6 +1,6 @@
 import { BelongsTo, Column, DataType, ForeignKey, Model, Table } from 'sequelize-typescript';
-import { Order } from 'src/module/order/order.entity';
-import { Price } from 'src/module/price/price.entity';
+import { Order } from '../../module/order/order.entity';
+import { Price } from '../../module/price/price.entity';
 
 interface OrderPriceCreationAttrs {
     priceId: number;

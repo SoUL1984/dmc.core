@@ -9,9 +9,9 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/decorator/role-auth.decorator';
-import { RoleGuard } from 'src/module/auth/role.guard';
-import { EnumRole } from 'src/module/users/users.entity';
+import { Roles } from '../../decorator/role-auth.decorator';
+import { RoleGuard } from '../../module/auth/role.guard';
+import { EnumRole } from '../../module/users/users.entity';
 import { CreatePriceGroupDto } from './dto/create-pricegroup.dto';
 import { UpdatePriceGroupDto } from './dto/update-pricegroup.dto';
 import { PriceGroup } from './pricegroup.entity';

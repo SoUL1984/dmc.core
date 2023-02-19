@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
-import { OrderPrice } from 'src/module/OrderPrice/OrderPrice.entity';
-import { Price } from 'src/module/price/price.entity';
+import { OrderPrice } from '../../module/OrderPrice/OrderPrice.entity';
+import { Price } from '../../module/price/price.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.entity';

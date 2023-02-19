@@ -1,5 +1,5 @@
 import { IsEmail, IsString, Length, MinLength } from 'class-validator';
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class CreateUserDto {
   @IsRequired('user@mail.ru', 'Почта', true)

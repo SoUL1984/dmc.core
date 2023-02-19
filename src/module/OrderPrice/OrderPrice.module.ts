@@ -1,8 +1,8 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { SequelizeModule } from '@nestjs/sequelize';
-import { AuthModule } from 'src/module/auth/auth.module';
-import { Order } from 'src/module/order/order.entity';
-import { Price } from 'src/module/price/price.entity';
+import { AuthModule } from '../../module/auth/auth.module';
+import { Order } from '../../module/order/order.entity';
+import { Price } from '../../module/price/price.entity';
 import { OrderPriceController } from './OrderPrice.controller';
 import { OrderPrice } from './OrderPrice.entity';
 import { OrderPriceService } from './OrderPrice.service';

@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { AfterBulkDestroy, BelongsTo, Column, DataType, ForeignKey, HasMany, Model, Table } from 'sequelize-typescript';
-import { User } from 'src/module/users/users.entity';
+import { User } from '../../module/users/users.entity';
 
 export enum EnumColor {
     none = 'none',

@@ -5,7 +5,7 @@ import {
   Length,
   MinLength,
 } from 'class-validator';
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class UpdateMyDto {
   @IsRequired('user@mail.ru', 'Почта', false)

@@ -1,4 +1,4 @@
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class SelectPriceDto {
   @IsRequired('1', 'Индентификатор позиции в прайс-листе (id)', true)

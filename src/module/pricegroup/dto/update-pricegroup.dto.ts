@@ -1,5 +1,5 @@
 import { IsString, MinLength } from 'class-validator';
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class UpdatePriceGroupDto {
   @IsRequired('Цирконий', 'Название группы для прайс-листа', false)

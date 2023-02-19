@@ -1,4 +1,4 @@
-import { IsRequired } from 'src/decorator/dto.decorator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class SelectPriceGroupDto {
   @IsRequired('1', 'id', true)
