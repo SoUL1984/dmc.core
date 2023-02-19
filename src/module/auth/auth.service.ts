@@ -4,16 +4,16 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { AuthUserDto, CreateUserDto } from 'src/module/users/dto/create-user.dto';
+import { AuthUserDto, CreateUserDto } from '../../module/users/dto/create-user.dto';
 import * as bcrypt from 'bcryptjs';
-import { User } from 'src/module/users/users.entity';
-import { UsersService } from 'src/module/users/users.service';
+import { User } from '../../module/users/users.entity';
+import { UsersService } from '../../module/users/users.service';
 import { JwtService } from '@nestjs/jwt';
 
 @Injectable()
 export class AuthService {
   constructor(
-    private userService: UsersService,
+    private usersService: UsersService,
     private jwtService: JwtService,
   ) {}
 
@@ -22,8 +22,8 @@ export class AuthService {
     return this.generateToken(user);
   }
 
-  async registration(userDto: CreateUserDto) {
-    const candidate = await this.userService.getUserByEmailOrPhone(userDto.email, userDto.phone);
+  async registration(userDto: CreateUserDto): Promise<{ token: string }> {
+    const candidate = await this.usersService.getUserByEmailOrPhone(userDto.email, userDto.phone);
     if (candidate) {
       throw new HttpException(
         'Пользователь с таким email или телефоном существует',
@@ -31,7 +31,7 @@ export class AuthService {
       );
     }
     const hashPassword = await bcrypt.hash(userDto.password, 5);
-    const user = await this.userService.createUser({
+    const user = await this.usersService.createUser({
       ...userDto,
       password: hashPassword,
     });
@@ -44,7 +44,7 @@ export class AuthService {
     };
   }
   private async validateUser(userDto: AuthUserDto) {
-    const user = await this.userService.getUserByEmail(userDto.email);
+    const user = await this.usersService.getUserByEmail(userDto.email);
     if (user == null) {
       throw new UnauthorizedException({
         message: 'AuthService.validateUser - Пользователь не найден',

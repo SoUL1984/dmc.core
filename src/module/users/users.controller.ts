@@ -7,10 +7,10 @@ import {
   Patch,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { Roles } from 'src/module/auth/role-auth.decorator';
-import { RoleGuard } from 'src/module/auth/role.guard';
-import { CurUser } from 'src/module/auth/user-auth.decorator';
+import { ApiTags } from '@nestjs/swagger';
+import { Roles } from '../../decorator/role-auth.decorator';
+import { CurUser } from '../../decorator/user-auth.decorator';
+import { RoleGuard } from '../../module/auth/role.guard';
 import { SelectAllUserDto } from './dto/select-all-user.dto';
 import { UpdateMyDto } from './dto/update-my.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
@@ -33,44 +33,39 @@ export class UsersController {
   //   return this.userService.createUser(userDto);
   // }
 
-  @ApiOperation({ summary: 'Получить всех пользователей' })
-  @ApiResponse({ status: 200, type: [SelectAllUserDto] })
-  @Roles(EnumRole.admin)
+  @Roles('Получить всех пользователей', [SelectAllUserDto], [EnumRole.admin])
   @Get()
-  getALL() {
+  getAll() {
     const userDto = this.userService.getAllUsers();
     return userDto;
   }
 
-  @ApiOperation({ summary: 'Удалить пользователя' })
-  @ApiResponse({ status: 200, type: [User] })
-  @Roles(EnumRole.admin)
+  @Roles('Удалить пользователя', [User], [EnumRole.admin])
   @Delete(':email')
   remove(@Param('email') email: string) {
     return this.userService.deleteUserByEmail(email);
   }
 
-  @ApiOperation({
-    summary: 'Обновить данные пользователя по электронной почте',
-  })
-  @ApiResponse({ status: 200, type: [User] })
-  @Roles(EnumRole.admin)
+  @Roles(
+    'Обновить данные пользователя по электронной почте',
+    [User],
+    [EnumRole.admin],
+  )
   @Patch(':email')
   update(@Param('email') email: string, @Body() userDto: UpdateUserDto) {
     return this.userService.updateUserByEmail(userDto, email);
   }
 
-  @ApiOperation({
-    summary:
-      'Обновить данные, текущего, пользователя (обновление данных самого себя)',
-  })
-  @ApiResponse({ status: 200, type: [User] })
   @Roles(
-    EnumRole.admin,
-    EnumRole.courier,
-    EnumRole.customer,
-    EnumRole.dentaltechn,
-    EnumRole.director,
+    'Обновить данные, текущего, пользователя (обновление данных самого себя)',
+    [User],
+    [
+      EnumRole.admin,
+      EnumRole.courier,
+      EnumRole.customer,
+      EnumRole.dentaltechn,
+      EnumRole.director,
+    ],
   )
   @Patch()
   updateCurrentlyUser(@CurUser() user, @Body() myDto: UpdateMyDto) {

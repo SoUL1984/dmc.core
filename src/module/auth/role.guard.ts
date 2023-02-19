@@ -9,7 +9,7 @@ import {
 import { Reflector } from '@nestjs/core';
 import { JwtService } from '@nestjs/jwt';
 import { Observable } from 'rxjs';
-import { ROLES_KEY } from './role-auth.decorator';
+import { ROLES_KEY } from '../../decorator/role-auth.decorator';
 
 @Injectable()
 export class RoleGuard implements CanActivate {

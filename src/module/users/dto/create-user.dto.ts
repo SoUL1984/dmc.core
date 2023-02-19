@@ -1,67 +1,51 @@
-import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsEmail,
-  IsOptional,
-  IsString,
-  Length,
-  MinLength,
-} from 'class-validator';
+import { IsEmail, IsString, Length, MinLength } from 'class-validator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class CreateUserDto {
-  @ApiProperty({ example: 'user@mail.ru', description: 'Почта' })
+  @IsRequired('user@mail.ru', 'Почта', true)
   @IsString({ message: 'Должно быть строкой' })
   @IsEmail({}, { message: 'Некорректный email' })
   readonly email: string;
 
-  @ApiProperty({ example: 'volk', description: 'Пароль' })
+  @IsRequired('volk', 'Пароль', true)
   @IsString({ message: 'Должно быть строкой' })
   @Length(4, 16, { message: 'Не меньше 4 и небольше 16' })
   readonly password: string;
 
-  @ApiProperty({ example: 'Пащенко Э.В.', description: 'ФИО пользователя' })
+  @IsRequired('Пащенко Э.В.', 'ФИО пользователя', true)
   @IsString({ message: 'Должно быть строкой' })
   @MinLength(8, { message: 'Не меньше 8 символов' })
   readonly name: string;
 
-  @ApiProperty({ example: 'Самара', description: 'Адрес' })
+  @IsRequired('Самара', 'Адрес', false)
   @IsString({ message: 'Должно быть строкой' })
-  @IsOptional()
   readonly city: string;
 
-  @ApiProperty({ example: 'Силовая ул., д. 4, кв. 144', description: 'Город' })
+  @IsRequired('Силовая ул., д. 4, кв. 144', 'Город', false)
   @IsString({ message: 'Должно быть строкой' })
-  @IsOptional()
   readonly address: string;
 
-  @ApiProperty({
-    example: 'Привозить только вовремя',
-    description: 'Дополнительное описание',
-  })
+  @IsRequired('Привозить только вовремя', 'Дополнительное описание', false)
   @IsString({ message: 'Должно быть строкой' })
-  @IsOptional()
   readonly desc: string;
 
-  @ApiProperty({ example: '+7 (987) 787-80-76', description: 'Телефон' })
+  @IsRequired('+7 (987) 787-80-76', 'Телефон', true)
   @IsString({ message: 'Должно быть строкой' })
   readonly phone: string;
 
-  @ApiProperty({
-    example: '1956-05-11',
-    description: 'День рождение',
-  })
-  @IsOptional()
+  @IsRequired('1956-05-11', 'День рождение', false)
   readonly birthday: Date;
   //@isDateString({ message: 'Должно быть датой' })
   //TODO: разобраться с проверкой данных
 }
 
 export class AuthUserDto {
-  @ApiProperty({ example: 'Baranov@yandex.ru', description: 'Почта' })
+  @IsRequired('Baranov@yandex.ru', 'Почта', true)
   @IsString({ message: 'Должно быть строкой' })
   @IsEmail({}, { message: 'Некорректный email' })
   readonly email: string;
 
-  @ApiProperty({ example: 'volk', description: 'Пароль' })
+  @IsRequired('volk', 'Пароль', true)
   @IsString({ message: 'Должно быть строкой' })
   readonly password: string;
 }

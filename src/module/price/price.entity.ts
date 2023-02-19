@@ -7,7 +7,7 @@ import {
   Model,
   Table,
 } from 'sequelize-typescript';
-import { PriceGroup } from 'src/module/pricegroup/pricegroup.entity';
+import { PriceGroup } from '../../module/pricegroup/pricegroup.entity';
 
 interface PriceCreationAttrs {
   pricegroupId: number;

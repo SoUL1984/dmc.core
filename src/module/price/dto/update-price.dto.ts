@@ -1,37 +1,33 @@
-import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber, IsOptional, IsString, MinLength } from 'class-validator';
+import { IsNumber, IsString, MinLength } from 'class-validator';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class UpdatePriceDto {
-  @ApiProperty({
-    example: '1',
-    description: 'Индентификатор группы для прайс-листа (pricegroupId)',
-  })
+  @IsRequired(
+    '1',
+    'Индентификатор группы для прайс-листа (pricegroupId)',
+    false,
+  )
   @IsNumber({}, { message: 'Должно быть числом' })
   @MinLength(5, { message: 'Не меньше 5 символов' })
-  @IsOptional()
   readonly pricegroupId: number;
 
-  @ApiProperty({
-    example: 'Абатмент циркониевый',
-    description: 'Наименование позиции в прайс-листе',
-  })
+  @IsRequired(
+    'Абатмент циркониевый',
+    'Наименование позиции в прайс-листе',
+    false,
+  )
   @IsString({ message: 'Должно быть строкой' })
-  @IsOptional()
   readonly name: string;
 
-  @ApiProperty({
-    example: '10100.10',
-    description: 'Цена позиции в прайс-листе',
-  })
+  @IsRequired('10100.10', 'Цена позиции в прайс-листе', false)
   @IsNumber({}, { message: 'Должно быть числом' })
-  @IsOptional()
   readonly price: number;
 
-  @ApiProperty({
-    example: 'Абатмент циркониевый из материала ZOTION',
-    description: 'Дополнительная информация о позиции в прайс-листе',
-  })
+  @IsRequired(
+    'Абатмент циркониевый из материала ZOTION',
+    'Дополнительная информация о позиции в прайс-листе',
+    false,
+  )
   @IsString({ message: 'Должно быть строкой' })
-  @IsOptional()
   readonly desc: string;
 }

@@ -1,39 +1,29 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { IsRequired } from '../../../decorator/dto.decorator';
 
 export class SelectPriceDto {
-  @ApiProperty({
-    example: '1',
-    description: 'Индентификатор позиции в прайс-листе (id)',
-  })
+  @IsRequired('1', 'Индентификатор позиции в прайс-листе (id)', true)
   readonly id: number;
 
-  @ApiProperty({
-    example: '1',
-    description: 'Индентификатор группы для прайс-листа (pricegroupId)',
-  })
+  @IsRequired('1', 'Индентификатор группы для прайс-листа (pricegroupId)', true)
   readonly pricegroupId: number;
 
-  @ApiProperty({
-    example: 'Абатмент циркониевый',
-    description: 'Наименование позиции в прайс-листе',
-  })
+  @IsRequired(
+    'Абатмент циркониевый',
+    'Наименование позиции в прайс-листе',
+    true,
+  )
   readonly name: string;
 
-  @ApiProperty({
-    example: '10100.10',
-    description: 'Цена позиции в прайс-листе',
-  })
+  @IsRequired('10100.10', 'Цена позиции в прайс-листе', true)
   readonly price: number;
 
-  @ApiProperty({
-    example: 'Абатмент циркониевый из материала ZOTION',
-    description: 'Дополнительная информация о позиции в прайс-листе',
-  })
+  @IsRequired(
+    'Абатмент циркониевый из материала ZOTION',
+    'Дополнительная информация о позиции в прайс-листе',
+    true,
+  )
   readonly desc: string;
 
-  @ApiProperty({
-    example: 'false',
-    description: 'Флаг удаления позиции в прайс-листе',
-  })
+  @IsRequired('false', 'Флаг удаления позиции в прайс-листе', true)
   readonly isDelete: boolean;
 }
