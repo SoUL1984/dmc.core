@@ -5,7 +5,7 @@ import {
   Get,
   Param,
   Post,
-  Put,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -70,7 +70,7 @@ export class PriceGroupController {
   })
   @ApiResponse({ status: 200, type: PriceGroup })
   @Roles(EnumRole.admin)
-  @Put(':pricegroup_id')
+  @Patch(':pricegroup_id')
   async update(
     @Param('pricegroup_id') pricegroup_id: number,
     @Body() priceGroupDto: UpdatePriceGroupDto,

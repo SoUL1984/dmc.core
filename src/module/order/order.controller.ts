@@ -5,7 +5,7 @@ import {
   Get,
   Param,
   Post,
-  Put,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
@@ -37,7 +37,7 @@ export class OrderController {
   @ApiOperation({ summary: 'Обновить заказ-наряд' })
   @ApiResponse({ status: 200, type: Order })
   @Roles(EnumRole.admin)
-  @Put(':order_id')
+  @Patch(':order_id')
   async update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
     const orderIdUpdated = await this.orderService.updateOrderById(orderDto, orderId);
     return await this.orderService.getById(orderIdUpdated);
