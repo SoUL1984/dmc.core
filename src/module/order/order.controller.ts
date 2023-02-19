@@ -24,10 +24,11 @@ import { OrderService } from './order.service';
 export class OrderController {
   constructor(private readonly orderService: OrderService) {}
 
-  @Roles('Создать заказ-наряд', [Order], [EnumRole.admin])
+  @Roles('Создать заказ-наряд', [Order], [EnumRole.admin, EnumRole.customer])
   @Post('/create')
   create(@CurUser() user, @Body() orderDto: CreateOrderDto) {
     const userId = user.id;
+    console.log('userId :>> ', userId);
     return this.orderService.createOrder(orderDto, userId);
   }
 

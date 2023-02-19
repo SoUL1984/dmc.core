@@ -11,8 +11,6 @@ async function start() {
     const PORT = process.env.PORT || 5000;
     const app = await NestFactory.create(AppModule);
 
-    console.log('process.env :>> ', process.env);
-
     const config = new DocumentBuilder()
         .setTitle('dmc.core')
         .setDescription('Документация BACKEND REST API')
