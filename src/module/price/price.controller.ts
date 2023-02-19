@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -51,11 +51,12 @@ export class PriceController {
 
   @Roles('Изменение данных позиции в прайс-листе', [Price], [EnumRole.admin])
   @Patch(':price_id')
-  update(
+  async update(
     @Param('price_id') price_id: number,
     @Body() priceDto: UpdatePriceDto,
   ) {
-    return this.priceService.updatePriceById(priceDto, price_id);
+    const idPrice = await this.priceService.updatePriceById(priceDto, price_id);
+    return await this.priceService.getById(idPrice);
   }
 
   @Roles('Удаление позиции в прайс-листе', [Price], [EnumRole.admin])

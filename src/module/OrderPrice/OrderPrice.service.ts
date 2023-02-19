@@ -66,7 +66,7 @@ export class OrderPriceService {
       priceId: dto.priceId,
       orderId: dto.orderId,
       amount: dto.amount,
-      tprice,
+      tprice
     });
     return orderPrice;
   }

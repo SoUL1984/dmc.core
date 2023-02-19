@@ -4,11 +4,11 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
-import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../decorator/role-auth.decorator';
 import { RoleGuard } from '../../module/auth/role.guard';
 import { EnumRole } from '../../module/users/users.entity';
@@ -74,14 +74,16 @@ export class PriceGroupController {
     [EnumRole.admin],
   )
   @Patch(':pricegroup_id')
-  update(
+  async update(
     @Param('pricegroup_id') pricegroup_id: number,
     @Body() priceGroupDto: UpdatePriceGroupDto,
   ) {
-    return this.priceGroupService.updatePriceGroupById(
+    const idPriceGroup = await this.priceGroupService.updatePriceGroupById(
       priceGroupDto,
       pricegroup_id,
     );
+
+    return this.priceGroupService.getById(idPriceGroup);
   }
 
   @Roles(

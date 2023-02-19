@@ -4,8 +4,8 @@ import {
   Delete,
   Get,
   Param,
-  Patch,
   Post,
+  Patch,
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
@@ -17,6 +17,7 @@ import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.entity';
 import { OrderService } from './order.service';
+import { or } from 'sequelize';
 
 @ApiTags('Заказ-наряд')
 @Controller('order')
@@ -34,8 +35,9 @@ export class OrderController {
 
   @Roles('Обновить заказ-наряд', [Order], [EnumRole.admin])
   @Patch(':order_id')
-  update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
-    return this.orderService.updateOrderById(orderDto, orderId);
+  async update(@Param('order_id') orderId: number, @Body() orderDto: UpdateOrderDto) {
+    const orderIdUpdated = await this.orderService.updateOrderById(orderDto, orderId);
+    return await this.orderService.getById(orderIdUpdated);
   }
 
   @Roles('Удаление заказ-наряд', [Order], [EnumRole.admin])

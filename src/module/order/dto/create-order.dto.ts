@@ -36,7 +36,7 @@ export class CreateOrderDto {
 
   @IsRequired('Код домофона 07112021', 'Коментарий для курьера', false)
   @IsString({ message: 'Должно быть строкой' })
-  descCourier: string;
+  readonly descCourier: string;
 
   @IsRequired('3', 'Первый исполнитель', true)
   @IsNumber({}, { message: 'Должно быть числом' })

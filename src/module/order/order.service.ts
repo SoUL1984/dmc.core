@@ -5,11 +5,42 @@ import { Price } from '../../module/price/price.entity';
 import { CreateOrderDto } from './dto/create-order.dto';
 import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.entity';
+import { SelectOrderDto } from './dto/select-order.dto';
 
 @Injectable()
 export class OrderService {
   constructor(@InjectModel(Order) private orderRepository: typeof Order) {}
-  async createOrder(dto: CreateOrderDto, userId: number) {
+
+  async getById(orderId: number): Promise<SelectOrderDto> {
+    try {
+      return await this.orderRepository.findByPk(orderId, {
+        attributes: [
+          'id',
+          'orderNum',
+          'doctorName',
+          'pacientName',
+          'technician',
+          'isComplete',
+          'isPayment',
+          'isDelivery',
+          'isDeliveryMade',
+          'executor_n1',
+          'executor_n2',
+          'executor_n3',
+          'fittingDateN1',
+          'fittingDateN2',
+          'fittingDateN3',
+        ],
+      });
+    } catch (e) {
+      throw new HttpException(
+        'Не удалось получить заказ',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async createOrder(dto: CreateOrderDto, userId: number): Promise<CreateOrderDto> {
     const currentYear = new Date().getFullYear().toString();
 
     const lastOrder = await this.orderRepository.findOne({
@@ -51,12 +82,12 @@ export class OrderService {
     return order;
   }
 
-  async updateOrderById(dto: UpdateOrderDto, orderId: number) {
+  async updateOrderById(dto: UpdateOrderDto, orderId: number): Promise<number> {
     try {
       // производим обновление данных
-      const order = await this.orderRepository.update(dto, {
+      const [order] = await this.orderRepository.update(dto, {
         where: { id: orderId, isDelete: false },
-      })[0];
+      });
 
       return order;
     } catch (e) {
@@ -88,7 +119,7 @@ export class OrderService {
     }
   }
 
-  async getListOrder(userId: number) {
+  async getListOrder(userId: number): Promise<SelectOrderDto[]> {
     try {
       const listOrders = await this.orderRepository.findAll({
         attributes: [

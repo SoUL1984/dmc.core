@@ -8,11 +8,21 @@ import { Price } from './price.entity';
 @Injectable()
 export class PriceService {
   constructor(@InjectModel(Price) private priceRepository: typeof Price) {}
-  async createPrice(dto: CreatePriceDto) {
+
+  async getById(priceId: number): Promise<SelectPriceDto> {
     try {
       const { id, pricegroupId, name, price, desc, isDelete } =
-        await this.priceRepository.create(dto);
-      const createPrice: SelectPriceDto = {
+        await this.priceRepository.findByPk(priceId, {
+          attributes: [
+            'id',
+            'pricegroupId',
+            'name',
+            'price',
+            'desc',
+            'isDelete',
+          ],
+        });
+      return {
         id,
         pricegroupId,
         name,
@@ -20,7 +30,6 @@ export class PriceService {
         desc,
         isDelete,
       };
-      return createPrice;
     } catch (e) {
       throw new HttpException(
         'Создать запись позиции в прайс-листе не удалось.',
@@ -29,12 +38,31 @@ export class PriceService {
     }
   }
 
-  async getAllPrice() {
+  async createPrice(dto: CreatePriceDto): Promise<SelectPriceDto> {
     try {
-      const listPrice = await this.priceRepository.findAll({
+      const { id, pricegroupId, name, price, desc, isDelete } =
+        await this.priceRepository.create(dto);
+      return {
+        id,
+        pricegroupId,
+        name,
+        price,
+        desc,
+        isDelete,
+      };
+    } catch (e) {
+      throw new HttpException(
+        'Создать запись позиции в прайс-листе не удалось.',
+        HttpStatus.BAD_REQUEST,
+      );
+    }
+  }
+
+  async getAllPrice(): Promise<SelectPriceDto[]> {
+    try {
+      return await this.priceRepository.findAll({
         attributes: ['id', 'pricegroupId', 'name', 'price', 'desc', 'isDelete'],
       });
-      return listPrice;
     } catch (e) {
       throw new HttpException(
         'Получить все позиции прайс-листа не удалось.',
@@ -43,7 +71,7 @@ export class PriceService {
     }
   }
 
-  async getAllPriceByPriceGroupID(priceGroupId: number) {
+  async getAllPriceByPriceGroupID(priceGroupId: number): Promise<SelectPriceDto[]> {
     try {
       const listPrice = await this.priceRepository.findAll({
         attributes: ['id', 'pricegroupId', 'name', 'price', 'desc', 'isDelete'],
@@ -58,7 +86,10 @@ export class PriceService {
     }
   }
 
-  async updatePriceById(dto: UpdatePriceDto, price_id: number) {
+  async updatePriceById(
+    dto: UpdatePriceDto,
+    price_id: number,
+  ): Promise<number> {
     try {
       const price = await this.priceRepository.findOne({
         where: { id: price_id, isDelete: false },
@@ -69,9 +100,11 @@ export class PriceService {
           HttpStatus.NOT_FOUND,
         );
       } else {
-        return await this.priceRepository.update(dto, {
+        const [priceId] = await this.priceRepository.update(dto, {
           where: { id: price_id, isDelete: false },
-        })[0];
+        });
+
+        return priceId;
       }
     } catch (e) {
       throw new HttpException(
