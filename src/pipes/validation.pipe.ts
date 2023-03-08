@@ -5,32 +5,28 @@ import { ValidationException } from '../exceptions/validation.exception';
 
 @Injectable()
 export class ValidationPipe implements PipeTransform<any> {
-  async transform(value: any, metadata: ArgumentMetadata): Promise<any> {
-    if (metadata.type !== 'body') {
-      return value;
+    async transform(value: any, metadata: ArgumentMetadata): Promise<any> {
+        if (metadata.type !== 'body') {
+            return value;
+        }
+        const { metatype } = metadata;
+        if (!metatype || !this.toValidate(metatype)) {
+            return value;
+        }
+        const obj = plainToClass(metatype, value);
+        const errors = await validate(obj, {
+            //transform: true,
+            whitelist: true,
+            forbidNonWhitelisted: true,
+        });
+        if (errors.length) {
+            const messages = errors.map((err) => `${err.property} - ${Object.values(err.constraints).join(', ')}`);
+            throw new ValidationException(messages);
+        }
+        return value;
     }
-    console.log('metadata :>> ', metadata);
-    const { metatype } = metadata;
-    if (!metatype || !this.toValidate(metatype)) {
-      return value;
+    private toValidate(metatype): boolean {
+        const types = [String, Boolean, Number, Array, Object];
+        return !types.find((type) => metatype === type);
     }
-    const obj = plainToClass(metatype, value);
-    const errors = await validate(obj, {
-      //transform: true,
-      whitelist: true,
-      forbidNonWhitelisted: true,
-    });
-    if (errors.length) {
-      const messages = errors.map((err) => {
-        console.log('err.property :>> ', err.property);
-        return `${err.property} - ${Object.values(err.constraints).join(', ')}`;
-      });
-      throw new ValidationException(messages);
-    }
-    return value;
-  }
-  private toValidate(metatype): boolean {
-    const types = [String, Boolean, Number, Array, Object];
-    return !types.find((type) => metatype === type);
-  }
 }

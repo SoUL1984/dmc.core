@@ -49,7 +49,7 @@ export class Order extends Model<Order, OrderCreationAttrs> {
         unique: true,
         autoIncrement: true,
         primaryKey: true,
-        comment: 'Индентификатор пользователя',
+        comment: 'Индентификатор заказ-наряда',
     })
     id: number;
 
@@ -212,7 +212,6 @@ export class Order extends Model<Order, OrderCreationAttrs> {
     })
     @Column({
         type: DataType.INTEGER,
-        allowNull: false,
         comment: 'Исполнитель, который учавствовал в работе №1',
     })
     executor_n1: number;

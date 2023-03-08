@@ -5,7 +5,6 @@ import { AppModule } from '../src/app.module';
 
 describe('Auth test E2E Test', () => {
     let app: INestApplication;
-    let sJwtTokenBearer = '';
 
     beforeAll(async () => {
         const moduleFixture: TestingModule = await Test.createTestingModule({
@@ -18,16 +17,19 @@ describe('Auth test E2E Test', () => {
     });
 
     describe('Регистрация нового пользователя. POST /auth/registration', () => {
-        // it('Регистрация пользователя', () =>
-        //     request(app.getHttpServer())
-        //         .post('/api/auth/registration')
-        //         .send({
-        //             email: 'pashenko@yandex.ru',
-        //             password: 'volk',
-        //             name: 'Пащенко Э.В.',
-        //             phone: '+7 (987) 787-11-00',
-        //         })
-        //         .expect(201));
+        let sJwtTokenBearer = '';
+        const sUserEmail = 'pashenko@yandex.ru';
+
+        it('Регистрация пользователя', () =>
+            request(app.getHttpServer())
+                .post('/api/auth/registration')
+                .send({
+                    email: 'pashenko@yandex.ru',
+                    password: 'volk',
+                    name: 'Пащенко Э.В.',
+                    phone: '+7 (987) 787-11-00',
+                })
+                .expect(201));
 
         it('Авторизация пользовател и получение jwt token', async () => {
             const response = await request(app.getHttpServer())
@@ -62,209 +64,26 @@ describe('Auth test E2E Test', () => {
 
             expect(response.body.token).not.toBeDefined();
         });
-    });
 
-    describe('Работа с заказами.', () => {
-        it('Создать 16 заказов', async () => {
-            // const aRequestForOrder = [];
-            // for (let i = 0; i < 16; i++) {
-            //     aRequestForOrder.push(
-            //         request(app.getHttpServer())
-            //             .post('/api/order/create')
-            //             .send({
-            //                 doctorName: 'Пуговкин В.В.',
-            //                 pacientName: 'Петров П.П.',
-            //                 technician: 'Васин В.В.',
-            //                 color: 'A1',
-            //                 executor_n1: 14,
-            //                 executor_n2: 14,
-            //                 executor_n3: 14,
-            //                 fittingDateN1: '2022-12-15',
-            //                 fittingDateN2: '2022-12-15',
-            //                 fittingDateN3: '2022-12-15',
-            //                 uploadFiles: 'files.stl',
-            //                 desc: 'Тест',
-            //                 descCourier: 'Тест 2',
-            //             })
-            //             .set('Authorization', sJwtTokenBearer)
-            //             .expect(201)
-            //     );
-            // }
-
-            //await Promise.all(aRequestForOrder);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
+        it('Авторизация под пользователем и получение jwt token', async () => {
+            const response = await request(app.getHttpServer())
+                .post('/api/auth/login')
                 .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
+                    email: 'pashenko@yandex.ru',
+                    password: 'volk',
                 })
-                .set('Authorization', sJwtTokenBearer)
                 .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            await request(app.getHttpServer())
-                .post('/api/order/create')
-                .send({
-                    doctorName: 'Пуговкин В.В.',
-                    pacientName: 'Петров П.П.',
-                    technician: 'Васин В.В.',
-                    color: 'A1',
-                    executor_n1: 14,
-                    executor_n2: 14,
-                    executor_n3: 14,
-                    fittingDateN1: '2022-12-15',
-                    fittingDateN2: '2022-12-15',
-                    fittingDateN3: '2022-12-15',
-                    uploadFiles: 'files.stl',
-                    desc: 'Тест',
-                    descCourier: 'Тест 2',
-                })
-                .set('Authorization', sJwtTokenBearer)
-                .expect(201);
-
-            // const data = response.body;
-            // expect(data).toHaveLength(0);
+            // устанавливаем jwt токен для использования в последующих тестах
+            const jwtToken = response.body.token;
+            expect(jwtToken).toMatch(/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/);
+            sJwtTokenBearer = `Bearer ${jwtToken}`;
         });
 
-        it('Получить все заказы пользователя', async () => {
-            const response = await request(app.getHttpServer())
-                .get('/api/order/get-list-order')
+        it('Сам пользователь удаляет сябя из системы если он есть', async () => {
+            await request(app.getHttpServer())
+                .delete(`/api/users/${sUserEmail}`)
                 .set('Authorization', sJwtTokenBearer)
                 .expect(200);
-
-            const data = response.body;
-            expect(data).toHaveLength(8);
         });
     });
 });
