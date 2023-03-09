@@ -2,7 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
-import { Order } from 'sequelize/types';
 
 describe('Order test E2E Test', () => {
     let app: INestApplication;
@@ -21,7 +20,6 @@ describe('Order test E2E Test', () => {
         let sJwtTokenBearer = '';
         const sUserEmail = 'pashenko@yandex.ru';
         let idOrderForUpdate = 0;
-        let vOrderForUpdate: Order = null;
         let idOrderForDelete = 0;
         let idOrderErrDelete = 0;
 
@@ -204,9 +202,6 @@ describe('Order test E2E Test', () => {
                 })
                 .set('Authorization', sJwtTokenBearer)
                 .expect(201);
-
-            // const data = response.body;
-            // expect(data).toHaveLength(0);
         });
 
         it('Получить все заказы пользователя', async () => {
@@ -218,7 +213,6 @@ describe('Order test E2E Test', () => {
             const data = response.body;
 
             // получаем ID последней записи в списке заказов
-            vOrderForUpdate = data[5];
             idOrderForUpdate = data[5].id;
             idOrderErrDelete = data[6].id;
             idOrderForDelete = data[7].id;
@@ -328,13 +322,55 @@ describe('Order test E2E Test', () => {
             expect(sIsDelete).toBe('0');
         });
 
+        it('Создаем заказы с корректными данными.', async () => {
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    technician: 'Пащенко Э.В.',
+                    fittingDateN1: '2022-12-15',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+        });
 
+        it('Создаем заказы с некорректными данными. Незаполненно поле техника.', async () => {
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Василек П.И.',
+                    pacientName: 'Иванов И.И.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(500);
+        });
 
-        // it('Сам пользователь удаляет сябя из системы если он есть', async () => {
-        //     await request(app.getHttpServer())
-        //         .delete(`/api/users/${sUserEmail}`)
-        //         .set('Authorization', sJwtTokenBearer)
-        //         .expect(200);
-        // });
+        it('Создаем заказы с некорректными данными. Дата первой примерки.', async () => {
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Василек П.И.',
+                    pacientName: 'Иванов И.И.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(500);
+        });
     });
 });
