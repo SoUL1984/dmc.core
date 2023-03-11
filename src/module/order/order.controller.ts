@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Get, Param, Post, Patch, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Patch, UseGuards, Query } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from '../../decorator/role-auth.decorator';
 import { CurUser } from '../../decorator/user-auth.decorator';
@@ -35,14 +35,14 @@ export class OrderController {
     }
 
     @Roles(
-        'Получить все заказ-наряды с полными данными',
+        'Получить все заказ-наряды с пагинацией на текущего пользователя',
         [Order],
         [EnumRole.admin, EnumRole.courier, EnumRole.customer, EnumRole.dentaltechn, EnumRole.director]
     )
-    @Get('/get-list-order')
-    getListOrder(@CurUser() user) {
+    @Get('/get-list-order-page')
+    getListOrder(@CurUser() user, @Query('page') page: number, @Query('limit') limit: number) {
         const userId = user.id;
-        const aOrder = this.orderService.getListOrder(userId);
+        const aOrder = this.orderService.getListOrderWithPagination(userId, page, limit);
         return aOrder;
     }
 
