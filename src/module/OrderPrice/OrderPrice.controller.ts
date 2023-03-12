@@ -39,13 +39,13 @@ export class OrderPriceController {
   //     this.orderPriceService.getAllPriceAndOrderPriceByOrderId(orderId);
   //   return priceAndOrderPrice;
   // }
-  @Roles('Создать связку заказ-цена', [OrderPrice], [EnumRole.admin])
+  @Roles('Создать связку заказ-цена', [OrderPrice], [EnumRole.customer])
   @Post()
   create(@Body() orderPriceDto: CreateOrderPriceDto) {
     return this.orderPriceService.createOrderPrice(orderPriceDto);
   }
 
-  @Roles('Обновить связку заказ-цена', [OrderPrice], [EnumRole.admin])
+  @Roles('Обновить связку заказ-цена', [OrderPrice], [EnumRole.customer])
   @Patch([':priceId', ':orderId'])
   update(
     @Param('priceId') priceId: number,
@@ -59,7 +59,7 @@ export class OrderPriceController {
     );
   }
 
-  @Roles('Удалить связку заказ-цена', [OrderPrice], [EnumRole.admin])
+  @Roles('Удалить связку заказ-цена', [OrderPrice], [EnumRole.customer])
   @Delete([':priceId', ':orderId'])
   remove(@Param('priceId') priceId: number, @Param('orderId') orderId: number) {
     return this.orderPriceService.deleteOrderPriceById(orderId, priceId);

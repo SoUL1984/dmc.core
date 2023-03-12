@@ -19,6 +19,7 @@ describe('Order test E2E Test', () => {
     describe('Создание нового заказ-наряда. POST /order/create', () => {
         let sJwtTokenBearer = '';
         const sUserEmail = 'pashenko@yandex.ru';
+        let idOrderForPrice = 0;
         let idOrderForUpdate = 0;
         let idOrderForDelete = 0;
         let idOrderErrDelete = 0;
@@ -63,6 +64,7 @@ describe('Order test E2E Test', () => {
                     fittingDateN2: '2022-12-15',
                     fittingDateN3: '2022-12-15',
                     uploadFiles: 'files.stl',
+                    role: 'admin',
                     desc: 'Тест',
                     descCourier: 'Тест 2',
                 })
@@ -213,6 +215,8 @@ describe('Order test E2E Test', () => {
             const data = response.body;
 
             // получаем ID последней записи в списке заказов
+            idOrderForPrice = data[4].id;
+            console.log('111 object :>> ', idOrderForPrice);
             idOrderForUpdate = data[5].id;
             idOrderErrDelete = data[6].id;
             idOrderForDelete = data[7].id;
@@ -372,5 +376,20 @@ describe('Order test E2E Test', () => {
                 .set('Authorization', sJwtTokenBearer)
                 .expect(500);
         });
+
+        it('Создаём запись ордер-прайс', async () => {
+            console.log('object :>> ', idOrderForPrice);
+            await request(app.getHttpServer())
+                .post('/api/order-price/')
+                .send({
+                    priceId: 2,
+                    orderId: idOrderForPrice,
+                    amount: 2  
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+            });
+
+
     });
 });
