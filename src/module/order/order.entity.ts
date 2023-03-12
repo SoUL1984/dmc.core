@@ -43,6 +43,9 @@ interface OrderCreationAttrs {
 
 @Table({ tableName: 'order', paranoid: true })
 export class Order extends Model<Order, OrderCreationAttrs> {
+    static createQueryBuilder(arg0: string) {
+        throw new Error('Method not implemented.');
+    }
     @ApiProperty({ example: '1', description: 'Уникальный индентификатор' })
     @Column({
         type: DataType.INTEGER,

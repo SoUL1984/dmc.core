@@ -208,11 +208,11 @@ describe('Order test E2E Test', () => {
 
         it('Получить все заказы пользователя', async () => {
             const response = await request(app.getHttpServer())
-                .get('/api/order/get-list-order')
+                .get('/api/order/get-list-order-page?page=0&limit=20')
                 .set('Authorization', sJwtTokenBearer)
                 .expect(200);
 
-            const data = response.body;
+            const data = response.body.rows;
 
             // получаем ID последней записи в списке заказов
             idOrderForPrice = data[4].id;
@@ -375,6 +375,396 @@ describe('Order test E2E Test', () => {
                 })
                 .set('Authorization', sJwtTokenBearer)
                 .expect(500);
+        });
+
+        it('Создаем еще 17 заказ-нарядов на этого пользователя.', async () => {
+            // #1
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #2
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #3
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #4
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #5
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #6
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #7
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #8
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #9
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #10
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #11
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #12
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #13
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #14
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #15
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #16
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+
+            // #17
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
+                })
+                .set('Authorization', sJwtTokenBearer)
+                .expect(201);
+        });
+
+        it('Проверка правильной работы пагинации.', async () => {
+            const responsePage1 = await request(app.getHttpServer())
+                .get('/api/order/get-list-order-page?page=0&limit=10')
+                .set('Authorization', sJwtTokenBearer)
+                .expect(200);
+
+            const dataPage1 = responsePage1.body.rows;
+            const nCount = responsePage1.body.count;
+
+            expect(nCount).toBe(25);
+            expect(dataPage1).toHaveLength(10);
+
+            const responsePage2 = await request(app.getHttpServer())
+                .get('/api/order/get-list-order-page?page=1&limit=10')
+                .set('Authorization', sJwtTokenBearer)
+                .expect(200);
+
+            const dataPage2 = responsePage2.body.rows;
+
+            expect(dataPage2).toHaveLength(10);
+
+            const responsePage3 = await request(app.getHttpServer())
+                .get('/api/order/get-list-order-page?page=2&limit=10')
+                .set('Authorization', sJwtTokenBearer)
+                .expect(200);
+
+            const dataPage3 = responsePage3.body.rows;
+
+            expect(dataPage3).toHaveLength(5);
         });
 
         it('Создаём запись ордер-прайс', async () => {

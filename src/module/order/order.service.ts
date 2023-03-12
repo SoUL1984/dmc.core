@@ -7,6 +7,7 @@ import { UpdateOrderDto } from './dto/update-order.dto';
 import { Order } from './order.entity';
 import { SelectOrderDto } from './dto/select-order.dto';
 import { UpdateOrderInWorkDto } from './dto/update-order-in-work.dto';
+import { validateOrReject } from 'class-validator';
 
 @Injectable()
 export class OrderService {
@@ -171,6 +172,44 @@ export class OrderService {
             return listOrders;
         } catch (e) {
             throw new HttpException('Получить все заказ-наряды с полными данными не удалось.', HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    async getListOrderWithPagination(
+        idUser: number,
+        page?: number,
+        limit?: number
+    ): Promise<{ rows: SelectOrderDto[]; count: number }> {
+        try {
+            const nLimit: number = limit || 10;
+            const nOffset: number = page * limit;
+
+            const vOrderPage = await this.orderRepository.findAndCountAll({
+                attributes: [
+                    'id',
+                    'orderNum',
+                    'doctorName',
+                    'pacientName',
+                    'technician',
+                    'isComplete',
+                    'isPayment',
+                    'isDelivery',
+                    'isDeliveryMade',
+                    'executor_n1',
+                    'executor_n2',
+                    'executor_n3',
+                    'fittingDateN1',
+                    'fittingDateN2',
+                    'fittingDateN3',
+                ],
+                limit: Number(nLimit),
+                offset: Number(nOffset),
+                where: { isDelete: false, userId: idUser },
+            });
+
+            return vOrderPage;
+        } catch (e) {
+            throw new HttpException('Получить все заказ-наряды с пагинацией не удалось.', HttpStatus.BAD_REQUEST);
         }
     }
 
