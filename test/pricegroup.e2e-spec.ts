@@ -3,6 +3,11 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { AppModule } from '../src/app.module';
 import * as request from 'supertest';
 
+/**
+ * Для теста необходим логин и пароль Админа
+ */
+const sEmail = 'admin@mail.ru';
+const sPassword = 'qwerty1234';
 describe('Price-group E2E Test', () => {
     let app: INestApplication;
 
@@ -18,8 +23,6 @@ describe('Price-group E2E Test', () => {
 
     describe('Проверка модуля price-group', () => {
         let sJwtTokenBearer = '';
-        const sEmail = 'admin@mail.ru';
-        const sPassword = 'qwerty1234';
 
         let idPriceGroup = 0;
 
