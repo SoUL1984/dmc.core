@@ -46,7 +46,7 @@ export class OrderPriceController {
   }
 
   @Roles('Обновить связку заказ-цена', [OrderPrice], [EnumRole.customer])
-  @Patch([':priceId', ':orderId'])
+  @Patch([':priceId/:orderId'])
   update(
     @Param('priceId') priceId: number,
     @Param('orderId') orderId: number,
@@ -60,7 +60,7 @@ export class OrderPriceController {
   }
 
   @Roles('Удалить связку заказ-цена', [OrderPrice], [EnumRole.customer])
-  @Delete([':priceId', ':orderId'])
+  @Delete([':priceId/:orderId'])
   remove(@Param('priceId') priceId: number, @Param('orderId') orderId: number) {
     return this.orderPriceService.deleteOrderPriceById(orderId, priceId);
   }

@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import * as request from 'supertest';
 import { AppModule } from '../src/app.module';
+import { DeletedAt } from 'sequelize-typescript';
 
 describe('Order test E2E Test', () => {
     let app: INestApplication;
@@ -19,7 +20,6 @@ describe('Order test E2E Test', () => {
     describe('Создание нового заказ-наряда. POST /order/create', () => {
         let sJwtTokenBearer = '';
         const sUserEmail = 'pashenko@yandex.ru';
-        let idOrderForPrice = 0;
         let idOrderForUpdate = 0;
         let idOrderForDelete = 0;
         let idOrderErrDelete = 0;
@@ -215,8 +215,6 @@ describe('Order test E2E Test', () => {
             const data = response.body.rows;
 
             // получаем ID последней записи в списке заказов
-            idOrderForPrice = data[4].id;
-            console.log('111 object :>> ', idOrderForPrice);
             idOrderForUpdate = data[5].id;
             idOrderErrDelete = data[6].id;
             idOrderForDelete = data[7].id;
@@ -766,20 +764,104 @@ describe('Order test E2E Test', () => {
 
             expect(dataPage3).toHaveLength(5);
         });
+    });
 
-        it('Создаём запись ордер-прайс', async () => {
-            console.log('object :>> ', idOrderForPrice);
-            await request(app.getHttpServer())
-                .post('/api/order-price/')
+    describe('Проверки методов для таблицы order_price', () => {
+        let sJwtTokenBearer = '';
+        const sUserEmail = 'pashenko2@yandex.ru';
+        let idOrderForPrice = 0;
+
+        it('Регистрация пользователя', () =>
+            request(app.getHttpServer())
+                .post('/api/auth/registration')
                 .send({
-                    priceId: 2,
-                    orderId: idOrderForPrice,
-                    amount: 2  
+                    email: 'pashenko2@yandex.ru',
+                    password: 'volk',
+                    name: 'Пащенко Э.В.',
+                    phone: '+7 (987) 787-11-02',
+                })
+                .expect(201));
+
+        it('Авторизация под пользователем и получение jwt token', async () => {
+            const response = await request(app.getHttpServer())
+                .post('/api/auth/login')
+                .send({
+                    email: sUserEmail,
+                    password: 'volk',
+                })
+                .expect(201);
+            // устанавливаем jwt токен для использования в последующих тестах
+            const jwtToken = response.body.token;
+            expect(jwtToken).toMatch(/^[A-Za-z0-9-_=]+\.[A-Za-z0-9-_=]+\.?[A-Za-z0-9-_.+/=]*$/);
+            sJwtTokenBearer = `Bearer ${jwtToken}`;
+        });
+
+        it('Создать заказов на пользователя #1', async () => {
+            await request(app.getHttpServer())
+                .post('/api/order/create')
+                .send({
+                    doctorName: 'Пуговкин В.В.',
+                    pacientName: 'Петров П.П.',
+                    technician: 'Пащенко Э.В.',
+                    color: 'A1',
+                    executor_n1: 14,
+                    executor_n2: 14,
+                    executor_n3: 14,
+                    fittingDateN1: '2022-12-15',
+                    fittingDateN2: '2022-12-15',
+                    fittingDateN3: '2022-12-15',
+                    uploadFiles: 'files.stl',
+                    role: 'admin',
+                    desc: 'Тест',
+                    descCourier: 'Тест 2',
                 })
                 .set('Authorization', sJwtTokenBearer)
                 .expect(201);
+                });
+
+                it('Получить все заказы пользователя', async () => {
+                    const response = await request(app.getHttpServer())
+                        .get('/api/order/get-list-order-page?page=0&limit=20')
+                        .set('Authorization', sJwtTokenBearer)
+                        .expect(200);
+        
+                    const data = response.body.rows;
+        
+                    // получаем ID последней записи в списке заказов
+                    idOrderForPrice = data[0].id;
+                    expect(data).toHaveLength(1);
+                });
+
+                it('Создаём запись ордер-прайс', async () => {
+                    await request(app.getHttpServer())
+                        .post('/api/order-price/')
+                        .send({
+                            priceId: 4, //захардкожено значение, при интеграции тестов заменить на переменную
+                            orderId: idOrderForPrice,
+                            amount: 2  
+                        })
+                        .set('Authorization', sJwtTokenBearer)
+                        .expect(201);
+                    });
+
+                    it(`Обновляем запись ордер-прайс ${idOrderForPrice}`, async () => {
+                        const response = await request(app.getHttpServer())
+                            .patch(`/api/order-price/4/${idOrderForPrice}`)
+                            .send({
+                                amount: 7  
+                            })
+                            .set('Authorization', sJwtTokenBearer)
+                            .expect(200);
+                        }); 
+
+                    it(`Удалить последний заказ под номером ${idOrderForPrice}`, async () => {
+                        const response = await request(app.getHttpServer())
+                            .delete(`/api/order-price/4/${idOrderForPrice}`) //захардкожено значение 4, при интеграции тестов заменить на переменную
+                            .set('Authorization', sJwtTokenBearer)
+                            .expect(200);
+                            const sIsDelete = response.text;
+                            expect(DeletedAt).toBeNull
+                            expect(sIsDelete).toBe('');
+                        });       
             });
-
-
-    });
 });
